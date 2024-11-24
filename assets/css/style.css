@@ -193,4 +193,15 @@ header a {
   padding: 0.5rem 1.5rem;
   background-color: #eff6ff;
   border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.hero-nav li a {
+  transition: var(--transition);
+}
+
+.hero-nav li:hover,
+.hero-nav li:hover a {
+  color: #fdba74 !important;
+  transform: scale(1.05);
 }
