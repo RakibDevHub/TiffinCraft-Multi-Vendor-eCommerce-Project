@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lato:wght@400;700&display=swap");
+
+:root {
+  /* Theme Colors */
+  --primary-color: #fff7ed;
+  --secondary-color: #fb923c;
+  --text-color: #555;
+
+  /* Global Spacing and Effects */
+  --padding: 6rem;
+  --transition: all 0.3s ease-in-out;
+  --border-radius: 0.5rem;
+  --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+  /* Fonts */
+  --font-primary: "Abril Fatface", sans-serif;
+  --font-secondary: "Lato", sans-serif;
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+  list-style: none;
+  color: var(--text-color);
+}
+
+body {
+  font-family: var(--font-secondary);
+  background-color: #eff6ff;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Header Styling */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 8vh;
+  padding: 0 var(--padding);
+  box-shadow: var(--box-shadow);
+  z-index: 1000;
+  background: var(--primary-color);
+}
+
+header a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  height: 8vh;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar a {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 0.2rem 1rem;
+  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Icon Styling */
+.navbar i {
+  font-size: 0.8rem !important;
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+/* Hover Effects */
+.navbar a:hover,
+.navbar a:active {
+  color: #fdba74;
+  transform: scale(1.05); /* Hover Scale Effect */
+}
+
+/* Hover Effects for Icons*/
+.navbar a:hover i,
+.navbar a:active i {
+  color: #fdba74;
+}
+
+/* Login Button */
+.nav-btn {
+  background: #fed7aa;
+  border-radius: 1rem;
+  padding: 0.2rem 1.5rem !important; /* Adjusted for Better Spacing */
+}
+
+.nav-btn:hover {
+  color: #fff !important;
+  background: #fdba74;
+}
+
+.nav-btn:hover i {
+  color: #fff !important;
+}
+
+/* Home Section  */
+.home {
+  position: relative;
+  height: 92vh;
+  top: 8vh;
+
+  background-image: url(../images/hero.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Dark Overlay  */
+.overlay {
+  position: absolute;
+  inset: 0px;
+  background-color: #000;
+  opacity: 0.6;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 var(--padding);
+  height: inherit;
+  z-index: 10;
+}
+
+.hero-txt h1,
+.hero-txt p,
+.hero-txt a {
+  color: #fff;
+}
+
+.hero-txt h1 {
+  font-size: 8rem;
+  margin-left: -0.5rem;
+}
+
+.hero-txt p {
+  font-size: 2rem;
+}
+
+.hero-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero-nav li {
+  padding: 0.5rem 1.5rem;
+  background-color: #eff6ff;
+  border-radius: var(--border-radius);
+}

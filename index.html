@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TiffinCraft connects home chefs with food lovers. Explore delicious homemade dishes, join as a vendor, or enjoy meals crafted with care by passionate chefs."
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>TiffinCraft</title>
+  </head>
+  <body>
+    <!-- Header Section Start -->
+    <header>
+      <a href="./index.html" class="logo">
+        <img
+          src="./assets/images/TiffinCraft.png"
+          alt="TiffinCraft - Homemade Meals"
+        />
+      </a>
+      <nav class="navbar" aria-label="Main Navigation">
+        <ul>
+          <li>
+            <a href="./index.html"> <i class="fa-solid fa-house"></i> Home </a>
+          </li>
+          <li>
+            <a href="./pages/vendors.html">
+              <i class="fa-solid fa-users-line"></i> Browse Vendors
+            </a>
+          </li>
+          <li>
+            <a href="./pages/dishes.html">
+              <i class="fa-solid fa-utensils"></i> Browse Dishes
+            </a>
+          </li>
+          <li class="logged-out">
+            <a href="./pages/login.html" class="nav-btn">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i> Log In
+            </a>
+          </li>
+          <li class="logged-in">
+            <a href="./pages/profile.html">
+              <i class="fa-regular fa-circle-user"></i> Profile
+            </a>
+          </li>
+          <li class="logged-in">
+            <a href="./pages/cart.html">
+              <i class="fa-solid fa-cart-shopping"></i> Cart
+            </a>
+          </li>
+          <li class="logged-in">
+            <a href="./index.html">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Home Section Start -->
+    <section class="home" id="#home">
+      <!-- Dark Overlay  -->
+      <div class="overlay"></div>
+      <div class="hero">
+        <div class="hero-txt">
+          <h1>Hungry!</h1>
+          <p>What are you waiting for!</p>
+          <a href="#">Order Now</a>
+        </div>
+        <nav class="hero-nav" aria-label="Hero Nav">
+          <ul>
+            <li><a href="#what">About TiffinCraft</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#vendor">Meet The Vendors</a></li>
+            <li><a href="#dishes">Delicious Dishes</a></li>
+            <li><a href="#partner">Become a Seller</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+    <!-- Home Section End -->
+
+    <!-- Custom JS -->
+    <script src="./assets/js/javascript.js"></script>
+  </body>
+</html>
