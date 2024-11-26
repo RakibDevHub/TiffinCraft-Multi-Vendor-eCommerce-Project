@@ -7,7 +7,6 @@
       name="description"
       content="TiffinCraft connects home chefs with food lovers. Explore delicious homemade dishes, join as a vendor, or enjoy meals crafted with care by passionate chefs."
     />
-    <!-- Font Awesome CDN -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -15,60 +14,35 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>TiffinCraft</title>
   </head>
   <body>
     <!-- Header Section Start -->
     <header>
-      <a href="./index.html" class="logo">
-        <img
-          src="./assets/images/TiffinCraft.png"
-          alt="TiffinCraft - Homemade Meals"
-        />
-      </a>
-      <nav class="navbar" aria-label="Main Navigation">
-        <ul>
-          <li>
-            <a href="./index.html"> <i class="fa-solid fa-house"></i> Home </a>
-          </li>
-          <li>
-            <a href="./pages/vendors.html">
-              <i class="fa-solid fa-users-line"></i> Browse Vendors
-            </a>
-          </li>
-          <li>
-            <a href="./pages/dishes.html">
-              <i class="fa-solid fa-utensils"></i> Browse Dishes
-            </a>
-          </li>
-          <li class="logged-out">
-            <a href="./pages/login.html" class="nav-btn">
-              <i class="fa-solid fa-arrow-right-to-bracket"></i> Log In
-            </a>
-          </li>
-          <li class="logged-in">
-            <a href="./pages/profile.html">
-              <i class="fa-regular fa-circle-user"></i> Profile
-            </a>
-          </li>
-          <li class="logged-in">
-            <a href="./pages/cart.html">
-              <i class="fa-solid fa-cart-shopping"></i> Cart
-            </a>
-          </li>
-          <li class="logged-in">
-            <a href="./index.html">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
-            </a>
-          </li>
+      <img
+        class="logo"
+        src="./assets/images/TiffinCraft.png"
+        alt="TiffinCraft Logo"
+      />
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./index.html">Browse Vendors</a></li>
+          <li><a href="./index.html">Browse Dishes</a></li>
         </ul>
       </nav>
+      <div class="nav-buttons">
+        <li class="logged-out nav-btn"><a href="./index.html">Sign In</a></li>
+        <li class="logged-in"><i class="fa-solid fa-heart"></i></li>
+        <li class="logged-in"><i class="fa-solid fa-cart-shopping"></i></li>
+        <li class="logged-in"><i class="fa-solid fa-user"></i></li>
+        <i class="fa-solid fa-bars" id="menu-bar"></i>
+      </div>
     </header>
     <!-- Header Section End -->
 
-    <!-- Home Section Start -->
+    <!-- Hero Section Start -->
     <section class="home" id="#home">
       <!-- Dark Overlay  -->
       <div class="overlay"></div>
@@ -89,9 +63,9 @@
         </nav>
       </div>
     </section>
-    <!-- Home Section End -->
+    <!-- Hero Section End -->
 
     <!-- Custom JS -->
-    <script src="./assets/js/javascript.js"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
