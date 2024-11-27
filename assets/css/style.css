@@ -116,8 +116,7 @@ header .nav-buttons i:hover {
 /* Home Section  */
 .home {
   position: relative;
-  height: 92vh;
-  top: 8vh;
+  height: 100vh;
 
   background-image: url(../images/hero.jpeg);
   background-size: cover;
@@ -171,6 +170,7 @@ header .nav-buttons i:hover {
 }
 
 .hero-txt a {
+  margin-top: 2rem;
   font-size: 1.7rem;
   padding: 0.5rem 2rem;
   border-radius: 0.5rem;
@@ -209,6 +209,67 @@ header .nav-buttons i:hover {
 .hero-nav li:hover a {
   color: #fdba74 !important;
   transform: scale(1.05);
+}
+
+.about-section {
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-heading {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 4rem;
+}
+
+.about-heading .title {
+  font-size: 4rem;
+}
+
+.about-heading .sub-title {
+  font-size: 2rem;
+}
+
+.about-heading p {
+  text-align: center;
+  font-size: 1.7rem;
+}
+
+.about-heading p span {
+  color: var(--orange-400);
+}
+
+.about-container {
+  /* display: flex;
+  gap: 2rem; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.about-content {
+  width: 40%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about-content h2 {
+  font-size: 2.5rem;
+}
+
+.about-content p {
+  font-size: 1.5rem;
 }
 
 /* Responsive Design */
@@ -257,6 +318,16 @@ header .nav-buttons i:hover {
     font-size: 2rem;
     background: #eee;
   }
+
+  .hero-txt h1 {
+    /* font-family: var(--font-body); */
+    font-size: 14rem;
+    /* margin-left: -0.5rem; */
+  }
+
+  .hero-txt p {
+    font-size: 4rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -270,5 +341,18 @@ header .nav-buttons i:hover {
     header .logo {
       height: 35px;
     }
+  }
+  .hero-txt h1 {
+    font-size: 10rem;
+  }
+
+  .hero-txt p {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 350px) {
+  html {
+    font-size: 45%;
   }
 }
