@@ -121,6 +121,7 @@ $herolinks = [
   </section>
   <!-- Hero Section End -->
 
+  <!-- About TiffinCraft Features Section Start -->
   <section class="features-section" id="what">
     <div class="features-heading">
       <h1 class="title">Discover TiffinCraft</h1>
@@ -146,6 +147,79 @@ $herolinks = [
       ?>
     </div>
   </section>
+  <!-- About TiffinCraft Features Sectionn End -->
+
+  <!-- How It Works Section Start  -->
+  <section class="how-section">
+    <div class="how-heading">
+      <h1 class="title">Discover TiffinCraft</h1>
+      <p class="sub-title">Where Every Meal is a Masterpiece</p>
+    </div>
+    <!-- Steps  -->
+    <!-- <div class="how-container">
+      <div class="how-content">
+        <span>01</span>
+        <h1>Find Your Vendor</h1>
+        <p>Browse through our trusted vendors and pick the one that matches
+          your requirements. It's easy to Sign Up and create your account.</p>
+      </div>
+    </div> -->
+
+    <div class="steps-container">
+      <!-- Step 1 -->
+      <div class="step">
+        <div class="step-text">
+          <span class="step-number orange">01</span>
+          <h1 class="step-title">Find Your Vendor</h1>
+          <p class="step-description">
+            Browse through our trusted vendors and pick the one that matches your requirements. It's easy to
+            <a href="/register" class="link">sign up</a> and create your account.
+          </p>
+        </div>
+        <div class="step-image-wrapper">
+          <div class="circle orange large"></div>
+          <div class="circle orange small"></div>
+          <img src="./assets/images/step_1.png" alt="Step 1: A person holding a phone" class="step-image" />
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step reverse">
+        <div class="step-image-wrapper">
+          <div class="rotated-box blue large"></div>
+          <div class="rotated-box blue small"></div>
+          <img src="./assets/images/step_2.png" alt="Step 2: A person talking on the phone with the vendors"
+            class="step-image" />
+        </div>
+        <div class="step-text">
+          <span class="step-number blue">02</span>
+          <h1 class="step-title">Customize Your Plan</h1>
+          <p class="step-description">
+            Communicate with the vendor to design your ideal meal plan. You can tailor it to your preferences and needs.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step">
+        <div class="step-text">
+          <span class="step-number green">03</span>
+          <h1 class="step-title">Enjoy Hassle-Free Meals</h1>
+          <p class="step-description">
+            Sit back and enjoy your meal deliveries—freshly prepared and delivered right to your doorstep.
+          </p>
+        </div>
+        <div class="step-image-wrapper">
+          <div class="skewed-box green large"></div>
+          <div class="skewed-box green small"></div>
+          <img src="./assets/images/step_3.png" alt="Step 3: A person delivering food to the customer"
+            class="step-image" />
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- How It Works Section End  -->
 </body>
 
 </html>
