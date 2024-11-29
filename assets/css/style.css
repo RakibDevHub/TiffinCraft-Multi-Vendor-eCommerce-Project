@@ -235,7 +235,7 @@ header .nav-buttons i:hover {
   transform: scale(1.05);
 }
 
-.about-section {
+.features-section {
   padding: 5% 10%;
   display: flex;
   flex-direction: column;
@@ -243,7 +243,7 @@ header .nav-buttons i:hover {
   align-items: center;
 }
 
-.about-heading {
+.features-heading {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -251,30 +251,30 @@ header .nav-buttons i:hover {
   gap: 0.5rem;
 }
 
-.about-heading .title {
+.features-heading .title {
   font-size: 4rem;
   text-transform: uppercase;
   color: var(--primary-color);
   font-weight: 900;
 }
 
-.about-heading .sub-title {
+.features-heading .sub-title {
   font-size: 2rem;
   font-style: italic;
   margin-bottom: 1rem;
   font-weight: 700;
 }
 
-.about-heading p {
+.features-heading p {
   /* font-style: italic; */
   font-weight: 500;
 }
 
-.about-heading p span {
+.features-heading p span {
   color: var(--primary-color);
 }
 
-.about-container {
+.features-container {
   display: grid;
   grid-template-columns: auto auto;
   justify-content: center;
@@ -282,7 +282,7 @@ header .nav-buttons i:hover {
   gap: 3rem;
 }
 
-.about-content {
+.features-content {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -295,11 +295,11 @@ header .nav-buttons i:hover {
   transition: var(--transition);
 }
 
-.about-content:hover {
+.features-content:hover {
   transform: scale(1.02);
 }
 
-.about-content i {
+.features-content i {
   font-size: 8rem;
   height: fit-content;
   width: fit-content;
@@ -313,7 +313,7 @@ header .nav-buttons i:hover {
   transform: scale(1.05);
 } */
 
-.about-content h2 {
+.features-content h2 {
   font-size: 2.5rem;
 }
 

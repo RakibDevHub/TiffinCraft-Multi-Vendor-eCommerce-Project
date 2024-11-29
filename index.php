@@ -1,3 +1,59 @@
+<?php
+$features = [
+  [
+    "icon" => "fa-solid fa-infinity",
+    "title" => "Explore Endless Possibilities",
+    "description" => "Unleash your creativity and explore a diverse range of homemade
+          recipes with TiffinCraft. From traditional favorites to innovative
+          creations, there's something for everyone.",
+  ],
+  [
+    "icon" => "fa-solid fa-lightbulb",
+    "title" => "Discover Homemade Delights",
+    "description" => "Indulge in a world of homemade goodness with TiffinCraft. Explore,
+          share, and savor delicious homemade dishes from passionate cooks
+          like you.",
+  ],
+  [
+    "icon" => "fa-solid fa-fire",
+    "title" => "Share Your Passion",
+    "description" => "Share your love for cooking and connect with fellow food
+          enthusiasts. Showcase your culinary talents and inspire others with
+          your homemade delights.",
+  ],
+  [
+    "icon" => "fa-solid fa-handshake",
+    "title" => "Join Our Community",
+    "description" => "Join our welcoming community of food lovers and embark on a
+          flavorful journey. Whether you're a seasoned chef or a novice,
+          there's always room at our table.",
+  ],
+];
+
+$herolinks = [
+  [
+    "name" => "About TiffinCraft",
+    "to" => "#what",
+  ],
+  [
+    "name" => "How It Works",
+    "to" => "#how",
+  ],
+  [
+    "name" => "Meet The Vendors",
+    "to" => "#vendor",
+  ],
+  [
+    "name" => "Delicious Dishes",
+    "to" => "#dishes",
+  ],
+  [
+    "name" => "Become a Seller",
+    "to" => "#partner",
+  ],
+];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +62,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="TiffinCraft connects home chefs with food lovers. Explore delicious homemade dishes, join as a vendor, or enjoy meals crafted with care by passionate chefs." />
+
   <!-- Font Awesome CDN  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/style.css" />
 
@@ -52,19 +110,19 @@
       </div>
       <nav class="hero-nav" aria-label="Hero Nav">
         <ul>
-          <li><a href="#what">About TiffinCraft</a></li>
-          <li><a href="#how">How It Works</a></li>
-          <li><a href="#vendor">Meet The Vendors</a></li>
-          <li><a href="#dishes">Delicious Dishes</a></li>
-          <li><a href="#partner">Become a Seller</a></li>
+          <?php
+          foreach ($herolinks as $link) {
+            echo '<li><a href="' . htmlspecialchars($link['to']) . '">' . htmlspecialchars($link['name']) . '</a></li>';
+          }
+          ?>
         </ul>
       </nav>
     </div>
   </section>
   <!-- Hero Section End -->
 
-  <section class="about-section" id="about">
-    <div class="about-heading">
+  <section class="features-section" id="what">
+    <div class="features-heading">
       <h1 class="title">Discover TiffinCraft</h1>
       <h4 class="sub-title">Where Every Meal is a Masterpiece</h4>
       <p>
@@ -76,44 +134,16 @@
         life to celebrate the art of cooking and sharing
       </p>
     </div>
-    <div class="about-container">
-      <div class="about-content">
-        <i class="fa-solid fa-infinity"></i>
-        <h2>Explore Endless Possibilities</h2>
-        <p>
-          Unleash your creativity and explore a diverse range of homemade
-          recipes with TiffinCraft. From traditional favorites to innovative
-          creations, there's something for everyone.
-        </p>
-      </div>
-      <div class="about-content">
-        <i class="fa-solid fa-lightbulb"></i>
-        <h2>Discover Homemade Delights</h2>
-        <p>
-          Indulge in a world of homemade goodness with TiffinCraft. Explore,
-          share, and savor delicious homemade dishes from passionate cooks
-          like you.
-        </p>
-      </div>
-      <div class="about-content">
-        <i class="fa-solid fa-fire"></i>
-        <h2>Share Your Passion</h2>
-        <p>
-          Share your love for cooking and connect with fellow food
-          enthusiasts. Showcase your culinary talents and inspire others with
-          your homemade delights.
-        </p>
-      </div>
-      <div class="about-content">
-        <!-- <i class="fa-solid fa-user-group"></i> -->
-        <i class="fa-solid fa-handshake"></i>
-        <h2>Join Our Community</h2>
-        <p>
-          Join our welcoming community of food lovers and embark on a
-          flavorful journey. Whether you're a seasoned chef or a novice,
-          there's always room at our table.
-        </p>
-      </div>
+    <div class="features-container">
+      <?php
+      foreach ($features as $feature) {
+        echo '<div class="features-content">';
+        echo '<i class="' . htmlspecialchars($feature['icon']) . '"></i>';
+        echo '<h2>' . htmlspecialchars($feature['title']) . '</h2>';
+        echo '<p>' . htmlspecialchars($feature['description']) . '</i>';
+        echo '</div>';
+      }
+      ?>
     </div>
   </section>
 </body>
