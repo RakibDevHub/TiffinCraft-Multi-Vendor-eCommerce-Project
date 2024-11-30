@@ -118,8 +118,11 @@ $herolinks = [
         </ul>
       </nav>
     </div>
+    <div class="spacer layer top"></div>
+    <div class="spacer layer"></div>
   </section>
   <!-- Hero Section End -->
+
 
   <!-- About TiffinCraft Features Section Start -->
   <section class="features-section" id="what">
@@ -148,22 +151,12 @@ $herolinks = [
     </div>
   </section>
   <!-- About TiffinCraft Features Sectionn End -->
-
   <!-- How It Works Section Start  -->
-  <section class="how-section">
+  <section class="how-section" id="how">
     <div class="how-heading">
       <h1 class="title">Discover TiffinCraft</h1>
       <p class="sub-title">Where Every Meal is a Masterpiece</p>
     </div>
-    <!-- Steps  -->
-    <!-- <div class="how-container">
-      <div class="how-content">
-        <span>01</span>
-        <h1>Find Your Vendor</h1>
-        <p>Browse through our trusted vendors and pick the one that matches
-          your requirements. It's easy to Sign Up and create your account.</p>
-      </div>
-    </div> -->
 
     <div class="steps-container">
       <!-- Step 1 -->
@@ -186,13 +179,13 @@ $herolinks = [
       <!-- Step 2 -->
       <div class="step reverse">
         <div class="step-image-wrapper">
-          <div class="rotated-box blue large"></div>
-          <div class="rotated-box blue small"></div>
+          <div class="rotated-box green large"></div>
+          <div class="rotated-box green small"></div>
           <img src="./assets/images/step_2.png" alt="Step 2: A person talking on the phone with the vendors"
             class="step-image" />
         </div>
         <div class="step-text">
-          <span class="step-number blue">02</span>
+          <span class="step-number green">02</span>
           <h1 class="step-title">Customize Your Plan</h1>
           <p class="step-description">
             Communicate with the vendor to design your ideal meal plan. You can tailor it to your preferences and needs.
@@ -203,16 +196,16 @@ $herolinks = [
       <!-- Step 3 -->
       <div class="step">
         <div class="step-text">
-          <span class="step-number green">03</span>
+          <span class="step-number blue">03</span>
           <h1 class="step-title">Enjoy Hassle-Free Meals</h1>
           <p class="step-description">
             Sit back and enjoy your meal deliveries—freshly prepared and delivered right to your doorstep.
           </p>
         </div>
         <div class="step-image-wrapper">
-          <div class="skewed-box green large"></div>
-          <div class="skewed-box green small"></div>
-          <img src="./assets/images/step_3.png" alt="Step 3: A person delivering food to the customer"
+          <!-- <div class="skewed-box green large"></div>
+          <div class="skewed-box green small"></div> -->
+          <img src="./assets/images/step3.png" alt="Step 3: A person delivering food to the customer"
             class="step-image" />
         </div>
       </div>
@@ -220,6 +213,84 @@ $herolinks = [
 
   </section>
   <!-- How It Works Section End  -->
+
+  <!-- Become a Seller Section Start  -->
+  <section class="how-section partner" id="partner">
+    <div class="how-heading">
+      <h1 class="title">Partner with TiffinCraft</h1>
+      <p class="sub-title">Share your culinary talent, reach more customers, and grow your
+        business effortlessly. Signing up is quick and easy!</p>
+    </div>
+
+    <div class="steps-container">
+      <!-- Step 1 -->
+      <div class="step reverse">
+        <div class="step-image-wrapper">
+          <img src="./assets/images/step_11.png" alt="Step 1: A person holding a phone" class="step-image" />
+        </div>
+        <div class="step-text">
+          <span class="step-number orange">01</span>
+          <h1 class="step-title">Regrister as a Seller</h1>
+          <p class="step-description">
+            Step into a world of endless opportunities. Become part of our
+            thriving community of home chefs and turn your passion for
+            cooking into a rewarding journey.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step">
+        <div class="step-text">
+          <span class="step-number green">02</span>
+          <h1 class="step-title">List Your Dishes</h1>
+          <p class="step-description">
+            Share your culinary masterpieces with the world. Create a
+            personalized menu, set your prices, and make your mark with your
+            signature dishes.
+          </p>
+        </div>
+        <div class="step-image-wrapper">
+          <img src="./assets/images/step_22.png" alt="Step 2: A person talking on the phone with the vendors"
+            class="step-image" />
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step reverse">
+        <div class="step-image-wrapper">
+          <img src="./assets/images/step_33.png" alt="Step 3: A person delivering food to the customer"
+            class="step-image" />
+        </div>
+        <div class="step-text">
+          <span class="step-number red">03</span>
+          <h1 class="step-title">Connect with Customers</h1>
+          <p class="step-description">
+            Build lasting connections with food lovers who appreciate the
+            magic of home-cooked meals. Inspire their taste buds with every
+            bite.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step">
+        <div class="step-text">
+          <span class="step-number blue">04</span>
+          <h1 class="step-title">Get Paid</h1>
+          <p class="step-description">
+            Enjoy a seamless payment experience while you focus on
+            delighting your customers with exceptional meals.
+          </p>
+        </div>
+        <div class="step-image-wrapper">
+          <img src="./assets/images/step_44.webp" alt="Step 2: A person talking on the phone with the vendors"
+            class="step-image" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Become a Seller Section End  -->
 </body>
 
 </html>
