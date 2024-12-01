@@ -671,11 +671,48 @@ header .nav-buttons i:hover {
   text-decoration: underline;
 }
 
-
-.swiper {
-  width: 600px;
-  height: 300px;
+/* Slider Design  */
+.container {
+  background-color: var(--blue-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  /* gap: 2rem; */
+  height: 100vh;
 }
+
+.card-wrapper {
+  width: 400px;
+}
+
+.card-list,
+.card-link {}
+
+.card-item {
+  width: 400px;
+  display: block;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.card-list .card-link,
+.card-image {
+  width: 100%;
+  /* padding: 0.5rem; */
+  border-radius: 1.5rem;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+/* @media (m) */
+
+.card-badge {}
+
+.card-title {}
+
+.card-button {}
 
 
 /* Responsive Design */
@@ -814,6 +851,13 @@ header .nav-buttons i:hover {
 
   .hero-txt {
     padding: 0rem 3rem 1rem 3rem;
+  }
+
+  .card-list,
+  .card-item,
+  .card-link {
+    width: 350px;
+    display: block;
   }
 }
 

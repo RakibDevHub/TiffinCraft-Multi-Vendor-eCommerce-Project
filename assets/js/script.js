@@ -28,9 +28,22 @@ const vendorFields = document.querySelector("#vendor-fields");
 userType.addEventListener("change", () => {
   if (userType.value === "vendor") {
     vendorFields.classList.remove("hidden");
-    console.log("remove");
   } else {
     vendorFields.classList.add("hidden");
-    console.log("add");
   }
+});
+
+new Swiper('.card-wrapper', {
+  loop: true,
+
+  // Pagination bullets
+  pagination: {
+    el: '.swiper-pagination',
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
 });

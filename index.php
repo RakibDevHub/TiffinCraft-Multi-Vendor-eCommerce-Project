@@ -52,6 +52,81 @@ $herolinks = [
     "to" => "#partner",
   ],
 ];
+
+$itemSlider = [
+  [
+    "itemImage" => "./assets/images/hero.jpeg",
+    "itemName" => "Bhuna Khichuri",
+    "itemDetails" => "You may combine any of the options above.",
+    "itemPrice" => "80",
+    "itemOffer" => "20",
+    "itemRating" => "No Rating Yet",
+    "itemVendor" => "Kamal Kitchen",
+  ],
+  [
+    "itemImage" => "./assets/images/hero.jpeg",
+    "itemName" => "Bhuna Khichuri",
+    "itemDetails" => "You may combine any of the options above.",
+    "itemPrice" => "80",
+    "itemOffer" => "20",
+    "itemRating" => "No Rating Yet",
+    "itemVendor" => "Kamal Kitchen",
+  ],
+  [
+    "itemImage" => "./assets/images/hero.jpeg",
+    "itemName" => "Bhuna Khichuri",
+    "itemDetails" => "You may combine any of the options above.",
+    "itemPrice" => "80",
+    "itemOffer" => "20",
+    "itemRating" => "No Rating Yet",
+    "itemVendor" => "Kamal Kitchen",
+  ],
+  [
+    "itemImage" => "./assets/images/hero.jpeg",
+    "itemName" => "Bhuna Khichuri",
+    "itemDetails" => "You may combine any of the options above.",
+    "itemPrice" => "80",
+    "itemOffer" => "20",
+    "itemRating" => "No Rating Yet",
+    "itemVendor" => "Kamal Kitchen",
+  ],
+  [
+    "itemImage" => "./assets/images/hero.jpeg",
+    "itemName" => "Bhuna Khichuri",
+    "itemDetails" => "You may combine any of the options above.",
+    "itemPrice" => "80",
+    "itemOffer" => "20",
+    "itemRating" => "No Rating Yet",
+    "itemVendor" => "Kamal Kitchen",
+  ],
+  [
+    "itemImage" => "./assets/images/hero.jpeg",
+    "itemName" => "Bhuna Khichuri",
+    "itemDetails" => "You may combine any of the options above.",
+    "itemPrice" => "80",
+    "itemOffer" => "20",
+    "itemRating" => "No Rating Yet",
+    "itemVendor" => "Kamal Kitchen",
+  ],
+  [
+    "itemImage" => "./assets/images/hero.jpeg",
+    "itemName" => "Bhuna Khichuri",
+    "itemDetails" => "You may combine any of the options above.",
+    "itemPrice" => "80",
+    "itemOffer" => "20",
+    "itemRating" => "No Rating Yet",
+    "itemVendor" => "Kamal Kitchen",
+  ],
+  [
+    "itemImage" => "./assets/images/hero.jpeg",
+    "itemName" => "Bhuna Khichuri",
+    "itemDetails" => "You may combine any of the options above.",
+    "itemPrice" => "80",
+    "itemOffer" => "20",
+    "itemRating" => "No Rating Yet",
+    "itemVendor" => "Kamal Kitchen",
+  ],
+];
 ?>
 
 <!DOCTYPE html>
@@ -71,11 +146,11 @@ $herolinks = [
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/style.css" />
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
   <!-- Custom JS -->
   <script src="./assets/js/script.js" defer></script>
-
   <!-- Swiper Slider CDN  -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script> -->
 
   <title>TiffinCraft</title>
@@ -318,28 +393,96 @@ $herolinks = [
 
 
   <!-- Slider  -->
-  <!-- Slider main container -->
-  <div class="swiper">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
-      ...
+  <div class="container swiper">
+    <div class="card-wrapper">
+      <ul class="card-list swiper-wrapper">
+        <!-- <?php
+        // foreach ($itemSlider as $slider) {
+        //   echo '<li class="card-item">';
+        //   echo '<a class="' . htmlspecialchars($slider['icon']) . '"></i>';
+        //   echo '<h2>' . htmlspecialchars($slider['title']) . '</h2>';
+        //   echo '<p>' . htmlspecialchars($slider['description']) . '</i>';
+        //   echo '</li>';
+        // }
+        ?> -->
+        <li class="card-item swiper-slide">
+          <a href="#" class="card-link">
+            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
+            <p class="card-badge">20% OFF</p>
+            <h2 class="card-title">
+              This is slider title
+            </h2>
+            <button class="card-button">Order Now</button>
+          </a>
+
+        </li>
+        <li class="card-item swiper-slide">
+          <a href="#" class="card-link">
+            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
+            <p class="card-badge">20% OFF</p>
+            <h2 class="card-title">
+              This is slider title
+            </h2>
+            <button class="card-button">Order Now</button>
+          </a>
+
+        </li>
+        <li class="card-item swiper-slide">
+          <a href="#" class="card-link">
+            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
+            <p class="card-badge">20% OFF</p>
+            <h2 class="card-title">
+              This is slider title
+            </h2>
+            <button class="card-button">Order Now</button>
+          </a>
+
+        </li>
+        <li class="card-item swiper-slide">
+          <a href="#" class="card-link">
+            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
+            <p class="card-badge">20% OFF</p>
+            <h2 class="card-title">
+              This is slider title
+            </h2>
+            <button class="card-button">Order Now</button>
+          </a>
+
+        </li>
+        <li class="card-item swiper-slide">
+          <a href="#" class="card-link">
+            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
+            <p class="card-badge">20% OFF</p>
+            <h2 class="card-title">
+              This is slider title
+            </h2>
+            <button class="card-button">Order Now</button>
+          </a>
+
+        </li>
+        <li class="card-item swiper-slide">
+          <a href="#" class="card-link">
+            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
+            <p class="card-badge">20% OFF</p>
+            <h2 class="card-title">
+              This is slider title
+            </h2>
+            <button class="card-button">Order Now</button>
+          </a>
+
+        </li>
+      </ul>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
-
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+  <!-- Slider main container -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 </body>
 
