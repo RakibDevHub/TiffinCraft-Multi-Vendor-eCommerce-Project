@@ -74,13 +74,19 @@ $herolinks = [
   <!-- Custom JS -->
   <script src="./assets/js/script.js" defer></script>
 
+  <!-- Swiper Slider CDN  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script> -->
+
   <title>TiffinCraft</title>
 </head>
 
 <body>
   <!-- Header Section Start -->
-  <header>
-    <img class="logo" src="./assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
+  <header class="header-section">
+    <a href="./index.php" class="logo-link">
+      <img class="logo" src="./assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
+    </a>
     <nav class="navbar">
       <ul class="nav-links">
         <li><a href="./index.php">Home</a></li>
@@ -123,7 +129,6 @@ $herolinks = [
   </section>
   <!-- Hero Section End -->
 
-
   <!-- About TiffinCraft Features Section Start -->
   <section class="features-section" id="what">
     <div class="features-heading">
@@ -151,6 +156,16 @@ $herolinks = [
     </div>
   </section>
   <!-- About TiffinCraft Features Sectionn End -->
+
+  <!-- Custome Shape -->
+  <div class="custom-shape shape1-color">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path
+        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+        class="shape1-fill"></path>
+    </svg>
+  </div>
+
   <!-- How It Works Section Start  -->
   <section class="how-section" id="how">
     <div class="how-heading">
@@ -213,6 +228,15 @@ $herolinks = [
 
   </section>
   <!-- How It Works Section End  -->
+
+  <!-- Custome Shape -->
+  <div class="custom-shape shape2-color">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path
+        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+        class="shape2-fill"></path>
+    </svg>
+  </div>
 
   <!-- Become a Seller Section Start  -->
   <section class="how-section partner" id="partner">
@@ -291,6 +315,32 @@ $herolinks = [
     </div>
   </section>
   <!-- Become a Seller Section End  -->
+
+
+  <!-- Slider  -->
+  <!-- Slider main container -->
+  <div class="swiper">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      ...
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
 </body>
 
 </html>

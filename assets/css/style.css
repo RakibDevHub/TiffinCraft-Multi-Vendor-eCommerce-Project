@@ -44,6 +44,7 @@
 html {
   font-size: 62.5%;
   overflow-x: hidden;
+  scroll-padding-top: 60px;
   scroll-behavior: smooth;
 }
 
@@ -52,8 +53,41 @@ body {
   background-color: var(--body-bg);
 }
 
+.custom-shape {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 150px;
+}
+
+.shape1-color {
+  background-color: var(--secondary-color);
+}
+
+.custom-shape .shape1-fill {
+  fill: #FFFFFF;
+}
+
+.shape2-color {
+  background-color: #FFFFFF;
+}
+
+.custom-shape .shape2-fill {
+  fill: var(--secondary-color);
+}
+
 .spacer {
-  aspect-ratio: 900/200;
+  aspect-ratio: 960/300;
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -91,6 +125,12 @@ header {
   background-color: var(--body-bg);
   box-shadow: var(--box-shadow);
   z-index: 1000;
+}
+
+header .logo-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 header .logo {
@@ -278,8 +318,7 @@ header .nav-buttons i:hover {
 }
 
 .features-section {
-  padding: 5% 10%;
-  padding-top: 0px;
+  padding: 2% 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -359,7 +398,7 @@ header .nav-buttons i:hover {
 
 /* How it Works Section  */
 .how-section {
-  padding: 5% 10%;
+  padding: 2% 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -528,7 +567,7 @@ header .nav-buttons i:hover {
 }
 
 .how-section.partner {
-  background: var(--body-bg);
+  background: var(--secondary-color);
 }
 
 
@@ -630,6 +669,12 @@ header .nav-buttons i:hover {
 
 .switch-auth a:hover {
   text-decoration: underline;
+}
+
+
+.swiper {
+  width: 600px;
+  height: 300px;
 }
 
 
