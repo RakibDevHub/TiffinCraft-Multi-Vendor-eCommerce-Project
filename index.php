@@ -143,15 +143,13 @@ $itemSlider = [
     integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- Swiper Slider CSS  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="./assets/css/swiper-init.css" />
+
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/style.css" />
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-  <!-- Custom JS -->
-  <script src="./assets/js/script.js" defer></script>
-  <!-- Swiper Slider CDN  -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script> -->
 
   <title>TiffinCraft</title>
 </head>
@@ -391,99 +389,68 @@ $itemSlider = [
   </section>
   <!-- Become a Seller Section End  -->
 
+  <!-- <?php
+  // foreach ($itemSlider as $slider) {
+  //   echo '<li class="card-item">';
+  //   echo '<a class="' . htmlspecialchars($slider['icon']) . '"></i>';
+  //   echo '<h2>' . htmlspecialchars($slider['title']) . '</h2>';
+  //   echo '<p>' . htmlspecialchars($slider['description']) . '</i>';
+  //   echo '</li>';
+  // }
+  ?> -->
 
-  <!-- Slider  -->
-  <div class="container swiper">
-    <div class="card-wrapper">
-      <ul class="card-list swiper-wrapper">
-        <!-- <?php
-        // foreach ($itemSlider as $slider) {
-        //   echo '<li class="card-item">';
-        //   echo '<a class="' . htmlspecialchars($slider['icon']) . '"></i>';
-        //   echo '<h2>' . htmlspecialchars($slider['title']) . '</h2>';
-        //   echo '<p>' . htmlspecialchars($slider['description']) . '</i>';
-        //   echo '</li>';
-        // }
-        ?> -->
-        <li class="card-item swiper-slide">
-          <a href="#" class="card-link">
-            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
-            <p class="card-badge">20% OFF</p>
-            <h2 class="card-title">
-              This is slider title
-            </h2>
-            <button class="card-button">Order Now</button>
-          </a>
 
-        </li>
-        <li class="card-item swiper-slide">
-          <a href="#" class="card-link">
-            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
-            <p class="card-badge">20% OFF</p>
-            <h2 class="card-title">
-              This is slider title
-            </h2>
-            <button class="card-button">Order Now</button>
-          </a>
+  <section class="vendors-section">
+    <div class="container">
+      <!-- Swiper Slider -->
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <p class="card-title">This is slider title 1</p>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 2">
+            <p class="card-title">This is slider title 2</p>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 3">
+            <p class="card-title">This is slider title 3</p>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 3">
+            <p class="card-title">This is slider title 3</p>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 3">
+            <p class="card-title">This is slider title 3</p>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 3">
+            <p class="card-title">This is slider title 3</p>
+          </div>
+        </div>
 
-        </li>
-        <li class="card-item swiper-slide">
-          <a href="#" class="card-link">
-            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
-            <p class="card-badge">20% OFF</p>
-            <h2 class="card-title">
-              This is slider title
-            </h2>
-            <button class="card-button">Order Now</button>
-          </a>
-
-        </li>
-        <li class="card-item swiper-slide">
-          <a href="#" class="card-link">
-            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
-            <p class="card-badge">20% OFF</p>
-            <h2 class="card-title">
-              This is slider title
-            </h2>
-            <button class="card-button">Order Now</button>
-          </a>
-
-        </li>
-        <li class="card-item swiper-slide">
-          <a href="#" class="card-link">
-            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
-            <p class="card-badge">20% OFF</p>
-            <h2 class="card-title">
-              This is slider title
-            </h2>
-            <button class="card-button">Order Now</button>
-          </a>
-
-        </li>
-        <li class="card-item swiper-slide">
-          <a href="#" class="card-link">
-            <img src="./assets/images/hero.jpeg" class="card-image" alt="">
-            <p class="card-badge">20% OFF</p>
-            <h2 class="card-title">
-              This is slider title
-            </h2>
-            <button class="card-button">Order Now</button>
-          </a>
-
-        </li>
-      </ul>
-      <!-- If we need pagination -->
-      <div class="swiper-pagination"></div>
-
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      </div>
+      <!-- Pagination -->
+      <div class="swiper-buttons">
+        <!-- Navigation -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Slider main container -->
+
+
+  <!-- Custom JS  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- Swiper Js  -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+  <script src="./assets/js/swiper-init.js"></script>
 </body>
 
 </html>
