@@ -33,7 +33,7 @@
       </ul>
     </nav>
     <div class="nav-buttons">
-      <li class="logged-out nav-btn"><a href="./regrister.php">Sign In</a></li>
+      <li class="logged-out nav-btn"><a href="./login.php">Sign In</a></li>
       <li class="logged-in"><i class="fa-solid fa-heart"></i></li>
       <li class="logged-in"><i class="fa-solid fa-cart-shopping"></i></li>
       <li class="logged-in"><i class="fa-solid fa-user"></i></li>

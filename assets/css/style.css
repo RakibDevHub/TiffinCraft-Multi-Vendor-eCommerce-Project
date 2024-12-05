@@ -323,13 +323,14 @@ header .nav-buttons i:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 3rem;
 }
 
 .section-heading {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 4rem;
+  /* margin-bottom: 4rem; */
   gap: 0.5rem;
   width: 100%;
 }
@@ -343,7 +344,7 @@ header .nav-buttons i:hover {
 
 .section-heading .sub-title {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   font-weight: 700;
   font-style: italic;
 }
@@ -542,7 +543,7 @@ header .nav-buttons i:hover {
 }
 
 .section.vendors .section-heading {
-  margin-bottom: 0px;
+  /* margin-bottom: 0px; */
 }
 
 

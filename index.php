@@ -40,7 +40,7 @@ $herolinks = [
   ],
   [
     "name" => "Meet The Vendors",
-    "to" => "#vendor",
+    "to" => "#vendors",
   ],
   [
     "name" => "Delicious Dishes",
@@ -167,7 +167,7 @@ $itemSlider = [
       </ul>
     </nav>
     <div class="nav-buttons">
-      <li class="logged-out nav-btn"><a href="./register.php">Sign In</a></li>
+      <li class="logged-out nav-btn"><a href="./login.php">Sign In</a></li>
       <li class="logged-in"><i class="fa-solid fa-heart"></i></li>
       <li class="logged-in"><i class="fa-solid fa-cart-shopping"></i></li>
       <li class="logged-in"><i class="fa-solid fa-user"></i></li>
@@ -327,7 +327,7 @@ $itemSlider = [
         </div>
         <div class="step-text">
           <span class="step-number orange">01</span>
-          <h1 class="step-title">Regrister as a Seller</h1>
+          <h1 class="step-title">Register as a Seller</h1>
           <p class="step-description">
             Step into a world of endless opportunities. Become part of our
             thriving community of home chefs and turn your passion for
@@ -408,15 +408,19 @@ $itemSlider = [
     </svg>
   </div>
 
-  <section class="section vendors">
+  <section class="section vendors" id="vendors">
     <div class="section-heading">
-      <h1 class="title">Discover TiffinCraft</h1>
-      <h3 class="sub-title">Where Every Meal is a Masterpiece</h3>
+      <h1 class="title">Meet Our Vendors</h1>
+      <h3 class="sub-title">Connecting You with Passionate Home Chefs</h3>
     </div>
 
-    <div class="container">
+    <div class="container popular">
+      <div class="container-header">
+        <h2>Popular Vendors</h2>
+        <a href="#">Browse More</a>
+      </div>
       <!-- Swiper Slider -->
-      <div class="swiper">
+      <div class="swiper vendor-slider-popular">
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
@@ -564,9 +568,171 @@ $itemSlider = [
       <!-- Pagination -->
       <div class="swiper-buttons">
         <!-- Navigation -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev vendor-slider-popular-prev"></div>
+        <div class="swiper-pagination vendor-slider-popular-pagination"></div>
+        <div class="swiper-button-next vendor-slider-popular-next"></div>
+
+        <!-- <div class="swiper-button-next"></div> -->
+      </div>
+    </div>
+
+    <div class="container new">
+      <div class="container-header">
+        <h2>New Vendors</h2>
+        <a href="#">Browse More</a>
+      </div>
+      <!-- Swiper Slider -->
+      <div class="swiper vendor-slider-new">
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Pagination -->
+      <div class="swiper-buttons">
+        <!-- Navigation -->
+        <div class="swiper-button-prev vendor-slider-new-prev"></div>
+        <div class="swiper-pagination vendor-slider-new-pagination"></div>
+        <div class="swiper-button-next vendor-slider-new-next"></div>
       </div>
     </div>
   </section>
