@@ -1,32 +1,31 @@
-<?php
-$features = [
+<?php $features = [
   [
     "icon" => "fa-solid fa-infinity",
     "title" => "Explore Endless Possibilities",
     "description" => "Unleash your creativity and explore a diverse range of homemade
-          recipes with TiffinCraft. From traditional favorites to innovative
-          creations, there's something for everyone.",
+  recipes with TiffinCraft. From traditional favorites to innovative
+  creations, there's something for everyone.",
   ],
   [
     "icon" => "fa-solid fa-lightbulb",
     "title" => "Discover Homemade Delights",
     "description" => "Indulge in a world of homemade goodness with TiffinCraft. Explore,
-          share, and savor delicious homemade dishes from passionate cooks
-          like you.",
+  share, and savor delicious homemade dishes from passionate cooks
+  like you.",
   ],
   [
     "icon" => "fa-solid fa-fire",
     "title" => "Share Your Passion",
     "description" => "Share your love for cooking and connect with fellow food
-          enthusiasts. Showcase your culinary talents and inspire others with
-          your homemade delights.",
+  enthusiasts. Showcase your culinary talents and inspire others with
+  your homemade delights.",
   ],
   [
     "icon" => "fa-solid fa-handshake",
     "title" => "Join Our Community",
     "description" => "Join our welcoming community of food lovers and embark on a
-          flavorful journey. Whether you're a seasoned chef or a novice,
-          there's always room at our table.",
+  flavorful journey. Whether you're a seasoned chef or a novice,
+  there's always room at our table.",
   ],
 ];
 
@@ -203,11 +202,11 @@ $itemSlider = [
   <!-- Hero Section End -->
 
   <!-- About TiffinCraft Features Section Start -->
-  <section class="features-section" id="what">
-    <div class="features-heading">
+  <section class="section features" id="what">
+    <div class="section-heading">
       <h1 class="title">Discover TiffinCraft</h1>
-      <h4 class="sub-title">Where Every Meal is a Masterpiece</h4>
-      <p>
+      <h3 class="sub-title">Where Every Meal is a Masterpiece</h3>
+      <p class="text">
         Welcome to <span>TiffinCraft</span>, the ultimate destination for
         homemade food enthusiasts and culinary experts alike. Whether you’re a
         passionate home cook eager to share your creations or someone seeking
@@ -240,10 +239,10 @@ $itemSlider = [
   </div>
 
   <!-- How It Works Section Start  -->
-  <section class="how-section" id="how">
-    <div class="how-heading">
+  <section class="section how" id="how">
+    <div class="section-heading">
       <h1 class="title">Discover TiffinCraft</h1>
-      <p class="sub-title">Where Every Meal is a Masterpiece</p>
+      <h3 class="sub-title">Where Every Meal is a Masterpiece</h3>
     </div>
 
     <div class="steps-container">
@@ -276,7 +275,8 @@ $itemSlider = [
           <span class="step-number green">02</span>
           <h1 class="step-title">Customize Your Plan</h1>
           <p class="step-description">
-            Communicate with the vendor to design your ideal meal plan. You can tailor it to your preferences and needs.
+            Communicate with the vendor to design your ideal meal plan. You can tailor it to your preferences and
+            needs.
           </p>
         </div>
       </div>
@@ -312,11 +312,11 @@ $itemSlider = [
   </div>
 
   <!-- Become a Seller Section Start  -->
-  <section class="how-section partner" id="partner">
-    <div class="how-heading">
+  <section class="section partner" id="partner">
+    <div class="section-heading">
       <h1 class="title">Partner with TiffinCraft</h1>
-      <p class="sub-title">Share your culinary talent, reach more customers, and grow your
-        business effortlessly. Signing up is quick and easy!</p>
+      <h3 class="sub-title">Share your culinary talent, reach more customers, and grow your
+        business effortlessly. Signing up is quick and easy!</h3>
     </div>
 
     <div class="steps-container">
@@ -399,8 +399,21 @@ $itemSlider = [
   // }
   ?> -->
 
+  <!-- Custome Shape -->
+  <div class="custom-shape shape1-color">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path
+        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+        class="shape1-fill"></path>
+    </svg>
+  </div>
 
-  <section class="vendors-section">
+  <section class="section vendors">
+    <div class="section-heading">
+      <h1 class="title">Discover TiffinCraft</h1>
+      <h3 class="sub-title">Where Every Meal is a Masterpiece</h3>
+    </div>
+
     <div class="container">
       <!-- Swiper Slider -->
       <div class="swiper">
@@ -408,30 +421,145 @@ $itemSlider = [
           <!-- Slides -->
           <div class="swiper-slide">
             <img src="./assets/images/hero.jpeg" alt="Slide 1">
-            <p class="card-title">This is slider title 1</p>
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
           </div>
           <div class="swiper-slide">
-            <img src="./assets/images/hero.jpeg" alt="Slide 2">
-            <p class="card-title">This is slider title 2</p>
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
           </div>
           <div class="swiper-slide">
-            <img src="./assets/images/hero.jpeg" alt="Slide 3">
-            <p class="card-title">This is slider title 3</p>
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
           </div>
           <div class="swiper-slide">
-            <img src="./assets/images/hero.jpeg" alt="Slide 3">
-            <p class="card-title">This is slider title 3</p>
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
           </div>
           <div class="swiper-slide">
-            <img src="./assets/images/hero.jpeg" alt="Slide 3">
-            <p class="card-title">This is slider title 3</p>
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
           </div>
           <div class="swiper-slide">
-            <img src="./assets/images/hero.jpeg" alt="Slide 3">
-            <p class="card-title">This is slider title 3</p>
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/images/hero.jpeg" alt="Slide 1">
+            <div class="slide-top">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </span>
+              <span>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </div>
+            <div class="slider-bottom">
+              <h2>Kitchen Name</h2>
+              <span>Customer Served</span>
+              <span>Location</span>
+            </div>
           </div>
         </div>
-
       </div>
       <!-- Pagination -->
       <div class="swiper-buttons">
