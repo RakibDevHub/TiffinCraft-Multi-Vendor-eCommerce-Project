@@ -14,15 +14,19 @@ new Swiper(".vendor-slider-popular", {
   breakpoints: {
     640: {
       slidesPerView: 1,
+      slidesPerGroup: 1,
     },
     768: {
       slidesPerView: 2,
+      slidesPerGroup: 2,
     },
     1024: {
       slidesPerView: 3,
+      slidesPerGroup: 3,
     },
     1280: {
       slidesPerView: 4,
+      slidesPerGroup: 4,
     },
   },
 });
@@ -43,15 +47,118 @@ new Swiper(".vendor-slider-new", {
   breakpoints: {
     640: {
       slidesPerView: 1,
+      slidesPerGroup: 1,
     },
     768: {
       slidesPerView: 2,
+      slidesPerGroup: 2,
     },
     1024: {
       slidesPerView: 3,
+      slidesPerGroup: 3,
     },
     1280: {
       slidesPerView: 4,
+      slidesPerGroup: 4,
+    },
+  },
+});
+
+new Swiper(".dishes-slider-popular", {
+  loop: true,
+  pagination: {
+    el: ".dishes-slider-popular-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".dishes-slider-popular-next",
+    prevEl: ".dishes-slider-popular-prev",
+  },
+  slidesPerView: 1,
+  slidesPerGroup: 1,
+  spaceBetween: 20,
+  breakpoints: {
+    640: {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+    },
+    768: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+    },
+    1280: {
+      slidesPerView: 4,
+      slidesPerGroup: 4,
+    },
+  },
+});
+
+new Swiper(".dishes-slider-home", {
+  loop: true,
+  pagination: {
+    el: ".dishes-slider-home-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".dishes-slider-home-next",
+    prevEl: ".dishes-slider-home-prev",
+  },
+  slidesPerView: 1,
+  slidesPerGroup: 1,
+  spaceBetween: 20,
+  breakpoints: {
+    640: {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+    },
+    768: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+    },
+    1280: {
+      slidesPerView: 4,
+      slidesPerGroup: 4,
+    },
+  },
+});
+
+new Swiper(".dishes-slider-restaurant", {
+  loop: true,
+  pagination: {
+    el: ".dishes-slider-restaurant-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".dishes-slider-restaurant-next",
+    prevEl: ".dishes-slider-restaurant-prev",
+  },
+  slidesPerView: 1,
+  slidesPerGroup: 1,
+  spaceBetween: 20,
+  breakpoints: {
+    640: {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+    },
+    768: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+    },
+    1280: {
+      slidesPerView: 4,
+      slidesPerGroup: 4,
     },
   },
 });

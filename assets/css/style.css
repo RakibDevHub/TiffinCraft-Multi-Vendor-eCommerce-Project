@@ -293,7 +293,7 @@ header .nav-buttons i:hover {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 1rem 3rem;
 }
 
@@ -314,7 +314,7 @@ header .nav-buttons i:hover {
 .hero-nav li:hover,
 .hero-nav li:hover a {
   color: var(--primary-color) !important;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .section {
@@ -540,6 +540,14 @@ header .nav-buttons i:hover {
 
 .section.partner {
   background: var(--secondary-color);
+}
+
+.section.dishes {
+  background: var(--secondary-color);
+}
+
+.dishes .swiper-slide {
+  background: var(--body-bg);
 }
 
 .section.vendors .section-heading {
