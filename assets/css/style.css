@@ -14,7 +14,7 @@
   --text-gray: #4b5563;
 
   --primary-color: #ff5722;
-  --primary-hover: #ff3c00;
+  --primary-hover: #ce380a;
   --secondary-color: #fff7ed;
   --body-bg: #ffffff;
   --form-bg: #f9f9f9;
@@ -67,7 +67,7 @@ body {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 152px;
+  height: 70px;
 }
 
 .shape1-color {
@@ -98,8 +98,8 @@ body {
   background-image: url('../images/layer3.svg');
   position: absolute;
   bottom: 0;
-  height: 100%;
-  margin-bottom: -0.5rem;
+  height: auto;
+  margin-bottom: -7rem;
 }
 
 .top {
@@ -112,7 +112,201 @@ body {
 }
 
 /* Header Styling */
-header {
+.header-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  background: var(--body-bg);
+  box-shadow: var(--box-shadow);
+}
+
+/* .business-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+} */
+
+.business-link {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 100%;
+}
+
+.business-link.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* Style the close button */
+.close-btn {
+  position: absolute;
+  right: 10%;
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #333;
+  font-weight: 900;
+}
+
+.close-btn i {
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 2rem;
+  line-height: 3.7rem;
+  text-align: center;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.close-btn i:hover {
+  color: #ff0000;
+  transform: rotate(360deg);
+  /* Highlight the close button on hover */
+  /* background: #ccc; */
+}
+
+
+
+
+.nav-container {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 10%;
+  background: var(--secondary-color);
+}
+
+.nav-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--secondary-color);
+}
+
+.nav-logo img {
+  height: 40px;
+  width: auto;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links li,
+.nav-buttons li a,
+.business-link a {
+  padding: 0.5rem 1.5rem;
+
+}
+
+.business-link a,
+.nav-links li a,
+.nav-buttons li a {
+  font-weight: 900;
+  border-radius: 0.5rem;
+  color: #555;
+  transition: var(--transition);
+}
+
+/* .nav-links li a  */
+
+.business-link p,
+.business-link a {
+  font-weight: 500 !important;
+}
+
+.business-link .outline,
+.nav-btn .outline {
+  border: 1px solid #ccc;
+}
+
+.business-link .outline:hover,
+.nav-btn .outline:hover {
+  /* color: var(--secondary-color) !important; */
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+  /* background: var(--primary-color) */
+}
+
+.business-link a:hover,
+.nav-links li:hover,
+.nav-buttons li:hover {
+  transform: scale(1.05);
+}
+
+.nav-btn .fill {
+  color: var(--body-bg) !important;
+  background: var(--primary-color);
+}
+
+.nav-btn .fill:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+}
+
+.nav-links li a:hover {
+  color: var(--primary-color);
+}
+
+/*
+.nav-buttons li a:hover {
+  color: #fff;
+  background-color: var(--primary-color);
+  transform: scale(1.05);
+} */
+
+.nav-buttons i {
+  cursor: pointer;
+  margin-left: 0.5rem;
+  height: 4rem;
+  width: 4rem;
+  font-size: 1.7rem;
+  line-height: 4rem;
+  text-align: center;
+  background-color: #eee;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.nav-buttons i:hover {
+  color: #fff;
+  background-color: var(--primary-color);
+  transform: rotate(360deg);
+}
+
+/* header {
   position: fixed;
   display: flex;
   align-items: center;
@@ -150,7 +344,6 @@ header .nav-buttons {
 
 header .navbar .nav-links li a,
 header .nav-buttons li a {
-  /* font-size: 1.7rem; */
   font-weight: 900;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
@@ -186,7 +379,7 @@ header .nav-buttons i:hover {
   color: #fff;
   background-color: var(--primary-color);
   transform: rotate(360deg);
-}
+} */
 
 #menu-bar {
   display: none;
@@ -201,7 +394,7 @@ header .nav-buttons i:hover {
 .home {
   position: relative;
   height: 100vh;
-
+  top: 30px;
   background-image: url(../images/hero.jpeg);
   background-size: cover;
   background-position: center;
@@ -228,43 +421,87 @@ header .nav-buttons i:hover {
   padding: 0 var(--padding);
   height: inherit;
   z-index: 10;
+  /* top: 50px; */
 }
 
-/* .hero-txt {
+.hero-link {
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0rem;
+}
+
+.hero-link span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #fff;
+  width: fit-content;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  background: #333333cf;
+}
+
+.hero-link span:hover {
+  transform: scale(1.1);
+}
+
+.hero-link p,
+.hero-link a,
+.hero-link a i {
+  color: #fff;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.hero-link a:hover i {
+  transform: rotate(-45deg);
+}
+
+.hero-link .outline {
+  width: fit-content;
+  display: flex;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-} */
-
+  font-weight: bold;
+  color: var(--primary-color);
+}
 
 .hero-txt {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
-  padding: 1rem 5rem 3rem 5rem;
-  background: #33333387;
-  border-radius: 2rem 8rem;
+  padding-bottom: 3rem;
 }
 
-.hero-txt h1,
-.hero-txt p,
-.hero-txt a {
+.hero-txt .title,
+.hero-txt .sub-title {
   color: #fff;
 }
 
-.hero-txt h1 {
+.hero-txt .title {
   font-family: var(--font-body);
   font-size: 16rem;
-  margin-left: -0.5rem;
+  margin-left: -2.5rem;
 }
 
-.hero-txt p {
+.hero-txt .sub-title {
   font-size: 5rem;
 }
 
-.hero-txt a {
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.hero-buttons .outline,
+.hero-buttons .fill {
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -276,16 +513,24 @@ header .nav-buttons i:hover {
   border-radius: 0.5rem;
   border: 1px solid;
   transition: var(--transition);
-  background: #333333b5;
 }
 
-.hero-txt a i {
-  color: #fff;
+.hero-buttons .fill {
+  background: var(--primary-color);
 }
 
-.hero-txt a:hover {
-  background-color: var(--primary-color);
+.hero-buttons .fill:hover {
   transform: scale(1.1);
+  background: var(--primary-hover);
+}
+
+.hero-buttons .outline:hover {
+  transform: scale(1.1);
+  background-color: var(--primary-hover);
+}
+
+.hero-buttons a i {
+  color: #fff;
 }
 
 .hero-nav ul {
@@ -318,7 +563,7 @@ header .nav-buttons i:hover {
 }
 
 .section {
-  padding: 1% 10%;
+  padding: 2% 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -351,6 +596,7 @@ header .nav-buttons i:hover {
 
 .section-heading .text {
   font-weight: 500;
+  padding: 0rem 0.5rem;
 }
 
 .section-heading .text span {
@@ -544,6 +790,7 @@ header .nav-buttons i:hover {
 
 .section.dishes {
   background: var(--secondary-color);
+  padding-top: 7rem;
 }
 
 .dishes .swiper-slide {
@@ -727,13 +974,31 @@ header .nav-buttons i:hover {
 
 
 /* Responsive Design */
+@media (max-width:950px) {
+  .nav-container {
+    padding: 1rem 7%;
+  }
+
+  .nav-links {
+    gap: 0rem;
+  }
+
+  .close-btn {
+    right: 7%;
+  }
+}
+
 @media (max-width: 860px) {
   html {
     font-size: 55%;
   }
 
-  header {
+  .nav-container {
     padding: 1rem 5%;
+  }
+
+  .close-btn {
+    right: 5%;
   }
 
   .step {
@@ -751,7 +1016,7 @@ header .nav-buttons i:hover {
     display: inline-block;
   }
 
-  header .navbar .nav-links {
+  header .nav-container .nav-links {
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
@@ -763,15 +1028,15 @@ header .nav-buttons i:hover {
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   }
 
-  header .navbar .nav-links.active {
+  header .nav-container .nav-links.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 
-  header .navbar .nav-links li {
+  header .nav-container .nav-links li {
     width: 100%;
   }
 
-  header .navbar .nav-links li a {
+  header .nav-container .nav-links li a {
     display: block;
     padding: 1rem 2rem;
     margin: 0.5rem;
@@ -779,12 +1044,9 @@ header .nav-buttons i:hover {
     background: #eee;
   }
 
-  .hero-txt h1 {
+  .hero-txt .title {
     font-size: 14rem;
-  }
-
-  .hero-txt p {
-    font-size: 4rem;
+    margin-left: -10rem;
   }
 }
 
@@ -793,28 +1055,37 @@ header .nav-buttons i:hover {
     font-size: 50%;
   }
 
-  header {
+  .nav-container {
     padding: 1rem 3%;
   }
 
-  header .logo {
-    header .logo {
-      height: 35px;
-    }
+  .close-btn {
+    right: 3%;
   }
 
-  .hero-txt h1 {
-    font-size: 10rem;
+  header .nav-logo img {
+    height: 35px;
+
   }
 
-  .hero-txt p {
+  .hero-link {
+    align-items: center;
+  }
+
+  .hero-txt .title {
+    font-size: 12rem;
+    margin-left: 0rem;
+  }
+
+  .hero-txt .sub-title {
     font-size: 3rem;
   }
 }
 
 @media (max-width: 600px) {
-  .hero-txt {
-    padding: 0rem 4rem 2rem 4rem;
+
+  .nav-buttons {
+    gap: 1rem;
   }
 
   .features-container {
@@ -855,13 +1126,13 @@ header .nav-buttons i:hover {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   html {
     font-size: 45%;
   }
 
-  .hero-txt {
-    padding: 0rem 3rem 1rem 3rem;
+  .nav-buttons {
+    gap: 0.5rem;
   }
 
   .card-list,
@@ -870,10 +1141,14 @@ header .nav-buttons i:hover {
     width: 350px;
     display: block;
   }
+
+  .section-heading .title {
+    font-size: 3.5rem;
+  }
 }
 
-/* @media (max-width: 350px) {
+@media (max-width: 350px) {
   html {
-    font-size: 45%;
+    font-size: 40%;
   }
-} */
+}
