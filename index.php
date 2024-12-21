@@ -1150,7 +1150,7 @@ $itemSlider = [
 
   </section>
 
-  <?php include './components/footer' ?>
+  <?php include './components/footer.php' ?>
 
   <!-- Custom JS  -->
   <script src="./assets/js/main.js" type="module"></script>
