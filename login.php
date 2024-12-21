@@ -15,30 +15,13 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/style.css" />
 
-  <!-- Custom JS -->
-  <script src="./assets/js/script.js" defer></script>
-
   <title>Login</title>
 </head>
 
 <body>
   <!-- Header Section Start -->
-  <header>
-    <img class="logo" src="./assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
-    <nav class="navbar">
-      <ul class="nav-links">
-        <li><a href="./index.php">Home</a></li>
-        <li><a href="./vendors.php">Browse Vendors</a></li>
-        <li><a href="./dishes.php">Browse Dishes</a></li>
-      </ul>
-    </nav>
-    <div class="nav-buttons">
-      <li class="logged-out nav-btn"><a href="./login.php">Sign In</a></li>
-      <li class="logged-in"><i class="fa-solid fa-heart"></i></li>
-      <li class="logged-in"><i class="fa-solid fa-cart-shopping"></i></li>
-      <li class="logged-in"><i class="fa-solid fa-user"></i></li>
-      <i class="fa-solid fa-bars" id="menu-bar"></i>
-    </div>
+  <header class="header-section">
+    <?php include './components/navbar.php' ?>
   </header>
   <!-- Header Section End -->
 
@@ -62,5 +45,7 @@
   </section>
   <!-- Login Form End -->
 </body>
+<!-- Custom JS -->
+<script src="./assets/js/main.js" type="module"></script>
 
 </html>

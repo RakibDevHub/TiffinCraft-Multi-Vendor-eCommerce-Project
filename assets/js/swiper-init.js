@@ -13,20 +13,20 @@ new Swiper(".vendor-slider-popular", {
   spaceBetween: 20,
   breakpoints: {
     640: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-    },
-    768: {
       slidesPerView: 2,
       slidesPerGroup: 2,
     },
-    1024: {
+    768: {
       slidesPerView: 3,
       slidesPerGroup: 3,
     },
-    1280: {
+    1024: {
       slidesPerView: 4,
       slidesPerGroup: 4,
+    },
+    1280: {
+      slidesPerView: 5,
+      slidesPerGroup: 5,
     },
   },
 });
@@ -46,20 +46,20 @@ new Swiper(".vendor-slider-new", {
   spaceBetween: 20,
   breakpoints: {
     640: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-    },
-    768: {
       slidesPerView: 2,
       slidesPerGroup: 2,
     },
-    1024: {
+    768: {
       slidesPerView: 3,
       slidesPerGroup: 3,
     },
-    1280: {
+    1024: {
       slidesPerView: 4,
       slidesPerGroup: 4,
+    },
+    1280: {
+      slidesPerView: 5,
+      slidesPerGroup: 5,
     },
   },
 });
@@ -79,20 +79,20 @@ new Swiper(".dishes-slider-popular", {
   spaceBetween: 20,
   breakpoints: {
     640: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-    },
-    768: {
       slidesPerView: 2,
       slidesPerGroup: 2,
     },
-    1024: {
+    768: {
       slidesPerView: 3,
       slidesPerGroup: 3,
     },
-    1280: {
+    1024: {
       slidesPerView: 4,
       slidesPerGroup: 4,
+    },
+    1280: {
+      slidesPerView: 5,
+      slidesPerGroup: 5,
     },
   },
 });
@@ -112,20 +112,20 @@ new Swiper(".dishes-slider-home", {
   spaceBetween: 20,
   breakpoints: {
     640: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-    },
-    768: {
       slidesPerView: 2,
       slidesPerGroup: 2,
     },
-    1024: {
+    768: {
       slidesPerView: 3,
       slidesPerGroup: 3,
     },
-    1280: {
+    1024: {
       slidesPerView: 4,
       slidesPerGroup: 4,
+    },
+    1280: {
+      slidesPerView: 5,
+      slidesPerGroup: 5,
     },
   },
 });
@@ -145,20 +145,20 @@ new Swiper(".dishes-slider-restaurant", {
   spaceBetween: 20,
   breakpoints: {
     640: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-    },
-    768: {
       slidesPerView: 2,
       slidesPerGroup: 2,
     },
-    1024: {
+    768: {
       slidesPerView: 3,
       slidesPerGroup: 3,
     },
-    1280: {
+    1024: {
       slidesPerView: 4,
       slidesPerGroup: 4,
+    },
+    1280: {
+      slidesPerView: 5,
+      slidesPerGroup: 5,
     },
   },
 });

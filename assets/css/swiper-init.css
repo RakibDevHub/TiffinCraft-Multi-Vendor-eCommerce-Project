@@ -9,8 +9,8 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	margin: 0rem 1.5rem;
-	padding-top: 1rem;
+	/* margin: 0rem 1.5rem; */
+	padding: 1rem 0rem 2rem;
 	border-top: 1px solid #ccc;
 
 }
@@ -87,6 +87,14 @@
 	transform: scale(1.2);
 }
 
+.swiper-button-next {
+	margin-right: -10px;
+}
+
+.swiper-button-prev {
+	margin-left: -10px;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
 	color: #fff;
@@ -118,5 +126,5 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem;
+	padding: 1rem 0rem;
 }

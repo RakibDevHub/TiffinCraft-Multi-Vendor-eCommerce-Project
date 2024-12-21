@@ -24,16 +24,15 @@
 <body>
   <!-- Header Section Start -->
   <header class="header-section">
-    <!-- <nav class="nav-container">
+    <nav class="nav-container">
       <a href="./index.php" class="nav-logo">
-        <img src="./assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
+        <img src="./assets/images/TiffinCraft.png" alt="TiffinCraft Logo" /> Business
       </a>
-      <ul class="nav-links">
+      <!-- <ul class="nav-links">
         <li><a href="./index.php">Home</a></li>
-        <li><a href="./index.php#dishes">Browse Dishes</a></li>
-        <li><a href="./index.php#vendors">Browse Vendors</a></li>
-        <li><a href="./index.php#how">How It Works</a></li>
-      </ul>
+        <li><a href="./dishes.php">Browse Dishes</a></li>
+        <li><a href="./vendors.php">Browse Vendors</a></li>
+      </ul> -->
       <div class="nav-buttons">
         <li class="logged-out nav-btn"><a class="outline" href="./login.php">Sign In</a></li>
         <li class="logged-out nav-btn"><a class="fill" href="./register.php">Sign Up</a></li>
@@ -42,9 +41,7 @@
         <li class="logged-in"><i class="fa-solid fa-user"></i></li>
         <i class="fa-solid fa-bars" id="menu-bar"></i>
       </div>
-    </nav> -->
-    <?php include './components/navbar.php' ?>
-
+    </nav>
   </header>
   <!-- Header Section End -->
 
@@ -93,22 +90,7 @@
     </div>
   </section>
   <!-- Register Form End -->
-  <!-- Custom JS  -->
-  <script src="/assets/js/main.js" type="module"></script>
-  <!-- <script>
-    // Toggle navigation links visibility based on login status
-    const userLoggedIn = false;
-
-    const loggedInLinks = document.querySelectorAll(".logged-in");
-    const loggedOutLinks = document.querySelectorAll(".logged-out");
-
-    function toggleLinks(loggedIn) {
-      loggedInLinks.forEach((link) => link.classList.toggle("hidden", !loggedIn));
-      loggedOutLinks.forEach((link) => link.classList.toggle("hidden", loggedIn));
-    }
-
-    toggleLinks(userLoggedIn);
-  </script> -->
 </body>
+<script src="./assets/js/main.js" type="module"></script>
 
 </html>

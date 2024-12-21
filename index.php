@@ -29,29 +29,6 @@
   ],
 ];
 
-$herolinks = [
-  [
-    "name" => "About TiffinCraft",
-    "to" => "#what",
-  ],
-  [
-    "name" => "How It Works",
-    "to" => "#how",
-  ],
-  [
-    "name" => "Meet The Vendors",
-    "to" => "#vendors",
-  ],
-  [
-    "name" => "Delicious Dishes",
-    "to" => "#dishes",
-  ],
-  [
-    "name" => "Become a Seller",
-    "to" => "#partner",
-  ],
-];
-
 $itemSlider = [
   [
     "itemImage" => "./assets/images/hero.jpeg",
@@ -156,14 +133,15 @@ $itemSlider = [
 <body>
   <!-- Header Section Start -->
   <header class="header-section">
-    <nav class="nav-container">
+    <!-- <nav class="nav-container">
       <a href="./index.php" class="nav-logo">
         <img src="./assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
       </a>
       <ul class="nav-links">
         <li><a href="./index.php">Home</a></li>
-        <li><a href="./dishes.php">Browse Dishes</a></li>
-        <li><a href="./vendors.php">Browse Vendors</a></li>
+        <li><a href="./index.php#dishes">Browse Dishes</a></li>
+        <li><a href="./index.php#vendors">Browse Vendors</a></li>
+        <li><a href="./index.php#how">How It Works</a></li>
       </ul>
       <div class="nav-buttons">
         <li class="logged-out nav-btn"><a class="outline" href="./login.php">Sign In</a></li>
@@ -173,11 +151,11 @@ $itemSlider = [
         <li class="logged-in"><i class="fa-solid fa-user"></i></li>
         <i class="fa-solid fa-bars" id="menu-bar"></i>
       </div>
-    </nav>
+    </nav> -->
+    <?php include './components/navbar.php' ?>
     <div class="business-link">
       <p>Open a Business Account.</p>
       <a class="outline" href="#">Sign Up</a>
-      <!-- <button class="close-btn" aria-label="Close">&times;</button> -->
       <button class="close-btn" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     </div>
   </header>
@@ -194,7 +172,7 @@ $itemSlider = [
             <p>
               Open a Business Account.
             </p>
-            <a class="outline" href="#">Sign Up.
+            <a class="outline" href="./tc-business-register.php">Sign Up.
               <i class="fa-solid fa-arrow-right"></i>
             </a>
           </span>
@@ -202,7 +180,7 @@ $itemSlider = [
             <p>
               Become a Seller.
             </p>
-            <a class="outline" href="#">
+            <a class="outline" href="./tc-business-register.php">
               TiffinCraft For Business
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -240,12 +218,12 @@ $itemSlider = [
     </div>
 
     <div class="container popular">
-      <div class="container-header">
-        <h2>Popular Dishes</h2>
-        <a href="#">Browse More</a>
-      </div>
       <!-- Swiper Slider -->
       <div class="swiper dishes-slider-popular">
+        <div class="container-header">
+          <h2>Popular Dishes</h2>
+          <a href="#">Browse More</a>
+        </div>
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
@@ -389,25 +367,26 @@ $itemSlider = [
             </div>
           </div>
         </div>
-      </div>
-      <!-- Pagination -->
-      <div class="swiper-buttons">
-        <!-- Navigation -->
-        <div class="swiper-button-prev dishes-slider-popular-prev"></div>
-        <div class="swiper-pagination dishes-slider-popular-pagination"></div>
-        <div class="swiper-button-next dishes-slider-popular-next"></div>
 
-        <!-- <div class="swiper-button-next"></div> -->
+        <!-- Pagination -->
+        <div class="swiper-buttons">
+          <!-- Navigation -->
+          <div class="swiper-button-prev dishes-slider-popular-prev"></div>
+          <div class="swiper-pagination dishes-slider-popular-pagination"></div>
+          <div class="swiper-button-next dishes-slider-popular-next"></div>
+
+          <!-- <div class="swiper-button-next"></div> -->
+        </div>
       </div>
     </div>
 
     <div class="container home-made">
-      <div class="container-header">
-        <h2>Home-Made Dishes</h2>
-        <a href="#">Browse More</a>
-      </div>
       <!-- Swiper Slider -->
       <div class="swiper dishes-slider-home">
+        <div class="container-header">
+          <h2>Home-Made Dishes</h2>
+          <a href="#">Browse More</a>
+        </div>
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
@@ -551,23 +530,23 @@ $itemSlider = [
             </div>
           </div>
         </div>
-      </div>
-      <!-- Pagination -->
-      <div class="swiper-buttons">
-        <!-- Navigation -->
-        <div class="swiper-button-prev dishes-slider-home-prev"></div>
-        <div class="swiper-pagination dishes-slider-home-pagination"></div>
-        <div class="swiper-button-next dishes-slider-home-next"></div>
+        <!-- Pagination -->
+        <div class="swiper-buttons">
+          <!-- Navigation -->
+          <div class="swiper-button-prev dishes-slider-home-prev"></div>
+          <div class="swiper-pagination dishes-slider-home-pagination"></div>
+          <div class="swiper-button-next dishes-slider-home-next"></div>
+        </div>
       </div>
     </div>
 
     <div class="container restaurant">
-      <div class="container-header">
-        <h2>Restaurant Dishes</h2>
-        <a href="#">Browse More</a>
-      </div>
       <!-- Swiper Slider -->
       <div class="swiper dishes-slider-restaurant">
+        <div class="container-header">
+          <h2>Restaurant Dishes</h2>
+          <a href="#">Browse More</a>
+        </div>
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
@@ -711,13 +690,13 @@ $itemSlider = [
             </div>
           </div>
         </div>
-      </div>
-      <!-- Pagination -->
-      <div class="swiper-buttons">
-        <!-- Navigation -->
-        <div class="swiper-button-prev dishes-slider-restaurant-prev"></div>
-        <div class="swiper-pagination dishes-slider-restaurant-pagination"></div>
-        <div class="swiper-button-next dishes-slider-restaurant-next"></div>
+        <!-- Pagination -->
+        <div class="swiper-buttons">
+          <!-- Navigation -->
+          <div class="swiper-button-prev dishes-slider-restaurant-prev"></div>
+          <div class="swiper-pagination dishes-slider-restaurant-pagination"></div>
+          <div class="swiper-button-next dishes-slider-restaurant-next"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -740,12 +719,12 @@ $itemSlider = [
     </div>
 
     <div class="container popular">
-      <div class="container-header">
-        <h2>Popular Vendors</h2>
-        <a href="#">Browse More</a>
-      </div>
       <!-- Swiper Slider -->
       <div class="swiper vendor-slider-popular">
+        <div class="container-header">
+          <h2>Popular Vendors</h2>
+          <a href="#">Browse More</a>
+        </div>
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
@@ -889,25 +868,25 @@ $itemSlider = [
             </div>
           </div>
         </div>
-      </div>
-      <!-- Pagination -->
-      <div class="swiper-buttons">
-        <!-- Navigation -->
-        <div class="swiper-button-prev vendor-slider-popular-prev"></div>
-        <div class="swiper-pagination vendor-slider-popular-pagination"></div>
-        <div class="swiper-button-next vendor-slider-popular-next"></div>
+        <!-- Pagination -->
+        <div class="swiper-buttons">
+          <!-- Navigation -->
+          <div class="swiper-button-prev vendor-slider-popular-prev"></div>
+          <div class="swiper-pagination vendor-slider-popular-pagination"></div>
+          <div class="swiper-button-next vendor-slider-popular-next"></div>
 
-        <!-- <div class="swiper-button-next"></div> -->
+          <!-- <div class="swiper-button-next"></div> -->
+        </div>
       </div>
     </div>
 
     <div class="container new">
-      <div class="container-header">
-        <h2>New Vendors</h2>
-        <a href="#">Browse More</a>
-      </div>
       <!-- Swiper Slider -->
       <div class="swiper vendor-slider-new">
+        <div class="container-header">
+          <h2>New Vendors</h2>
+          <a href="#">Browse More</a>
+        </div>
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
@@ -1051,13 +1030,13 @@ $itemSlider = [
             </div>
           </div>
         </div>
-      </div>
-      <!-- Pagination -->
-      <div class="swiper-buttons">
-        <!-- Navigation -->
-        <div class="swiper-button-prev vendor-slider-new-prev"></div>
-        <div class="swiper-pagination vendor-slider-new-pagination"></div>
-        <div class="swiper-button-next vendor-slider-new-next"></div>
+        <!-- Pagination -->
+        <div class="swiper-buttons">
+          <!-- Navigation -->
+          <div class="swiper-button-prev vendor-slider-new-prev"></div>
+          <div class="swiper-pagination vendor-slider-new-pagination"></div>
+          <div class="swiper-button-next vendor-slider-new-next"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1109,95 +1088,74 @@ $itemSlider = [
     </svg>
   </div>
 
-  <!-- Become a Seller Section Start  -->
-  <!-- <section class="section partner" id="partner">
+  <!-- How It Works Section Start  -->
+  <section class="section how" id="how">
     <div class="section-heading">
-      <h1 class="title">Partner with TiffinCraft</h1>
-      <h3 class="sub-title">Share your culinary talent, reach more customers, and grow your
-        business effortlessly. Signing up is quick and easy!</h3>
+      <h1 class="title">How TiffinCraft Works</h1>
+      <h3 class="sub-title">Bringing Home-Cooked Goodness to Your Doorstep</h3>
     </div>
 
     <div class="steps-container">
-      <div class="step reverse">
-        <div class="step-image-wrapper">
-          <img src="./assets/images/step_11.png" alt="Step 1: A person holding a phone" class="step-image" />
-        </div>
+      <!-- Step 1 -->
+      <div class="step">
         <div class="step-text">
           <span class="step-number orange">01</span>
-          <h1 class="step-title">Register as a Seller</h1>
+          <h1 class="step-title">Find Your Vendor</h1>
           <p class="step-description">
-            Step into a world of endless opportunities. Become part of our
-            thriving community of home chefs and turn your passion for
-            cooking into a rewarding journey.
-          </p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-text">
-          <span class="step-number green">02</span>
-          <h1 class="step-title">List Your Dishes</h1>
-          <p class="step-description">
-            Share your culinary masterpieces with the world. Create a
-            personalized menu, set your prices, and make your mark with your
-            signature dishes.
+            Browse through our trusted vendors and pick the one that matches your requirements. It's easy to
+            <a href="/register" class="link">sign up</a> and create your account.
           </p>
         </div>
         <div class="step-image-wrapper">
-          <img src="./assets/images/step_22.png" alt="Step 2: A person talking on the phone with the vendors"
-            class="step-image" />
+          <div class="circle orange large"></div>
+          <div class="circle orange small"></div>
+          <img src="./assets/images/step_1.png" alt="Step 1: A person holding a phone" class="step-image" />
         </div>
       </div>
 
+      <!-- Step 2 -->
       <div class="step reverse">
         <div class="step-image-wrapper">
-          <img src="./assets/images/step_33.png" alt="Step 3: A person delivering food to the customer"
+          <div class="rotated-box green large"></div>
+          <div class="rotated-box green small"></div>
+          <img src="./assets/images/step_2.png" alt="Step 2: A person talking on the phone with the vendors"
             class="step-image" />
         </div>
         <div class="step-text">
-          <span class="step-number red">03</span>
-          <h1 class="step-title">Connect with Customers</h1>
+          <span class="step-number green">02</span>
+          <h1 class="step-title">Customize Your Plan</h1>
           <p class="step-description">
-            Build lasting connections with food lovers who appreciate the
-            magic of home-cooked meals. Inspire their taste buds with every
-            bite.
+            Communicate with the vendor to design your ideal meal plan. You can tailor it to your preferences and
+            needs.
           </p>
         </div>
       </div>
 
+      <!-- Step 3 -->
       <div class="step">
         <div class="step-text">
-          <span class="step-number blue">04</span>
-          <h1 class="step-title">Get Paid</h1>
+          <span class="step-number blue">03</span>
+          <h1 class="step-title">Enjoy Hassle-Free Meals</h1>
           <p class="step-description">
-            Enjoy a seamless payment experience while you focus on
-            delighting your customers with exceptional meals.
+            Sit back and enjoy your meal deliveries—freshly prepared and delivered right to your doorstep.
           </p>
         </div>
         <div class="step-image-wrapper">
-          <img src="./assets/images/step_44.webp" alt="Step 2: A person talking on the phone with the vendors"
+          <!-- <div class="skewed-box green large"></div>
+          <div class="skewed-box green small"></div> -->
+          <img src="./assets/images/step3.png" alt="Step 3: A person delivering food to the customer"
             class="step-image" />
         </div>
       </div>
     </div>
-  </section> -->
-  <!-- Become a Seller Section End  -->
 
-  <!-- Custome Shape -->
-  <!-- <div class="custom-shape shape2-color">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path
-        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-        class="shape2-fill"></path>
-    </svg>
-  </div> -->
+  </section>
 
-  <footer class="section footer">
-    Footer
-  </footer>
+
+  <?php include './components/footer' ?>
 
   <!-- Custom JS  -->
-  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/main.js" type="module"></script>
 
   <!-- Swiper Js  -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
