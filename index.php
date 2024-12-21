@@ -206,7 +206,6 @@ $itemSlider = [
   </section>
   <!-- Hero Section End -->
 
-
   <!-- Custom Shape  -->
   <div class="spacer layer"></div>
 
@@ -1150,7 +1149,6 @@ $itemSlider = [
     </div>
 
   </section>
-
 
   <?php include './components/footer' ?>
 

@@ -190,6 +190,14 @@ body {
   background: var(--secondary-color);
 }
 
+.nav-logo span {
+  font-weight: bolder;
+  font-size: 25px;
+  font-style: italic;
+  gap: 1rem;
+  color: var(--primary-color);
+}
+
 .nav-logo img {
   height: 40px;
   width: auto;

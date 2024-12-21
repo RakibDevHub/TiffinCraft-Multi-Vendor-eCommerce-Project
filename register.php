@@ -15,9 +15,6 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/style.css" />
 
-  <!-- Custom JS -->
-  <!-- <script src="./assets/js/script.js" defer></script> -->
-
   <title>Regrister</title>
 </head>
 
@@ -53,14 +50,6 @@
     <div class="auth-container">
       <form class="auth-form">
         <h2>Register</h2>
-        <!-- User Type Selection -->
-        <!-- <div class="form-group">
-          <label for="user-type">Register as:</label>
-          <select id="user-type" name="user-type" required>
-            <option value="customer">Customer</option>
-            <option value="vendor">Vendor</option>
-          </select>
-        </div> -->
         <!-- Common Fields -->
         <div class="form-group">
           <label for="username">Full Name</label>
@@ -93,22 +82,9 @@
     </div>
   </section>
   <!-- Register Form End -->
+
   <!-- Custom JS  -->
   <script src="/assets/js/main.js" type="module"></script>
-  <!-- <script>
-    // Toggle navigation links visibility based on login status
-    const userLoggedIn = false;
-
-    const loggedInLinks = document.querySelectorAll(".logged-in");
-    const loggedOutLinks = document.querySelectorAll(".logged-out");
-
-    function toggleLinks(loggedIn) {
-      loggedInLinks.forEach((link) => link.classList.toggle("hidden", !loggedIn));
-      loggedOutLinks.forEach((link) => link.classList.toggle("hidden", loggedIn));
-    }
-
-    toggleLinks(userLoggedIn);
-  </script> -->
 </body>
 
 </html>

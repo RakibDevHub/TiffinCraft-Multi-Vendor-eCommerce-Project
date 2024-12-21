@@ -44,8 +44,9 @@
     </div>
   </section>
   <!-- Login Form End -->
+
+  <!-- Custom JS -->
+  <script src="./assets/js/main.js" type="module"></script>
 </body>
-<!-- Custom JS -->
-<script src="./assets/js/main.js" type="module"></script>
 
 </html>

@@ -15,9 +15,6 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/style.css" />
 
-  <!-- Custom JS -->
-  <!-- <script src="./assets/js/script.js" defer></script> -->
-
   <title>Regrister</title>
 </head>
 
@@ -25,20 +22,15 @@
   <!-- Header Section Start -->
   <header class="header-section">
     <nav class="nav-container">
-      <a href="./index.php" class="nav-logo">
-        <img src="./assets/images/TiffinCraft.png" alt="TiffinCraft Logo" /> Business
+      <a href="./tc-business-register.php" class="nav-logo">
+        <img src="./assets/images/TiffinCraft.png" alt="TiffinCraft Logo" /> <span>Business</span>
       </a>
-      <!-- <ul class="nav-links">
-        <li><a href="./index.php">Home</a></li>
-        <li><a href="./dishes.php">Browse Dishes</a></li>
-        <li><a href="./vendors.php">Browse Vendors</a></li>
-      </ul> -->
       <div class="nav-buttons">
         <li class="logged-out nav-btn"><a class="outline" href="./login.php">Sign In</a></li>
         <li class="logged-out nav-btn"><a class="fill" href="./register.php">Sign Up</a></li>
-        <li class="logged-in"><i class="fa-solid fa-heart"></i></li>
+        <!-- <li class="logged-in"><i class="fa-solid fa-heart"></i></li>
         <li class="logged-in"><i class="fa-solid fa-cart-shopping"></i></li>
-        <li class="logged-in"><i class="fa-solid fa-user"></i></li>
+        <li class="logged-in"><i class="fa-solid fa-user"></i></li> -->
         <i class="fa-solid fa-bars" id="menu-bar"></i>
       </div>
     </nav>
@@ -50,15 +42,6 @@
     <div class="auth-container">
       <form class="auth-form">
         <h2>Register</h2>
-        <!-- User Type Selection -->
-        <!-- <div class="form-group">
-          <label for="user-type">Register as:</label>
-          <select id="user-type" name="user-type" required>
-            <option value="customer">Customer</option>
-            <option value="vendor">Vendor</option>
-          </select>
-        </div> -->
-        <!-- Common Fields -->
         <div class="form-group">
           <label for="username">Full Name</label>
           <input type="text" id="username" name="username" placeholder="Enter your full name" required>
@@ -76,21 +59,15 @@
           <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password"
             required>
         </div>
-        <!-- Vendor-Only Fields -->
-        <!-- <div class="form-group hidden" id="vendor-fields">
-          <h3>Business Information</h3>
-          <label for="business-name">Business Name</label>
-          <input type="text" id="business-name" name="business-name" placeholder="Enter your business name">
-          <label for="vendor-category">Category</label>
-          <input type="text" id="vendor-category" name="vendor-category" placeholder="e.g., Bakery, Meals, Beverages">
-        </div> -->
         <button type="submit" class="btn">Register</button>
-        <p class="switch-auth">Already have an account? <a href="login.php">Login</a></p>
+        <!-- <p class="switch-auth">Already have an account? <a href="login.php">Login</a></p> -->
       </form>
     </div>
   </section>
   <!-- Register Form End -->
+
+  <!-- Custom CSS  -->
+  <script src="./assets/js/main.js" type="module"></script>
 </body>
-<script src="./assets/js/main.js" type="module"></script>
 
 </html>
