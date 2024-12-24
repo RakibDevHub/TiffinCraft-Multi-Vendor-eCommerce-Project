@@ -200,11 +200,9 @@ body {
 
 .nav-container span {
   font-weight: 900;
-  font-size: 25px;
-  /* font-style: italic; */
-  gap: 1rem;
+  font-size: 2.5rem;
   color: var(--primary-color);
-  /* text-transform: uppercase; */
+  ;
 }
 
 .nav-links {
@@ -793,7 +791,9 @@ body {
 }
 
 .btn {
-  padding: 12px 15px;
+  /* padding: 12px 15px; */
+  padding: 0.7rem 2rem;
+
   color: var(--secondary-color);
   background: var(--primary-color);
   border: none;
@@ -835,7 +835,6 @@ body {
 }
 
 .choose-file-btn {
-  padding: 12px 15px;
   color: var(--secondary-color);
   background: var(--primary-color);
   border: none;
@@ -880,6 +879,30 @@ body {
   background: darkred;
 }
 
+.business-form-container {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  background: var(--body-bg);
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  margin: 5rem;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+}
+
+.f-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 
 /* Slider Design  */
 .slider {
@@ -927,6 +950,7 @@ body {
   font-size: 10rem;
   padding: 0rem 3rem;
   margin: 0px;
+  text-align: center;
 }
 
 /* Responsive Design */
@@ -1004,6 +1028,17 @@ body {
   .hero-txt .sub-title {
     font-size: 3rem;
   }
+
+  .tc-business .hero .hero-txt .title {
+    font-size: 8rem;
+  }
+
+  /* .business-form-container {
+    max-width: 450px;
+  } */
+
+
+
 }
 
 @media (max-width: 600px) {
@@ -1055,6 +1090,14 @@ body {
 
   .step-title {
     font-size: 4rem;
+  }
+
+  .business-form-container {
+    max-width: 450px;
+  }
+
+  .f {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
 

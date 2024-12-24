@@ -15,7 +15,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/style.css" />
 
-  <title>Regrister</title>
+  <title>TiffinCraft Business</title>
 </head>
 
 <body>
@@ -23,13 +23,12 @@
   <header class="header-section">
     <nav class="nav-container">
       <a href="/" class="nav-logo">
-        <img src="./assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
+        <img src="./assets/images/logo.png" class="logo-mini" alt="TiffinCraft Logo" />
+        <span>TiffinCraft-Business</span>
       </a>
-      <span>TiffinCraft-Business</span>
       <div class="nav-buttons">
         <li class="logged-out nav-btn"><a class="fill" href="./tc-business.php#login">Sign In</a></li>
-        <!-- <li class=" logged-out nav-btn"><a class="fill" href="./tc-business.php#register">Sign Up</a></li> -->
-        <i class="fa-solid fa-bars" id="menu-bar"></i>
+        <!-- <i class="fa-solid fa-bars" id="menu-bar"></i> -->
       </div>
     </nav>
   </header>
@@ -41,33 +40,9 @@
     <div class="overlay"></div>
     <div class="hero">
       <div class="hero-txt">
-        <!-- <div class="hero-link">
-          <span>
-            <p>
-              Open a Business Account.
-            </p>
-            <a class="outline" href="./tc-business.php#register">Sign Up.
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </span>
-          <span>
-            <p>
-              Become a Seller.
-            </p>
-            <a class="outline" href="./tc-business.php">
-              TiffinCraft For Business
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </span>
-        </div> -->
-        <!-- <h1 class="title">Welcome to <br /> TiffinCraft-Business!</h1> -->
         <h1 class="title">Partner with TiffinCraft</h1>
-        <!-- <p class="sub-title">What are you waiting for!</p> -->
-        <!-- <p class="sub-title">Share your culinary talent, reach more customers, and grow your
-          business effortlessly. Signing up is quick and easy!</p> -->
         <div class="hero-buttons">
           <a class="outline" href="./tc-business.php#how">How It Works!<i class="fa-solid fa-arrow-right"></i></a>
-          <!-- <a class="fill" href="./tc-business.php#register">Regrister Now <i class="fa-brands fa-opencart"></i></a> -->
           <a class="fill" href="./tc-business.php#form">Regrister Now</a>
         </div>
       </div>
@@ -81,7 +56,6 @@
   <!-- Become a Seller Section Start  -->
   <section class="section partner" id="how">
     <div class="section-heading">
-      <!-- <h1 class="title">Partner with TiffinCraft</h1> -->
       <h3 class="sub-title">Share your culinary talent, reach more customers, and grow your
         business effortlessly. Signing up is quick and easy!</h3>
     </div>
@@ -159,45 +133,54 @@
 
   <!-- Register Form Start -->
   <section class="form-container tc-business-form" id="form">
-    <div class="auth-container">
+    <div class="business-form-container">
       <form class="auth-form">
         <h2>Register Now</h2>
-        <p class="switch-auth">Fill up the form below.</a></p>
-
-        <div class="form-group">
-          <label for="outlet">Outlet Name</label>
-          <input type="text" id="outlet" name="outlet" placeholder="Enter your outlet name" required>
-        </div>
-        <div class="form-group">
-          <label for="username">Full Name</label>
-          <input type="text" id="username" name="username" placeholder="Enter your full name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-        </div>
-        <div class="form-group">
-          <label for="number">Phone Number</label>
-          <input type="text" id="number" name="number" placeholder="Enter your phone number" required>
-        </div>
-        <div class="form-group">
-          <label for="image">Outlet Image</label>
-          <div style="display: flex">
-            <button class="btn choose-file-btn" type="button">+ Choose File</button>
-          </div>
-          <input type="file" id="image" name="image" class="hidden-input" accept="image/*">
-          <div class="preview-container hidden">
-            <img id="image-preview" alt="Preview" />
-            <button class="remove-btn" type="button">X</button>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="outlet-address">Outlet Address</label>
-          <input type="text" id="outlet-address" name="outlet-address" placeholder="Enter your outlet address" required>
-        </div>
-        <div style="display: flex; justify-content: flex-end;">
+        <div class="form-header">
+          <p class="switch-auth">Fill up the form below.</a></p>
           <button type="submit" class="btn">Submit Request</button>
         </div>
+        <div class="f-grid">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" placeholder="Enter your first name" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" placeholder="Enter your Last name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+          </div>
+          <div class="form-group">
+            <label for="number">Phone Number</label>
+            <input type="text" id="number" name="number" placeholder="Enter your phone number" required>
+          </div>
+          <div class="form-group">
+            <label for="outlet">Outlet Name</label>
+            <input type="text" id="outlet" name="outlet" placeholder="Enter your outlet name" required>
+          </div>
+          <div class="form-group">
+            <label for="outlet-address">Outlet Address</label>
+            <input type="text" id="outlet-address" name="outlet-address" placeholder="Enter your outlet address"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="image">Outlet Image</label>
+            <div style="display: flex">
+              <button class="btn choose-file-btn" type="button">+ Choose File</button>
+            </div>
+            <input type="file" id="image" name="image" class="hidden-input" accept="image/*">
+            <div class="preview-container hidden">
+              <img id="image-preview" alt="Preview" />
+              <button class="remove-btn" type="button">X</button>
+            </div>
+          </div>
+        </div>
+        <!-- <div style="display: flex; justify-content: center;">
+          <button type="submit" class="btn">Submit Request</button>
+        </div> -->
       </form>
     </div>
   </section>
