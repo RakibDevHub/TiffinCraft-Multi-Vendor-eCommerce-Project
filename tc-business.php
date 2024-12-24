@@ -22,7 +22,7 @@
   <!-- Header Section Start -->
   <header class="header-section">
     <nav class="nav-container">
-      <a href="/" class="nav-logo">
+      <a href="./tc-business.php" class="nav-logo">
         <img src="./assets/images/logo.png" class="logo-mini" alt="TiffinCraft Logo" />
         <span>TiffinCraft-Business</span>
       </a>
