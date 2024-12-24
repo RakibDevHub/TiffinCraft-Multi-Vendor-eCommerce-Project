@@ -68,16 +68,9 @@
           <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password"
             required>
         </div>
-        <!-- Vendor-Only Fields -->
-        <!-- <div class="form-group hidden" id="vendor-fields">
-          <h3>Business Information</h3>
-          <label for="business-name">Business Name</label>
-          <input type="text" id="business-name" name="business-name" placeholder="Enter your business name">
-          <label for="vendor-category">Category</label>
-          <input type="text" id="vendor-category" name="vendor-category" placeholder="e.g., Bakery, Meals, Beverages">
-        </div> -->
-        <button type="submit" class="btn">Register</button>
-        <p class="switch-auth">Already have an account? <a href="login.php">Login</a></p>
+        <div style="display: flex; justify-content: flex-end;">
+          <button type="submit" class="btn">Register</button>
+        </div>
       </form>
     </div>
   </section>

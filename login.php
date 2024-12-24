@@ -38,8 +38,10 @@
           <label for="password">Password</label>
           <input type="password" id="password" name="password" placeholder="Enter your password" required>
         </div>
-        <button type="submit" class="btn">Login</button>
-        <p class="switch-auth">Don't have an account? <a href="register.php">Register</a></p>
+        <div style="display: flex; justify-content: flex-end;">
+          <button type="submit" class="btn">Login</button>
+        </div>
+        <!-- <p class="switch-auth">Don't have an account? <a href="register.php">Register</a></p> -->
       </form>
     </div>
   </section>

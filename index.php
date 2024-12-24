@@ -168,20 +168,20 @@ $itemSlider = [
     <div class="hero">
       <div class="hero-txt">
         <div class="hero-link">
-          <span>
+          <!-- <span>
             <p>
               Open a Business Account.
             </p>
-            <a class="outline" href="./tc-business-register.php">Sign Up.
+            <a class="outline" href="./tc-business.php#register">Sign Up.
               <i class="fa-solid fa-arrow-right"></i>
             </a>
-          </span>
+          </span> -->
           <span>
             <p>
               Become a Seller.
             </p>
-            <a class="outline" href="./tc-business-register.php">
-              TiffinCraft For Business
+            <a class="outline" href="./tc-business.php">
+              TiffinCraft-Business
               <i class="fa-solid fa-arrow-right"></i>
             </a>
           </span>
@@ -190,18 +190,8 @@ $itemSlider = [
         <p class="sub-title">What are you waiting for!</p>
         <div class="hero-buttons">
           <a class="fill" href="#">Order Now <i class="fa-brands fa-opencart"></i></a>
-          <!-- <a class="outline" href="#">TiffinCraft Business <i class="fa-solid fa-arrow-right"></i></a> -->
         </div>
       </div>
-      <!-- <nav class="hero-nav" aria-label="Hero Nav">
-        <ul>
-          <?php
-          foreach ($herolinks as $link) {
-            echo '<li><a href="' . htmlspecialchars($link['to']) . '">' . htmlspecialchars($link['name']) . '</a></li>';
-          }
-          ?>
-        </ul>
-      </nav> -->
     </div>
   </section>
   <!-- Hero Section End -->
