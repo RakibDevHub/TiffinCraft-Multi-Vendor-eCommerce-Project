@@ -723,7 +723,7 @@ body {
   padding-top: 0 !important;
 }
 
-.form-container {
+.form-section {
   width: 100%;
   display: flex;
   position: relative;
@@ -735,7 +735,7 @@ body {
   min-height: 100vh;
 }
 
-.auth-container {
+.form-container {
   position: relative;
   width: 100%;
   max-width: 450px;
@@ -746,13 +746,13 @@ body {
   margin: 5rem;
 }
 
-.auth-form {
+.register-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.auth-form h2 {
+.register-form h2 {
   text-align: center;
   color: var(--primary-color);
   /* margin-bottom: 2rem; */
@@ -863,12 +863,12 @@ body {
 }
 
 .preview-container .remove-btn {
-  background: red;
+  background: #333;
   color: white;
   border: none;
   border-radius: 3px;
   font-size: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0.7rem;
   cursor: pointer;
   position: absolute;
   top: 3px;
@@ -944,7 +944,7 @@ body {
   border: none;
   border-radius: 5px;
   font-size: 1.2rem;
-  padding: 0.7rem;
+  padding: 0.7rem 1rem;
   cursor: pointer;
 }
 
@@ -958,7 +958,6 @@ body {
 
 .login-form .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
 }
 
 .login-form .form-group input {
