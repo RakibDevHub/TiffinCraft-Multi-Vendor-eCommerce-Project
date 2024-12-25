@@ -155,7 +155,7 @@ $itemSlider = [
     <?php include './components/navbar.php' ?>
     <div class="business-link">
       <p>Open a Business Account.</p>
-      <a class="outline" href="#">Sign Up</a>
+      <a class="outline" href="./tc-business.php#register">Sign Up</a>
       <button class="close-btn" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     </div>
   </header>
@@ -1140,6 +1140,7 @@ $itemSlider = [
 
   </section>
 
+  <?php include "./login.php" ?>
   <?php include './components/footer.php' ?>
 
   <!-- Custom JS  -->

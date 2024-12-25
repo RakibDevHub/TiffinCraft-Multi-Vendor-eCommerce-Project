@@ -27,8 +27,8 @@
         <span>TiffinCraft-Business</span>
       </a>
       <div class="nav-buttons">
-        <li class="logged-out nav-btn"><a class="fill" href="./tc-business.php#login">Sign In</a></li>
-        <!-- <i class="fa-solid fa-bars" id="menu-bar"></i> -->
+        <li class="logged-out nav-btn"><a class="fill open-login-btn">Sign In</a></li>
+        <i class="fa-solid fa-bars hidden" id="menu-bar"></i>
       </div>
     </nav>
   </header>
@@ -43,7 +43,7 @@
         <h1 class="title">Partner with TiffinCraft</h1>
         <div class="hero-buttons">
           <a class="outline" href="./tc-business.php#how">How It Works!<i class="fa-solid fa-arrow-right"></i></a>
-          <a class="fill" href="./tc-business.php#form">Regrister Now</a>
+          <a class="fill" href="./tc-business.php#register">Regrister Now</a>
         </div>
       </div>
     </div>
@@ -130,9 +130,8 @@
   </section>
   <!-- Become a Seller Section End  -->
 
-
   <!-- Register Form Start -->
-  <section class="form-container tc-business-form" id="form">
+  <section class="form-container tc-business-form" id="register">
     <div class="business-form-container">
       <form class="auth-form">
         <h2>Register Now</h2>
@@ -150,8 +149,8 @@
             <input type="text" id="lname" name="lname" placeholder="Enter your Last name" required>
           </div>
           <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            <label for="uemail">Email Address</label>
+            <input type="email" id="uemail" name="uemail" placeholder="Enter your email address" required>
           </div>
           <div class="form-group">
             <label for="number">Phone Number</label>
@@ -185,6 +184,8 @@
     </div>
   </section>
   <!-- Register Form End -->
+
+  <?php include "./login.php" ?>
 
   <!-- Custom CSS  -->
   <script src="./assets/js/main.js" type="module"></script>

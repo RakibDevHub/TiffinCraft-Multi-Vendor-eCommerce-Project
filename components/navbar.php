@@ -9,7 +9,8 @@
 		<li><a href="./index.php#how">How It Works</a></li>
 	</ul>
 	<div class="nav-buttons">
-		<li class="logged-out nav-btn"><a class="outline" href="./login.php">Sign In</a></li>
+		<!-- <button class="logged-out nav-btn open-login-btn">Sign In</button> -->
+		<li class="logged-out nav-btn"><a class="outline open-login-btn">Sign In</a></li>
 		<li class="logged-out nav-btn"><a class="fill" href="./register.php">Sign Up</a></li>
 		<li class="logged-in"><i class="fa-solid fa-heart"></i></li>
 		<li class="logged-in"><i class="fa-solid fa-cart-shopping"></i></li>
