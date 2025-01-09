@@ -9,6 +9,7 @@ body {
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
 }
@@ -81,4 +82,13 @@ body {
 
 .form-footer a:hover {
     text-decoration: underline;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    text-align: center;
 }

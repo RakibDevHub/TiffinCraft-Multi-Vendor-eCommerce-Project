@@ -1,6 +1,6 @@
 <nav class="nav-container">
 	<a href="/tiffincraft" class="nav-logo">
-		<img src="../assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
+		<img src="../tiffincraft/assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
 	</a>
 	<ul class="nav-links">
 		<li><a href="/tiffincraft">Home</a></li>

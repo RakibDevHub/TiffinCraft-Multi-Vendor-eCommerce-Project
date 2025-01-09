@@ -109,7 +109,7 @@ $itemSlider = [
 <html lang="en">
 
 <head>
-  <base href="/tiffincraft/public/">
+  <!-- <base href="/tiffincraft/public/"> -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
@@ -122,11 +122,11 @@ $itemSlider = [
 
   <!-- Swiper Slider CSS  -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="../assets/css/swiper-init.css" />
+  <link rel="stylesheet" href="../tiffincraft/assets/css/swiper-init.css" />
 
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../tiffincraft/assets/css/style.css" />
 
   <title>TiffinCraft</title>
 </head>
@@ -134,25 +134,6 @@ $itemSlider = [
 <body>
   <!-- Header Section Start -->
   <header class="header-section">
-    <!-- <nav class="nav-container">
-      <a href="./index.php" class="nav-logo">
-        <img src="./assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
-      </a>
-      <ul class="nav-links">
-        <li><a href="./index.php">Home</a></li>
-        <li><a href="./index.php#dishes">Browse Dishes</a></li>
-        <li><a href="./index.php#vendors">Browse Vendors</a></li>
-        <li><a href="./index.php#how">How It Works</a></li>
-      </ul>
-      <div class="nav-buttons">
-        <li class="logged-out nav-btn"><a class="outline" href="./login.php">Sign In</a></li>
-        <li class="logged-out nav-btn"><a class="fill" href="./register.php">Sign Up</a></li>
-        <li class="logged-in"><i class="fa-solid fa-heart"></i></li>
-        <li class="logged-in"><i class="fa-solid fa-cart-shopping"></i></li>
-        <li class="logged-in"><i class="fa-solid fa-user"></i></li>
-        <i class="fa-solid fa-bars" id="menu-bar"></i>
-      </div>
-    </nav> -->
     <?php include '../components/navbar.php'; ?>
     <div class="business-link">
       <p>Open a Business Account.</p>
@@ -209,7 +190,7 @@ $itemSlider = [
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span class="discount"> 20% OFF
                 <!-- <i class="fa-regular fa-star"></i>
@@ -229,7 +210,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -249,7 +230,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -269,7 +250,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -289,7 +270,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -309,7 +290,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-solid fa-star"></i>
@@ -329,7 +310,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -372,7 +353,7 @@ $itemSlider = [
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -392,7 +373,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -412,7 +393,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -432,7 +413,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -452,7 +433,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -472,7 +453,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-solid fa-star"></i>
@@ -492,7 +473,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -532,7 +513,7 @@ $itemSlider = [
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -552,7 +533,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -572,7 +553,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -592,7 +573,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -612,7 +593,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -632,7 +613,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-solid fa-star"></i>
@@ -652,7 +633,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -710,7 +691,7 @@ $itemSlider = [
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -730,7 +711,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -750,7 +731,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -770,7 +751,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -790,7 +771,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -810,7 +791,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-solid fa-star"></i>
@@ -830,7 +811,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -872,7 +853,7 @@ $itemSlider = [
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -892,7 +873,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -912,7 +893,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -932,7 +913,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -952,7 +933,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -972,7 +953,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-solid fa-star"></i>
@@ -992,7 +973,7 @@ $itemSlider = [
             </div>
           </div>
           <div class="swiper-slide">
-            <img src="../assets/images/hero.jpeg" alt="Slide 1">
+            <img src="../tiffincraft/assets/images/hero.jpeg" alt="Slide 1">
             <div class="slide-top">
               <span>
                 <i class="fa-regular fa-star"></i>
@@ -1091,7 +1072,8 @@ $itemSlider = [
         <div class="step-image-wrapper">
           <div class="circle orange large"></div>
           <div class="circle orange small"></div>
-          <img src="../assets/images/step_1.png" alt="Step 1: A person holding a phone" class="step-image" />
+          <img src="../tiffincraft/assets/images/step_1.png" alt="Step 1: A person holding a phone"
+            class="step-image" />
         </div>
       </div>
 
@@ -1100,8 +1082,8 @@ $itemSlider = [
         <div class="step-image-wrapper">
           <div class="rotated-box green large"></div>
           <div class="rotated-box green small"></div>
-          <img src="../assets/images/step_2.png" alt="Step 2: A person talking on the phone with the vendors"
-            class="step-image" />
+          <img src="../tiffincraft/assets/images/step_2.png"
+            alt="Step 2: A person talking on the phone with the vendors" class="step-image" />
         </div>
         <div class="step-text">
           <span class="step-number green">02</span>
@@ -1125,7 +1107,7 @@ $itemSlider = [
         <div class="step-image-wrapper">
           <!-- <div class="skewed-box green large"></div>
           <div class="skewed-box green small"></div> -->
-          <img src="../assets/images/step3.png" alt="Step 3: A person delivering food to the customer"
+          <img src="../tiffincraft/assets/images/step3.png" alt="Step 3: A person delivering food to the customer"
             class="step-image" />
         </div>
       </div>
@@ -1137,11 +1119,11 @@ $itemSlider = [
   <?php include '../components/footer.php' ?>
 
   <!-- Custom JS  -->
-  <script src="../assets/js/main.js" type="module"></script>
+  <script src="./assets/js/main.js" type="module"></script>
 
   <!-- Swiper Js  -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="../assets/js/swiper-init.js"></script>
+  <script src="./assets/js/swiper-init.js"></script>
 </body>
 
 </html>

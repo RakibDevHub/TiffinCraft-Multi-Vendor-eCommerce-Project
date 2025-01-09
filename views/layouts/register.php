@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-  <base href="/tiffincraft/public/">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
@@ -14,7 +13,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../tiffincraft/assets/css/style.css" />
 
   <title>Regrister</title>
 </head>
@@ -22,7 +21,7 @@
 <body>
   <!-- Header Section Start -->
   <header class="header-section">
-    <?php include './components/navbar.php' ?>
+    <?php include '../../components/navbar.php' ?>
   </header>
   <!-- Header Section End -->
 
@@ -57,10 +56,10 @@
   </section>
   <!-- Register Form End -->
 
-  <?php include "./login.php" ?>
+  <?php include "../../components/login.php" ?>
 
   <!-- Custom JS  -->
-  <script src="../assets/js/main.js" type="module"></script>
+  <script src="./assets/js/main.js" type="module"></script>
   <!-- <script src="./assets/"></script> -->
 
 </body>

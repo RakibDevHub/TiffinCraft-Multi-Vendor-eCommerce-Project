@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <base href="/tiffincraft/views/vendors/">
+    <!-- <base href="/tiffincraft/views/vendors/"> -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
@@ -14,7 +14,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../tiffincraft/assets/css/style.css" />
 
     <title>TiffinCraft Business</title>
 </head>
@@ -24,7 +24,7 @@
     <header class="header-section">
         <nav class="nav-container">
             <a href="/tiffincraft/business" class="nav-logo">
-                <img src="../../assets/images/logo.png" class="logo-mini" alt="TiffinCraft Logo" />
+                <img src="../tiffincraft/assets/images/logo.png" class="logo-mini" alt="Logo" />
                 <span>TiffinCraft-Business</span>
             </a>
             <div class="nav-buttons">
@@ -46,6 +46,7 @@
                     <a class="outline" href="/tiffincraft/business#how">How It Works!<i
                             class="fa-solid fa-arrow-right"></i></a>
                     <a class="fill" href="/tiffincraft/business#register">Regrister Now</a>
+                    <!-- <a class="fill" href="/tiffincraft/business/register">Regrister Now</a> -->
                 </div>
             </div>
         </div>
@@ -66,7 +67,7 @@
             <!-- Step 1 -->
             <div class="step reverse">
                 <div class="step-image-wrapper">
-                    <img src="../../assets/images/step_11.png" alt="Step 1: A person holding a phone"
+                    <img src="../tiffincraft/assets/images/step_11.png" alt="Step 1: A person holding a phone"
                         class="step-image" />
                 </div>
                 <div class="step-text">
@@ -92,7 +93,7 @@
                     </p>
                 </div>
                 <div class="step-image-wrapper">
-                    <img src="../../assets/images/step_22.png"
+                    <img src="../tiffincraft/assets/images/step_22.png"
                         alt="Step 2: A person talking on the phone with the vendors" class="step-image" />
                 </div>
             </div>
@@ -100,8 +101,8 @@
             <!-- Step 3 -->
             <div class="step reverse">
                 <div class="step-image-wrapper">
-                    <img src="../../assets/images/step_33.png" alt="Step 3: A person delivering food to the customer"
-                        class="step-image" />
+                    <img src="../tiffincraft/assets/images/step_33.png"
+                        alt="Step 3: A person delivering food to the customer" class="step-image" />
                 </div>
                 <div class="step-text">
                     <span class="step-number red">03</span>
@@ -125,7 +126,7 @@
                     </p>
                 </div>
                 <div class="step-image-wrapper">
-                    <img src="../../assets/images/step_44.webp"
+                    <img src="../tiffincraft/assets/images/step_44.webp"
                         alt="Step 2: A person talking on the phone with the vendors" class="step-image" />
                 </div>
             </div>
@@ -147,7 +148,8 @@
     <section class="form-section business-form" id="register">
         <div class="business-form-container">
             <!-- <div class="form-container"> -->
-            <form class="auth-form">
+            <form class="auth-form" action="../../controllers/vendorController.php" method="POST"
+                enctype="multipart/form-data">
                 <h2>Register Now</h2>
                 <div class="form-header">
                     <p class="switch-auth">Fill up the form below.</a></p>
@@ -202,7 +204,7 @@
     <?php include "../../components/login.php" ?>
 
     <!-- Custom CSS  -->
-    <script src="../../assets/js/main.js" type="module"></script>
+    <script src="../tiffincraft/assets/js/main.js" type="module"></script>
 </body>
 
 </html>

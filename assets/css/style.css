@@ -140,15 +140,15 @@ body {
 
 .business-link.show {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   gap: 3rem;
 }
 
 /* Style the close button */
 .close-btn {
-  position: absolute;
-  right: 8%;
+  /* position: absolute; */
+  /* right: 8%; */
   background: transparent;
   border: none;
   font-size: 2.5rem;
@@ -240,6 +240,7 @@ body {
 .business-link p,
 .business-link a {
   font-weight: 500 !important;
+  margin-left: 1rem;
 }
 
 .business-link .outline,
@@ -1035,6 +1036,14 @@ body {
   text-align: center;
 }
 
+/* Footer Styling */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 12px;
+  color: #777;
+}
+
 /* Responsive Design */
 @media (max-width: 860px) {
   html {
@@ -1072,6 +1081,7 @@ body {
 
   header .nav-container .nav-links.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    z-index: 9999;
   }
 
   header .nav-container .nav-links li {
