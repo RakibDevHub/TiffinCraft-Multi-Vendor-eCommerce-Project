@@ -21,13 +21,13 @@ function vendorRegister($data, $files)
         empty($firstName) || empty($lastName) || empty($email) || empty($phoneNumber) ||
         empty($outletName) || empty($outletAddress)
     ) {
-        header("Location: /tiffincraft/views/vendor/register.php?error=All+fields+are+required");
+        header("Location: /tiffincraft/views/vendor/register?error=All+fields+are+required");
         exit();
     }
 
     // Validate email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: /tiffincraft/views/vendor/register.php?error=Invalid+email+address");
+        header("Location: /tiffincraft/views/vendor/register?error=Invalid+email+address");
         exit();
     }
 
@@ -38,7 +38,7 @@ function vendorRegister($data, $files)
     oci_execute($stid);
 
     if (oci_fetch_assoc($stid)) {
-        header("Location: /tiffincraft/views/vendor/register.php?error=Email+already+exists");
+        header("Location: /tiffincraft/views/vendor/register?error=Email+already+exists");
         exit();
     }
 
@@ -51,13 +51,13 @@ function vendorRegister($data, $files)
 
         // Check file type
         if (!in_array($imageFileType, ['jpg', 'jpeg', 'png', 'gif'])) {
-            header("Location: /tiffincraft/views/vendor/register.php?error=Invalid+image+format");
+            header("Location: /tiffincraft/views/vendor/register?error=Invalid+image+format");
             exit();
         }
 
         // Move uploaded file
         if (!move_uploaded_file($image['tmp_name'], $imagePath)) {
-            header("Location: /tiffincraft/views/vendor/register.php?error=Failed+to+upload+image");
+            header("Location: /tiffincraft/views/vendor/register?error=Failed+to+upload+image");
             exit();
         }
     }
@@ -84,11 +84,11 @@ function vendorRegister($data, $files)
 
     if ($result) {
         // Redirect to a success page
-        header("Location: /tiffincraft/views/vendor/register.php?success=Registration+successful");
+        header("Location: /tiffincraft/views/vendor/register?success=Registration+successful");
         exit();
     } else {
         // If insertion fails
-        header("Location: /tiffincraft/views/vendor/register.php?error=Failed+to+register");
+        header("Location: /tiffincraft/views/vendor/register?error=Failed+to+register");
         exit();
     }
 }

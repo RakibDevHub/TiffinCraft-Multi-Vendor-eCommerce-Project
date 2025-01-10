@@ -37,7 +37,7 @@ function adminLogin($email, $password)
         exit();
     } else {
         // If incorrect, return error
-        header("Location: /tiffincraft/views/admin/login.php?error=Invalid+email+or+password");
+        header("Location: /tiffincraft/admin/login?error=Invalid+email+or+password");
         exit();
     }
 }

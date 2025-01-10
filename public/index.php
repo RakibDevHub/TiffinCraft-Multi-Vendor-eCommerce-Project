@@ -1120,6 +1120,7 @@ $itemSlider = [
 
   <!-- Custom JS  -->
   <script src="./assets/js/main.js" type="module"></script>
+  <script src="./assets/js/scroll.js" type="module"></script>
 
   <!-- Swiper Js  -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

@@ -14,7 +14,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../tiffincraft/assets/css/style.css" />
+    <link rel="stylesheet" href="../../tiffincraft/assets/css/style.css" />
 
     <title>TiffinCraft Business</title>
 </head>
@@ -24,7 +24,7 @@
     <header class="header-section">
         <nav class="nav-container">
             <a href="/tiffincraft/business" class="nav-logo">
-                <img src="../tiffincraft/assets/images/logo.png" class="logo-mini" alt="Logo" />
+                <img src="../../tiffincraft/assets/images/logo.png" class="logo-mini" alt="Logo" />
                 <span>TiffinCraft-Business</span>
             </a>
             <div class="nav-buttons">
@@ -67,7 +67,7 @@
             <!-- Step 1 -->
             <div class="step reverse">
                 <div class="step-image-wrapper">
-                    <img src="../tiffincraft/assets/images/step_11.png" alt="Step 1: A person holding a phone"
+                    <img src="../../tiffincraft/assets/images/step_11.png" alt="Step 1: A person holding a phone"
                         class="step-image" />
                 </div>
                 <div class="step-text">
@@ -93,7 +93,7 @@
                     </p>
                 </div>
                 <div class="step-image-wrapper">
-                    <img src="../tiffincraft/assets/images/step_22.png"
+                    <img src="../../tiffincraft/assets/images/step_22.png"
                         alt="Step 2: A person talking on the phone with the vendors" class="step-image" />
                 </div>
             </div>
@@ -101,7 +101,7 @@
             <!-- Step 3 -->
             <div class="step reverse">
                 <div class="step-image-wrapper">
-                    <img src="../tiffincraft/assets/images/step_33.png"
+                    <img src="../../tiffincraft/assets/images/step_33.png"
                         alt="Step 3: A person delivering food to the customer" class="step-image" />
                 </div>
                 <div class="step-text">
@@ -126,7 +126,7 @@
                     </p>
                 </div>
                 <div class="step-image-wrapper">
-                    <img src="../tiffincraft/assets/images/step_44.webp"
+                    <img src="../../tiffincraft/assets/images/step_44.webp"
                         alt="Step 2: A person talking on the phone with the vendors" class="step-image" />
                 </div>
             </div>
@@ -204,7 +204,8 @@
     <?php include "../../components/login.php" ?>
 
     <!-- Custom CSS  -->
-    <script src="../tiffincraft/assets/js/main.js" type="module"></script>
+    <script src="../../tiffincraft/assets/js/main.js" type="module"></script>
+    <script src="../../tiffincraft/assets/js/imageUpload.js" type="module"></script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@ include_once '../../config/session.php';
 
 // Redirect if the user is not an admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header('Location: /tiffincraft/admin/login.php');
+    header('Location: /tiffincraft/admin/login');
     exit();
 }
 
@@ -27,7 +27,7 @@ function logout()
     session_destroy();
 
     // Redirect to login page
-    header("Location: /tiffincraft/admin/login.php?message=Logged+out+successfully");
+    header("Location: /tiffincraft/admin/login?message=Logged+out+successfully");
     exit();
 }
 
