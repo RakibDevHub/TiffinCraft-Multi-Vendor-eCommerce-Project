@@ -1,8 +1,31 @@
+<?php
+// include_once '../config/session.php';
+
+// Check if the user is logged in
+if (isset($_SESSION['user'])) {
+  if ($_SESSION['user']['role'] === 'vendor') {
+    header('Location: /tiffincraft/business/dashboard');
+    exit();
+  } else {
+    header('Location: /tiffincraft/');
+    exit();
+  }
+}
+
+// Display error if login fails
+if (isset($_GET['error'])) {
+  $error = $_GET['error'];
+}
+?>
+
 <section class="login-popup hidden">
   <div class="popup-content">
     <button class="close-popup-btn">X</button>
-    <form class="login-form">
+    <form class="login-form" action="./controllers/userController.php" method="POST">
       <h2>Login</h2>
+      <?php if (isset($error)): ?>
+        <div class="error"><?php echo $error; ?></div>
+      <?php endif; ?>
       <div class="form-group">
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" placeholder="Enter your email" required>

@@ -1,3 +1,13 @@
+<?php
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+}
+
+if (isset($_GET['success'])) {
+    $success = $_GET['success'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +55,7 @@
                 <div class="hero-buttons">
                     <a class="outline" href="/tiffincraft/business#how">How It Works!<i
                             class="fa-solid fa-arrow-right"></i></a>
-                    <a class="fill" href="/tiffincraft/business#register">Regrister Now</a>
+                    <a class="fill" href="/tiffincraft/business/register">Regrister Now</a>
                     <!-- <a class="fill" href="/tiffincraft/business/register">Regrister Now</a> -->
                 </div>
             </div>
@@ -147,10 +157,18 @@
     <!-- <section class="form-container tc-business-form" id="register"> -->
     <section class="form-section business-form" id="register">
         <div class="business-form-container">
-            <!-- <div class="form-container"> -->
-            <form class="auth-form" action="../../controllers/vendorController.php" method="POST"
+            <form class="auth-form" action="../controllers/vendorController.php" method="POST"
                 enctype="multipart/form-data">
                 <h2>Register Now</h2>
+
+                <!-- Display success or error alert -->
+                <?php if (isset($error)): ?>
+                    <div class="alert error"><?php echo $error; ?></div>
+                <?php endif; ?>
+                <?php if (isset($success)): ?>
+                    <div class="alert success"><?php echo $success; ?></div>
+                <?php endif; ?>
+
                 <div class="form-header">
                     <p class="switch-auth">Fill up the form below.</a></p>
                     <button type="submit" class="btn">Submit Request</button>
@@ -193,9 +211,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div style="display: flex; justify-content: center;">
-          <button type="submit" class="btn">Submit Request</button>
-        </div> -->
             </form>
         </div>
     </section>

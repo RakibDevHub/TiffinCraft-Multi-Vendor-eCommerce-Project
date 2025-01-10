@@ -26,13 +26,9 @@ function adminLogin($email, $password)
         // Redirect based on the role
         if ($user['ROLE'] == 'admin') {
             header("Location: /tiffincraft/admin/dashboard");
-        } elseif ($user['ROLE'] == 'vendor') {
-            header("Location: /tiffincraft/vendor/dashboard");
-        } elseif ($user['ROLE'] == 'customer') {
-            header("Location: /tiffincraft/customer/dashboard");
         } else {
             // Default redirect if the role is not recognized
-            header("Location: /tiffincraft");
+            header("Location: /tiffincraft/admin/login?error=Unauthorized");
         }
         exit();
     } else {

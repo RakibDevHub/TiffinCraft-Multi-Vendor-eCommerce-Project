@@ -12,6 +12,7 @@ RewriteRule ^register$ views/layouts/register.php [L]
 # TiffinCraft - Business
 RewriteRule ^business$ views/layouts/tiffincraft-business.php [L]
 RewriteRule ^business/register$ views/layouts/tiffincraft-business.php [L]
+RewriteRule ^business/dashboard$ views/vendors/dashboard.php [L]
 
 # TiffinCraft - Admin
 RewriteRule ^admin$ views/admin/login.php [L]
