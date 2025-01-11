@@ -15,7 +15,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="../tiffincraft/assets/css/style.css" />
 
-  <title>Regrister</title>
+  <title>Users Regrister</title>
 </head>
 
 <body>
@@ -28,9 +28,8 @@
   <!-- Register Form Start -->
   <section class="form-section">
     <div class="form-container">
-      <form class="register-form">
+      <form class="register-form" action="" method="">
         <h2>Register</h2>
-        <!-- Common Fields -->
         <div class="form-group">
           <label for="username">Full Name</label>
           <input type="text" id="username" name="username" placeholder="Enter your full name" required>
@@ -56,11 +55,8 @@
   </section>
   <!-- Register Form End -->
 
-  <?php include "../../components/login.php" ?>
-
   <!-- Custom JS  -->
   <script src="./assets/js/main.js" type="module"></script>
-  <!-- <script src="./assets/"></script> -->
 
 </body>
 

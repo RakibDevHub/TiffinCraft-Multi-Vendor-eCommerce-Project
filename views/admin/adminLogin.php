@@ -1,15 +1,21 @@
 <?php
 include_once '../../config/session.php';
 
-// Check if the user is logged in and is an admin
+// Redirect logged-in admins to the dashboard
 if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {
     header('Location: /tiffincraft/admin/dashboard');
     exit();
 }
 
-// Display error if login fails
+// Display sanitized error if login fails
+$error = null;
 if (isset($_GET['error'])) {
-    $error = $_GET['error'];
+    $error = htmlspecialchars($_GET['error']);
+}
+
+// Generate CSRF token if not already set
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 ?>
 
@@ -17,11 +23,10 @@ if (isset($_GET['error'])) {
 <html lang="en">
 
 <head>
-    <!-- <base href="/tiffincraft/views/admin/"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <link rel="stylesheet" href="../../tiffincraft/assets/css/admin-login.css">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/tiffincraft/assets/css/admin-login.css">
 </head>
 
 <body>
@@ -29,11 +34,13 @@ if (isset($_GET['error'])) {
         <h2>Admin Login</h2>
 
         <!-- Display error if login fails -->
-        <?php if (isset($error)): ?>
+        <?php if ($error): ?>
             <div class="error"><?php echo $error; ?></div>
         <?php endif; ?>
 
         <form class="login-form" action="../../tiffincraft/controllers/adminController.php" method="POST">
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -44,7 +51,7 @@ if (isset($_GET['error'])) {
             </div>
             <button type="submit" class="btn">Login</button>
             <div class="form-footer">
-                <a href="#">Forgot Password?</a>
+                <a href="/tiffincraft/admin/forgot-password">Forgot Password?</a>
             </div>
         </form>
     </div>

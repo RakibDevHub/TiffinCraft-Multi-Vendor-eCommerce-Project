@@ -4,13 +4,13 @@ include_once '../../config/session.php';
 
 // Redirect if the user is not an admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    $_SESSION['error'] = "Unauthorized access. Admins only.";
     header('Location: /tiffincraft/admin/login');
     exit();
 }
 
 // Check for the 'logout' action in the URL
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-    // Call the logout function
     logout();
 }
 
@@ -27,19 +27,17 @@ function logout()
     session_destroy();
 
     // Redirect to login page
-    header("Location: /tiffincraft/admin/login?message=Logged+out+successfully");
+    header("Location: /tiffincraft/admin/login");
     exit();
 }
 
 $user = $_SESSION['user'];
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- <base href="/tiffincraft/views/admin/"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
@@ -55,6 +53,7 @@ $user = $_SESSION['user'];
         <ul class="sidebar-menu">
             <li><a href="/tiffincraft/admin/dashboard">Dashboard</a></li>
             <li><a href="/tiffincraft/admin/manage-users">Manage Users</a></li>
+            <li><a href="/tiffincraft/admin/orders">Orders</a></li>
             <li><a href="/tiffincraft/admin/settings">Settings</a></li>
             <li><a href="?action=logout">Logout</a></li>
         </ul>

@@ -137,7 +137,7 @@ $itemSlider = [
     <?php include '../components/navbar.php'; ?>
     <div class="business-link">
       <p>Open a Business Account.</p>
-      <a class="outline" href="/tiffincraft/business#register">Sign Up</a>
+      <a class="outline" href="/tiffincraft/business/register">Sign Up</a>
       <button class="close-btn" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     </div>
   </header>
@@ -1115,12 +1115,10 @@ $itemSlider = [
 
   </section>
 
-  <?php include "../components/login.php" ?>
   <?php include '../components/footer.php' ?>
 
   <!-- Custom JS  -->
   <script src="./assets/js/main.js" type="module"></script>
-  <!-- <script src="./assets/js/scroll.js" type="module"></script> -->
 
   <!-- Swiper Js  -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
