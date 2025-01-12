@@ -1,6 +1,3 @@
-// Toggle navigation links visibility based on login status
-const userLoggedIn = false;
-
 const loggedInLinks = document.querySelectorAll(".logged-in");
 const loggedOutLinks = document.querySelectorAll(".logged-out");
 
@@ -9,4 +6,5 @@ function toggleLinks(loggedIn) {
   loggedOutLinks.forEach((link) => link.classList.toggle("hidden", loggedIn));
 }
 
+// Dynamically toggle links based on user login status
 toggleLinks(userLoggedIn);

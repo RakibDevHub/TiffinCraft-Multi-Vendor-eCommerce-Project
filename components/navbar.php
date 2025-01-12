@@ -1,3 +1,9 @@
+<?php
+include_once __DIR__ . '../../controllers/auth.php'; // Adjust the path as needed
+$isLoggedIn = isUserLoggedIn();
+?>
+
+
 <nav class="nav-container">
 	<a href="/tiffincraft" class="nav-logo">
 		<img src="../tiffincraft/assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
@@ -18,3 +24,7 @@
 		<i class="fa-solid fa-bars" id="menu-bar"></i>
 	</div>
 </nav>
+
+<script>
+	const userLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+</script>
