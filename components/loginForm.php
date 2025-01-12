@@ -8,11 +8,11 @@ if (isset($_GET['error'])) {
 <section class="form-section">
   <div class="form-container">
     <form class="login-form" action="/tiffincraft/controllers/<?php echo $controller ?>" method="POST">
+      <input type="hidden" name="action" value="login">
       <h2>Login</h2>
       <?php if (isset($error)): ?>
         <div class="alert error"><?php echo $error; ?></div>
       <?php endif; ?>
-      <input type="hidden" name="action" value="login">
       <div class="form-group">
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" placeholder="Enter your email" required>

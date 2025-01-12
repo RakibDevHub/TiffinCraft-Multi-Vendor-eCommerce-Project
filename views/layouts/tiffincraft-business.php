@@ -150,8 +150,9 @@ if (isset($_GET['success'])) {
 		<div class="business-form-container">
 			<form class="register-form" action="../controllers/vendorController.php" method="POST"
 				enctype="multipart/form-data">
-				<h2>Register Now</h2>
+				<input type="hidden" name="action" value="register">
 
+				<h2>Register Now</h2>
 				<!-- Display success or error alert -->
 				<?php if (isset($error)): ?>
 					<div class="alert error"><?php echo $error; ?></div>
@@ -159,9 +160,8 @@ if (isset($_GET['success'])) {
 				<?php if (isset($success)): ?>
 					<div class="alert success"><?php echo $success; ?></div>
 				<?php endif; ?>
-				<input type="hidden" name="action" value="register">
 				<div class="form-header">
-					<p class="switch-auth">Fill up the form below.</a></p>
+					<p>Fill up the form below.</p>
 					<button type="submit" class="btn">Submit Request</button>
 				</div>
 				<div class="f-grid">
