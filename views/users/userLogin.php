@@ -26,11 +26,10 @@
 	<!-- Header Section End -->
 
 	<?php $controller = "userController.php";
-	include "../../components/loginForm.php" ?>
+	include_once "../../components/loginForm.php" ?>
 
 	<!-- Custom JS  -->
 	<script src="./assets/js/main.js" type="module"></script>
-	<!-- <script src="./assets/"></script> -->
 
 </body>
 

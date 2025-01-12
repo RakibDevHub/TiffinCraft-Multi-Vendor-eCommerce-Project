@@ -1,10 +1,12 @@
 <?php
+$error = null;
 if (isset($_GET['error'])) {
-	$error = $_GET['error'];
+	$error = htmlspecialchars($_GET['error']);
 }
 
+$success = null;
 if (isset($_GET['success'])) {
-	$success = $_GET['success'];
+	$success = htmlspecialchars($_GET['success']);
 }
 ?>
 
@@ -32,16 +34,7 @@ if (isset($_GET['success'])) {
 <body>
 	<!-- Header Section Start -->
 	<header class="header-section">
-		<nav class="nav-container">
-			<a href="/tiffincraft/business" class="nav-logo">
-				<img src="../../tiffincraft/assets/images/logo.png" class="logo-mini" alt="Logo" />
-				<span>TiffinCraft-Business</span>
-			</a>
-			<div class="nav-buttons">
-				<li class="logged-out nav-btn"><a class="fill" href="/tiffincraft/business/login">Sign In</a></li>
-				<i class="fa-solid fa-bars hidden" id="menu-bar"></i>
-			</div>
-		</nav>
+		<?php include_once "../../components/navbarBusiness.php" ?>
 	</header>
 	<!-- Header Section End -->
 
@@ -53,9 +46,9 @@ if (isset($_GET['success'])) {
 			<div class="hero-txt">
 				<h1 class="title">Partner with TiffinCraft</h1>
 				<div class="hero-buttons">
-					<a class="outline" href="/tiffincraft/business#how">How It Works!<i class="fa-solid fa-arrow-right"></i></a>
+					<a class="outline" href="/tiffincraft/business#how">How It Works!<i
+							class="fa-solid fa-arrow-right"></i></a>
 					<a class="fill" href="/tiffincraft/business/register">Regrister Now</a>
-					<!-- <a class="fill" href="/tiffincraft/business/register">Regrister Now</a> -->
 				</div>
 			</div>
 		</div>
@@ -110,8 +103,8 @@ if (isset($_GET['success'])) {
 			<!-- Step 3 -->
 			<div class="step reverse">
 				<div class="step-image-wrapper">
-					<img src="../../tiffincraft/assets/images/step_33.png" alt="Step 3: A person delivering food to the customer"
-						class="step-image" />
+					<img src="../../tiffincraft/assets/images/step_33.png"
+						alt="Step 3: A person delivering food to the customer" class="step-image" />
 				</div>
 				<div class="step-text">
 					<span class="step-number red">03</span>
@@ -166,7 +159,7 @@ if (isset($_GET['success'])) {
 				<?php if (isset($success)): ?>
 					<div class="alert success"><?php echo $success; ?></div>
 				<?php endif; ?>
-
+				<input type="hidden" name="action" value="register">
 				<div class="form-header">
 					<p class="switch-auth">Fill up the form below.</a></p>
 					<button type="submit" class="btn">Submit Request</button>
@@ -194,8 +187,8 @@ if (isset($_GET['success'])) {
 					</div>
 					<div class="form-group">
 						<label for="outlet-address">Outlet Address</label>
-						<input type="text" id="outlet-address" name="outlet-address" placeholder="Enter your outlet address"
-							required>
+						<input type="text" id="outlet-address" name="outlet-address"
+							placeholder="Enter your outlet address" required>
 					</div>
 					<div class="form-group">
 						<label for="image">Outlet Image</label>

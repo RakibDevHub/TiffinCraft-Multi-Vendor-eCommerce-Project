@@ -1,10 +1,18 @@
+<?php
+$error = null;
+if (isset($_GET['error'])) {
+  $error = htmlspecialchars($_GET['error']);
+}
+?>
+
 <section class="form-section">
   <div class="form-container">
-    <form class="login-form" action="./controllers/<?php echo $controller ?>" method="POST">
+    <form class="login-form" action="/tiffincraft/controllers/<?php echo $controller ?>" method="POST">
       <h2>Login</h2>
       <?php if (isset($error)): ?>
-        <div class="error"><?php echo $error; ?></div>
+        <div class="alert error"><?php echo $error; ?></div>
       <?php endif; ?>
+      <input type="hidden" name="action" value="login">
       <div class="form-group">
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" placeholder="Enter your email" required>

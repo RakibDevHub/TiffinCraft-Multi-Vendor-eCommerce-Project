@@ -19,14 +19,14 @@ function vendorRegister($data, $files, $conn)
 		empty($firstName) || empty($lastName) || empty($email) ||
 		empty($phoneNumber) || empty($outletName) || empty($outletAddress)
 	) {
-		$_SESSION['error'] = "All fields are required";
-		header("Location: /tiffincraft/business/register");
+		$error = "All fields are required";
+		header("Location: /tiffincraft/business/register?error=" . urlencode($error));
 		exit();
 	}
 
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		$_SESSION['error'] = "Invalid email address";
-		header("Location: /tiffincraft/business/register");
+		$error = "Invalid email address";
+		header("Location: /tiffincraft/business/register?error=" . urlencode($error));
 		exit();
 	}
 
@@ -37,8 +37,8 @@ function vendorRegister($data, $files, $conn)
 	oci_execute($stid);
 
 	if (oci_fetch_assoc($stid)) {
-		$_SESSION['error'] = "Email already exists";
-		header("Location: /tiffincraft/business/register");
+		$error = "Email already exists";
+		header("Location: /tiffincraft/business/register?error=" . urlencode($error));
 		exit();
 	}
 
@@ -50,8 +50,8 @@ function vendorRegister($data, $files, $conn)
 		$imagePath = $targetDir . $uniqueName;
 
 		if (!move_uploaded_file($image['tmp_name'], $imagePath)) {
-			$_SESSION['error'] = "Failed to upload image";
-			header("Location: /tiffincraft/business/register");
+			$error = "Failed to upload image";
+			header("Location: /tiffincraft/business/register?error=" . urlencode($error));
 			exit();
 		}
 	}
@@ -99,33 +99,45 @@ function vendorLogin($email, $password, $conn)
 	// Fetch the result
 	$user = oci_fetch_assoc($stid);
 
-	// Check if we found a matching user and verify password
-	// if ($user && password_verify($password, $user['PASSWORD'])) {
-	if ($user && $password) {
-		session_regenerate_id();
-		$_SESSION['user'] = [
-			'email' => $user['EMAIL'],
-			'role' => $user['ROLE'],
-		];
-		header($user['ROLE'] === 'vendor' ? "Location: /tiffincraft/business/dashboard" : "Location: /tiffincraft");
-		exit();
+	// Check PASSWORD 
+	if ($user && $user['PASSWORD'] === $password) {
+		if ($user['ROLE'] === 'vendor') {
+			session_regenerate_id(true);
+			$_SESSION['user'] = [
+				'email' => $user['EMAIL'],
+				'role' => $user['ROLE'],
+			];
+
+			$success = "login successfull";
+			header("Location: /tiffincraft/business/dashboard?success=" . urlencode($success));
+			exit();
+		} else {
+			$error = "Unauthorized user.";
+			header("Location: /tiffincraft/business/login?error=" . urlencode($error));
+			exit();
+		}
 	} else {
-		$_SESSION['error'] = "Invalid email or password";
-		header("Location: /tiffincraft/business/login");
+		$error = "Invalid email or password";
+		header("Location: /tiffincraft/business/login?error=" . urlencode($error));
 		exit();
 	}
 }
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	if (isset($_POST['action']) && $_POST['action'] === 'register') {
+	// Check if 'action' key exists in the POST request
+	$action = isset($_POST['action']) ? $_POST['action'] : null;
+
+	if ($action === 'register') {
 		vendorRegister($_POST, $_FILES, $conn);
-	} elseif (isset($_POST['action']) && $_POST['action'] === 'login') {
+	} elseif ($action === 'login') {
 		vendorLogin($_POST['email'], $_POST['password'], $conn);
 	} else {
-		$_SESSION['error'] = "Invalid action";
-		header("Location: /tiffincraft");
+		// Handle invalid or missing 'action'
+		$_SESSION['error'] = "Invalid form submission.";
+		header("Location: /tiffincraft/business/login");
 		exit();
 	}
 }
+
 ?>

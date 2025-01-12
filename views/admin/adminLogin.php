@@ -14,10 +14,10 @@ if (isset($_GET['error'])) {
 }
 
 // Generate CSRF token if not already set
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-?>
+// if (empty($_SESSION['csrf_token'])) {
+//     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+// }
+// ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,11 +35,11 @@ if (empty($_SESSION['csrf_token'])) {
 
         <!-- Display error if login fails -->
         <?php if ($error): ?>
-            <div class="error"><?php echo $error; ?></div>
+            <div class="alert error"><?php echo $error; ?></div>
         <?php endif; ?>
 
         <form class="login-form" action="../../tiffincraft/controllers/adminController.php" method="POST">
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+            <!-- <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>"> -->
 
             <div class="form-group">
                 <label for="email">Email Address</label>

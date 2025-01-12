@@ -1,10 +1,11 @@
 <?php
 // Include session and authentication check
-include_once '../../config/session.php';
+// include_once '../../config/session.php';
+session_start();
 
-// Redirect if the user is not an admin
+// Redirect if the user is not an vendor
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'vendor') {
-    header('Location: /tiffincraft/business');
+    header('Location: /tiffincraft/business/login');
     exit();
 }
 

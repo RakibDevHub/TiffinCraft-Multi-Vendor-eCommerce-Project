@@ -1,14 +1,12 @@
 RewriteEngine On
-
-# Base URL
 RewriteBase /tiffincraft/
 
 # Default route
 RewriteRule ^$ public/index.php [L]
 
-# Handle the register page
-RewriteRule ^login$ views/layouts/userLogin.php [L]
-RewriteRule ^register$ views/layouts/userRegister.php [L]
+# Handle the register and login pages
+RewriteRule ^login$ views/users/userLogin.php [L]
+RewriteRule ^register$ views/users/userRegister.php [L]
 
 # TiffinCraft - Business
 RewriteRule ^business$ views/layouts/tiffincraft-business.php [L]
@@ -21,17 +19,17 @@ RewriteRule ^admin$ views/admin/adminLogin.php [L]
 RewriteRule ^admin/login$ views/admin/adminLogin.php [L]
 RewriteRule ^admin/dashboard$ views/admin/adminDashboard.php [L]
 
-
-
-# Remove trailing slashes (Optional, but recommended)
+# Remove trailing slashes
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [R=301,L]
 
-# Redirect anything-that-doesn't-exist
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^admin/(.*)$ admin [L,R=301]
-RewriteRule ^login/(.*)$ login [L,R=301]
-RewriteRule ^register/(.*)$ register [L,R=301]
-RewriteRule ^business/(.*)$ business [L,R=301]
+# RewriteRule ^admin/(.*)$ admin [L,R=301]
+# RewriteRule ^login/(.*)$ login [L,R=301]
+# RewriteRule ^register/(.*)$ register [L,R=301]
+# RewriteRule ^business/(.*)$ business [L,R=301]
+
+# # Redirect non-existing files and directories (Optional)
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule . public/index.php [L]
