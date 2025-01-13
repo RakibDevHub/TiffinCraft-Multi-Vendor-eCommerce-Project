@@ -1,7 +1,15 @@
 <?php
-// Include session and authentication check
-// include_once '../../config/session.php';
 session_start();
+
+$timeoutDuration = 1800;
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) > $timeoutDuration) {
+    session_unset();
+    session_destroy();
+    $error = "Session Expired";
+    header('Location: /tiffincraft/business/login?error=' . urlencode($error));
+    exit();
+}
+$_SESSION['LAST_ACTIVITY'] = time();
 
 // Redirect if the user is not an vendor
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'vendor') {

@@ -13,7 +13,8 @@ if (isset($_SESSION['last_activity'])) {
         // Destroy the session and redirect to login page
         session_unset();
         session_destroy();
-        header('Location: /tiffincraft/admin/login.php?error=Session+expired');
+        $error = "Session Expired";
+        header('Location: /tiffincraft/admin/login?error=' . urlencode($error));
         exit();
     }
 }

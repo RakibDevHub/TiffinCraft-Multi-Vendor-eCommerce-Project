@@ -4,8 +4,8 @@ include_once '../../config/session.php';
 
 // Redirect if the user is not an admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    $_SESSION['error'] = "Unauthorized access. Admins only.";
-    header('Location: /tiffincraft/admin/login');
+    $error = "Unauthorized access. Admins only.";
+    header('Location: /tiffincraft/admin/login?=' . urlencode($error));
     exit();
 }
 

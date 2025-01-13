@@ -45,8 +45,8 @@ if (isset($_GET['success'])) {
 		<div class="hero">
 			<div class="hero-txt">
 				<h1 class="title">Partner with TiffinCraft</h1>
-				<div class="hero-buttons">
-					<a class="outline" href="/tiffincraft/business#how">How It Works!<i
+				<div class="hero-buttons business">
+					<a class="outline " href="/tiffincraft/business#how">How It Works!<i
 							class="fa-solid fa-arrow-right"></i></a>
 					<a class="fill" href="/tiffincraft/business/register">Regrister Now</a>
 				</div>
