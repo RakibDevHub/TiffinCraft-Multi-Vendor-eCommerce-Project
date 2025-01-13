@@ -1,3 +1,14 @@
+<?php
+include_once '../../config/session.php';
+
+// Redirect logged-in admins to the dashboard
+if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'vendor') {
+    header('Location: /tiffincraft/business/dashboard');
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

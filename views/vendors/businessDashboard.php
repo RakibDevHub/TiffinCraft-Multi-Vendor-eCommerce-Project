@@ -1,43 +1,18 @@
 <?php
-session_start();
-
-$timeoutDuration = 1800;
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) > $timeoutDuration) {
-    session_unset();
-    session_destroy();
-    $error = "Session Expired";
-    header('Location: /tiffincraft/business/login?error=' . urlencode($error));
-    exit();
-}
-$_SESSION['LAST_ACTIVITY'] = time();
+// Include session and authentication check
+include_once '../../config/v-session.php';
+include_once '../../controllers/auth.php';
 
 // Redirect if the user is not an vendor
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'vendor') {
-    header('Location: /tiffincraft/business/login');
+    $message = "Unauthorized user.";
+    header('Location: /tiffincraft/business/login?message=' . urlencode($message));
     exit();
 }
 
 // Check for the 'logout' action in the URL
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-    // Call the logout function
     logout();
-}
-
-// Logout function
-function logout()
-{
-    // Start the session if it's not already started
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    // Destroy the session
-    session_unset();
-    session_destroy();
-
-    // Redirect to login page
-    header("Location: /tiffincraft/business/login?message=Logged+out+successfully");
-    exit();
 }
 
 $user = $_SESSION['user'];
@@ -56,6 +31,7 @@ $user = $_SESSION['user'];
 </head>
 
 <body>
+    <?php include_once "../../components/navbarBusiness.php" ?>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">

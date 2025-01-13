@@ -1,11 +1,12 @@
 <?php
 // Include session and authentication check
 include_once '../../config/session.php';
+include_once '../../controllers/auth.php';
 
 // Redirect if the user is not an admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    $error = "Unauthorized access. Admins only.";
-    header('Location: /tiffincraft/admin/login?=' . urlencode($error));
+    $message = "Unauthorized user.";
+    header('Location: /tiffincraft/admin/login?=' . urlencode($message));
     exit();
 }
 
@@ -14,24 +15,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     logout();
 }
 
-// Logout function
-function logout()
-{
-    // Start the session if it's not already started
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    // Destroy the session
-    session_unset();
-    session_destroy();
-
-    // Redirect to login page
-    header("Location: /tiffincraft/admin/login");
-    exit();
-}
-
 $user = $_SESSION['user'];
+
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +26,7 @@ $user = $_SESSION['user'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../../tiffincraft/assets/css/style.css">
     <link rel="stylesheet" href="../../tiffincraft/assets/css/admin-dashboard.css">
 </head>
 

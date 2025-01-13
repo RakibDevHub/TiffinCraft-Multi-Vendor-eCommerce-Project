@@ -13,11 +13,7 @@ if (isset($_GET['error'])) {
     $error = htmlspecialchars($_GET['error']);
 }
 
-// Generate CSRF token if not already set
-// if (empty($_SESSION['csrf_token'])) {
-//     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-// }
-// ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
