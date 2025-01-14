@@ -1,7 +1,7 @@
 <?php
 
-include_once "../../config/connectDB.php";
-include_once "../../controllers/authController.php";
+include_once '../../init.php';
+include_once '../../controllers/authController.php';
 
 $auth = new AuthController($conn);
 
@@ -14,14 +14,16 @@ if (strpos($currentURL, '/business') !== false) {
     $role = 'admin';
 }
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'login') {
     $email = $_POST['email'];
     $password = $_POST['password'];
-
-    $auth->login($email, $password, $role);
+    $role = $_POST['role'];
+    $csrfToken = $_POST['csrf_token'];
+    $auth->login($email, $password, $role, $csrfToken);
 }
+
+// Generate CSRF token for the form
+$csrfToken = $auth->generateCSRFToken();
 
 // Generate dynamic form action based on current URL
 $currentURL = $_SERVER['REQUEST_URI'];
@@ -78,7 +80,10 @@ switch ($role) {
             <form class="login-form" action="<?= htmlspecialchars($currentURL); ?>" method="POST">
                 <input type="hidden" name="role" value="<?= htmlspecialchars($role); ?>">
                 <input type="hidden" name="action" value="login">
+                <input type="hidden" name="csrf_token" value="<?= $csrfToken; ?>">
+
                 <h2><?= ucfirst($role); ?> Login</h2>
+
                 <?php if (isset($error)): ?>
                     <div class="alert error"><?php echo $error; ?></div>
                 <?php endif; ?>

@@ -1,6 +1,5 @@
 <?php
-
-include_once __DIR__ . '../../init.php'; // Include init.php
+include_once __DIR__ . '../../init.php';
 include_once __DIR__ . '../../controllers/authController.php';
 
 $auth = new AuthController($conn);
@@ -24,7 +23,8 @@ $currentPath = $_SERVER['REQUEST_URI'];
 		<?php if (strpos($baseUrl, '/business') === false): ?>
 			<li
 				class="<?= ($currentPath === '/tiffincraft/' || $currentPath === '/tiffincraft/index.php') ? 'active' : ''; ?>">
-				<a href="<?= $baseUrl ?>">Home</a></li>
+				<a href="<?= $baseUrl ?>">Home</a>
+			</li>
 			<li class="<?= strpos($currentPath, '#dishes') !== false ? 'active' : ''; ?>"><a
 					href="<?= $baseUrl ?>#dishes">Browse Dishes</a></li>
 			<li class="<?= strpos($currentPath, '#vendors') !== false ? 'active' : ''; ?>"><a
@@ -36,22 +36,26 @@ $currentPath = $_SERVER['REQUEST_URI'];
 	</ul>
 	<div class="nav-buttons">
 		<?php if (!$isLoggedIn): ?>
-			<li class="nav-btn <?= strpos($currentPath, '/login') !== false ? 'active' : ''; ?>"><a class="outline"
-					href="<?= $baseUrl ?>/login">Sign In</a></li>
+			<li class="nav-btn <?= strpos($currentPath, '/login') !== false ? 'active' : ''; ?>">
+				<a class="outline" href="<?= $baseUrl ?>/login">Sign In</a>
+			</li>
 			<?php if (strpos($baseUrl, '/business') === false): ?>
-				<li class="nav-btn <?= strpos($currentPath, '/register') !== false ? 'active' : ''; ?>"><a class="fill"
-						href="<?= $baseUrl ?>/register">Sign Up</a></li>
+				<li class="nav-btn <?= strpos($currentPath, '/register') !== false ? 'active' : ''; ?>">
+					<a class="fill" href="<?= $baseUrl ?>/register">Sign Up</a>
+				</li>
 			<?php endif; ?>
 		<?php else: ?>
 			<li class="nav-btn"><a class="fill" href="<?= $baseUrl ?>/logout">Sign Out</a></li>
-			<li class="logged-in"><span>Welcome, <?php echo htmlspecialchars($_SESSION['user']['name']); ?></span></li>
-			<li class="logged-in <?= strpos($currentPath, '/profile') !== false ? 'active' : ''; ?>"><a
-					href="<?= $baseUrl ?>/profile"><i class="fa-solid fa-user"></i></a></li>
+			<li class="logged-in <?= strpos($currentPath, '/profile') !== false ? 'active' : ''; ?>">
+				<a class="nav-icon" href="<?= $baseUrl ?>/profile"><i class="fa-solid fa-user"></i></a>
+			</li>
 			<?php if (strpos($baseUrl, '/business') === false): ?>
-				<li class="logged-in <?= strpos($currentPath, '/wishlist') !== false ? 'active' : ''; ?>"><a
-						href="<?= $baseUrl ?>/wishlist"><i class="fa-solid fa-heart"></i></a></li>
-				<li class="logged-in <?= strpos($currentPath, '/cart') !== false ? 'active' : ''; ?>"><a
-						href="<?= $baseUrl ?>/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+				<li class="logged-in <?= strpos($currentPath, '/wishlist') !== false ? 'active' : ''; ?>">
+					<a class="nav-icon" href="<?= $baseUrl ?>/wishlist"><i class="fa-solid fa-heart"></i></a>
+				</li>
+				<li class="logged-in <?= strpos($currentPath, '/cart') !== false ? 'active' : ''; ?>">
+					<a class="nav-icon" href="<?= $baseUrl ?>/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+				</li>
 			<?php endif; ?>
 		<?php endif; ?>
 		<i class="fa-solid fa-bars" id="menu-bar"></i>
