@@ -1,13 +1,44 @@
 <?php
-$error = null;
-if (isset($_GET['error'])) {
-  $error = htmlspecialchars($_GET['error']);
-}
 
+include_once '../../init.php';
+include_once '../../controllers/userController.php';
+
+$userController = new UserController($conn);
+
+$error = null;
 $success = null;
-if (isset($_GET['success'])) {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'register') {
+  // CSRF token validation
+  if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    $error = "Invalid CSRF token.";
+  } else {
+    $message = $userController->userRegister($_POST);
+
+    if (strpos($message, "successfully") !== false) {
+      $success = $message;
+    } else {
+      $error = $message;
+    }
+  }
+} elseif (isset($_GET['error'])) {
+  $error = htmlspecialchars($_GET['error']);
+} elseif (isset($_GET['success'])) {
   $success = htmlspecialchars($_GET['success']);
 }
+
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+
+
+// $error = null;
+// if (isset($_GET['error'])) {
+//   $error = htmlspecialchars($_GET['error']);
+// }
+
+// $success = null;
+// if (isset($_GET['success'])) {
+//   $success = htmlspecialchars($_GET['success']);
+// }
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +56,7 @@ if (isset($_GET['success'])) {
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="../tiffincraft/assets/css/style.css" />
+  <link rel="stylesheet" href="/tiffincraft/assets/css/style.css" />
 
   <title>Users Regrister</title>
 </head>
@@ -40,16 +71,20 @@ if (isset($_GET['success'])) {
   <!-- Register Form Start -->
   <section class="form-section">
     <div class="form-container">
-      <form class="register-form" action="../../tiffincraft/controllers/userController.php" method="POST">
+      <form class="register-form" action="/tiffincraft/register" method="POST">
         <input type="hidden" name="action" value="register">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
         <h2>Register</h2>
-        <?php if (isset($error)): ?>
-          <div class="alert error"><?php echo $error; ?></div>
+
+        <?php if ($error): ?>
+          <div class="alert error"><?= $error ?></div>
         <?php endif; ?>
-        <?php if (isset($success)): ?>
-          <div class="alert success"><?php echo $success; ?></div>
+
+        <?php if ($success): ?>
+          <div class="alert success"><?= $success ?></div>
         <?php endif; ?>
+
         <div class="form-group">
           <label for="username">Full Name</label>
           <input type="text" id="username" name="username" placeholder="Enter your full name" required>
@@ -79,7 +114,7 @@ if (isset($_GET['success'])) {
   <!-- Register Form End -->
 
   <!-- Custom JS  -->
-  <script src="./assets/js/main.js" type="module"></script>
+  <script src="/tiffincraft/assets/js/main.js" type="module"></script>
 
 </body>
 
