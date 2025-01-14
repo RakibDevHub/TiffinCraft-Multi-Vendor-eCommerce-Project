@@ -1,18 +1,14 @@
 <?php
 // Include session and authentication check
-include_once '../../config/session.php';
-include_once '../../controllers/auth.php';
+include_once '../../controllers/authController.php';
+
+session_start();
 
 // Redirect if the user is not an admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     $message = "Unauthorized user.";
     header('Location: /tiffincraft/admin/login?=' . urlencode($message));
     exit();
-}
-
-// Check for the 'logout' action in the URL
-if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-    logout();
 }
 
 $user = $_SESSION['user'];
@@ -38,10 +34,9 @@ $user = $_SESSION['user'];
         </div>
         <ul class="sidebar-menu">
             <li><a href="/tiffincraft/admin/dashboard">Dashboard</a></li>
-            <li><a href="/tiffincraft/admin/manage-users">Manage Users</a></li>
-            <li><a href="/tiffincraft/admin/orders">Orders</a></li>
-            <li><a href="/tiffincraft/admin/settings">Settings</a></li>
-            <li><a href="?action=logout">Logout</a></li>
+            <li><a href="/tiffincraft/admin/dashboard/manage-users">Manage Users</a></li>
+            <li><a href="/tiffincraft/admin/dashboard/settings">Settings</a></li>
+            <li><a href="/tiffincraft/admin/logout">Logout</a></li>
         </ul>
     </div>
 
@@ -76,7 +71,7 @@ $user = $_SESSION['user'];
         <!-- Quick Links or Content -->
         <div class="quick-links">
             <div class="quick-link">
-                <a href="/tiffincraft/admin/manage-users">
+                <a href="/tiffincraft/admin/dashboard/manage-users">
                     <h3>Manage Users</h3>
                     <p>View and manage users (Admins, Vendors, Customers)</p>
                 </a>
@@ -88,7 +83,7 @@ $user = $_SESSION['user'];
                 </a>
             </div>
             <div class="quick-link">
-                <a href="/tiffincraft/admin/settings">
+                <a href="/tiffincraft/admin/dashboard/settings">
                     <h3>Settings</h3>
                     <p>Update platform settings and preferences</p>
                 </a>

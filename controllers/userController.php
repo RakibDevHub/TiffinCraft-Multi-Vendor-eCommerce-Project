@@ -1,53 +1,6 @@
 <?php
-include_once '../config/db.php';
+include_once '../config/connectDB.php';
 session_start();
-
-function userLogin($email, $password, $conn)
-{
-	// Validate email
-	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		$error = "Invalid email format.";
-		header("Location: /tiffincraft/login?error=" . urlencode($error));
-		exit();
-	}
-
-	// Check if the email exists in the database
-	$sql = "SELECT * FROM users WHERE email = :email";
-	$stid = oci_parse($conn, $sql);
-	oci_bind_by_name($stid, ":email", $email);
-
-	if (!oci_execute($stid)) {
-		$error = "An error occurred. Please try again later.";
-		header("Location: /tiffincraft/login?error=" . urlencode($error));
-		exit();
-	}
-
-	$user = oci_fetch_assoc($stid);
-
-	if ($user && $user['PASSWORD'] === $password) {
-
-		if ($user['ROLE'] === 'customer') {
-			session_regenerate_id(true);
-			$_SESSION['user'] = [
-				'email' => $user['EMAIL'],
-				'role' => $user['ROLE'],
-			];
-
-			$success = "login successfull";
-			header("Location: /tiffincraft?success=" . urlencode($success));
-			exit();
-		} else {
-			$error = "Unauthorized user.";
-			header("Location: /tiffincraft/login?error=" . urlencode($error));
-			exit();
-		}
-
-	} else {
-		$error = "Invalid email or password.";
-		header("Location: /tiffincraft/login?error=" . urlencode($error));
-		exit();
-	}
-}
 
 function userRegister($data, $conn)
 {
@@ -99,7 +52,7 @@ function userRegister($data, $conn)
 
 	// Insert into database
 	$sql = "
-        INSERT INTO users (user_name, phone_number, email, password, role, created_at)
+        INSERT INTO users (user_name, email, phone_number, password, role, created_at)
         VALUES (:user_name, :phone_number, :email, :password, 'customer', SYSDATE)";
 	$stid = oci_parse($conn, $sql);
 	oci_bind_by_name($stid, ":user_name", $username);
@@ -120,7 +73,7 @@ function userRegister($data, $conn)
 
 function isValidPhoneNumber($phone)
 {
-	return preg_match('/^\d{10,15}$/', $phone); // Adjust range as needed
+	return preg_match('/^\d{10,15}$/', $phone);
 }
 
 // Handle form submission
@@ -130,13 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	if ($action === 'register') {
 		userRegister($_POST, $conn);
-	} elseif ($action === 'login') {
-		userLogin($_POST['email'], $_POST['password'], $conn);
-	} else {
-		// Handle invalid or missing 'action'
-		$error = "Invalid action.";
-		header("Location: /tiffincraft/login?error=" . urlencode($error));
-		exit();
 	}
 }
 ?>

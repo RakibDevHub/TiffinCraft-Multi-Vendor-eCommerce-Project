@@ -1,51 +1,47 @@
 <?php
-include_once __DIR__ . '../../controllers/auth.php'; // Adjust the path as needed
-$isLoggedIn = isUserLoggedIn();
+include_once __DIR__ . '../../init.php';
+include_once __DIR__ . '../../controllers/authController.php';
 
-// Check for the 'logout' action in the URL
-if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-	logout();
+$auth = new AuthController($conn);
+$isLoggedIn = $auth->isUserLoggedIn();
+
+// Determine the base URL (important for relative links)
+$baseUrl = '/tiffincraft'; // Default base URL
+if (strpos($_SERVER['REQUEST_URI'], '/business') !== false) {
+	$baseUrl .= '/business';
 }
-
-// // Logout function
-// function logout()
-// {
-// 	// Start the session if it's not already started
-// 	if (session_status() === PHP_SESSION_NONE) {
-// 		session_start();
-// 	}
-
-// 	// Destroy the session
-// 	session_unset();
-// 	session_destroy();
-
-// 	$success = "Logout Successfully.";
-// 	// Redirect to login page
-// 	header("Location: /tiffincraft/login?success=" . urlencode($success));
-// 	exit();
-// }
 
 ?>
 
 <nav class="nav-container">
-	<a href="/tiffincraft" class="nav-logo">
-		<img src="../tiffincraft/assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
+	<a href="<?= $baseUrl ?>" class="nav-logo">
+		<img src="/tiffincraft/assets/images/<?= (strpos($baseUrl, '/business') !== false) ? 'logo.png' : 'TiffinCraft.png'; ?>"
+			alt="TiffinCraft Logo" />
+		<span><?= (strpos($baseUrl, '/business') !== false) ? 'TiffinCraft Business' : ''; ?></span>
 	</a>
 	<ul class="nav-links">
-		<li><a href="/tiffincraft">Home</a></li>
-		<li><a href="/tiffincraft#dishes">Browse Dishes</a></li>
-		<li><a href="/tiffincraft#vendors">Browse Vendors</a></li>
-		<li><a href="/tiffincraft#how">How It Works</a></li>
+		<?php if (strpos($baseUrl, '/business') === false): ?>
+			<li><a href="<?= $baseUrl ?>">Home</a></li>
+			<li><a href="<?= $baseUrl ?>#dishes">Browse Dishes</a></li>
+			<li><a href="<?= $baseUrl ?>#vendors">Browse Vendors</a></li>
+			<li><a href="<?= $baseUrl ?>#how">How It Works</a></li>
+		<?php endif; ?>
 	</ul>
 	<div class="nav-buttons">
-		<li class="logged-out nav-btn"><a class="outline" href="/tiffincraft/login">Sign In</a></li>
-		<li class="logged-out nav-btn"><a class="fill" href="/tiffincraft/register">Sign Up</a></li>
-		<li class="logged-in nav-btn"><a class="fill" href="/tiffincraft/logout">Sign Out</a></li>
-		<li class="logged-in"><i class="fa-solid fa-heart"></i></li>
-		<li class="logged-in"><i class="fa-solid fa-cart-shopping"></i></li>
-		<li class="logged-in"><i class="fa-solid fa-user"></i></li>
+		<?php if (!$isLoggedIn): ?>
+			<li class="nav-btn"><a class="outline" href="<?= $baseUrl ?>/login">Sign In</a></li>
+			<?php if (strpos($baseUrl, '/business') === false): ?>
+				<li class="nav-btn"><a class="fill" href="<?= $baseUrl ?>/register">Sign Up</a></li>
+			<?php endif; ?>
+		<?php else: ?>
+			<li class="nav-btn"><a class="fill" href="<?= $baseUrl ?>/logout">Sign Out</a></li>
+			<li class="logged-in"><a href="<?= $baseUrl ?>/profile"><i class="fa-solid fa-user"></i></a></li>
+			<?php if (strpos($baseUrl, '/business') === false): ?>
+				<li class="logged-in"><a href="<?= $baseUrl ?>/wishlist"><i class="fa-solid fa-heart"></i></a></li>
+				<li class="logged-in"><a href="<?= $baseUrl ?>/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+			<?php endif; ?>
+		<?php endif; ?>
 		<i class="fa-solid fa-bars" id="menu-bar"></i>
-
 	</div>
 </nav>
 

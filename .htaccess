@@ -4,32 +4,32 @@ RewriteBase /tiffincraft/
 # Default route
 RewriteRule ^$ public/index.php [L]
 
-# Handle the register and login pages
-RewriteRule ^login$ views/users/userLogin.php [L]
+# TiffinCraft - Customers
+RewriteRule ^login$ views/shared/login.php [L]
+RewriteRule ^logout$ views/shared/logout.php [L]
 RewriteRule ^register$ views/users/userRegister.php [L]
 
 # TiffinCraft - Business
-RewriteRule ^business$ views/layouts/tiffincraft-business.php [L]
-RewriteRule ^business/login$ views/vendors/businessLogin.php [L]
-RewriteRule ^business/register$ views/layouts/tiffincraft-business.php [L]
+RewriteRule ^business/login$ views/shared/login.php [L]
+RewriteRule ^business/logout$ views/shared/logout.php [L]
+RewriteRule ^business$ views/layouts/tiffincraftBusiness.php [L]
+RewriteRule ^business/register$ views/layouts/tiffincraftBusiness.php [L]
 RewriteRule ^business/dashboard$ views/vendors/businessDashboard.php [L]
 
 # TiffinCraft - Admin
-RewriteRule ^admin$ views/admin/adminLogin.php [L]
-RewriteRule ^admin/login$ views/admin/adminLogin.php [L]
+RewriteRule ^admin$ views/shared/login.php [L]
+RewriteRule ^admin/login$ views/shared/login.php [L]
+RewriteRule ^admin/logout$ views/shared/logout.php [L]
 RewriteRule ^admin/dashboard$ views/admin/adminDashboard.php [L]
+RewriteRule ^admin/dashboard/manage-users$ views/admin/manageUsers.php [L]
+
+# Accept Vendor
+RewriteRule ^admin/dashboard/manage-users/accept-vendor$ controllers/adminController.php?action=accept-vendor [QSA,L]
+
+# Reject Vendor
+RewriteRule ^admin/dashboard/manage-users/reject-vendor$ controllers/adminController.php?action=reject-vendor [QSA,L]
 
 # Remove trailing slashes
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [R=301,L]
-
-# RewriteRule ^admin/(.*)$ admin [L,R=301]
-# RewriteRule ^login/(.*)$ login [L,R=301]
-# RewriteRule ^register/(.*)$ register [L,R=301]
-# RewriteRule ^business/(.*)$ business [L,R=301]
-
-# # Redirect non-existing files and directories (Optional)
-# RewriteCond %{REQUEST_FILENAME} !-f
-# RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteRule . public/index.php [L]

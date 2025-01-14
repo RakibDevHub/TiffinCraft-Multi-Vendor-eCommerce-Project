@@ -1,18 +1,13 @@
 <?php
-// Include session and authentication check
-include_once '../../config/v-session.php';
-include_once '../../controllers/auth.php';
+
+include_once '../../init.php';
+
 
 // Redirect if the user is not an vendor
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'vendor') {
     $message = "Unauthorized user.";
     header('Location: /tiffincraft/business/login?message=' . urlencode($message));
     exit();
-}
-
-// Check for the 'logout' action in the URL
-if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-    logout();
 }
 
 $user = $_SESSION['user'];
@@ -41,7 +36,7 @@ $user = $_SESSION['user'];
             <li><a href="/tiffincraft/admin/dashboard">Dashboard</a></li>
             <li><a href="/tiffincraft/admin/manage-users">Manage Customers</a></li>
             <li><a href="/tiffincraft/admin/settings">Settings</a></li>
-            <li><a href="?action=logout">Logout</a></li>
+            <li><a href="/tiffincraft/business/logout">Logout</a></li>
         </ul>
     </div>
 
@@ -53,7 +48,7 @@ $user = $_SESSION['user'];
                 <h1>Welcome, <?= htmlspecialchars($user['email']); ?></h1>
             </div>
             <div class="top-header-right">
-                <a href="?action=logout" class="logout-btn">Logout</a>
+                <a href="/tiffincraft/business/logout" class="logout-btn">Logout</a>
             </div>
         </header>
 
