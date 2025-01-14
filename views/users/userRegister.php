@@ -2,23 +2,32 @@
 
 include_once '../../init.php';
 include_once '../../controllers/userController.php';
+include_once '../../controllers/authController.php';
 
 $userController = new UserController($conn);
+$authController = new AuthController($conn);
 
 $error = null;
 $success = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'register') {
-  // CSRF token validation
   if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
     $error = "Invalid CSRF token.";
   } else {
-    $message = $userController->userRegister($_POST);
+    $userId = $userController->userRegister($_POST);
 
-    if (strpos($message, "successfully") !== false) {
-      $success = $message;
+    if (is_numeric($userId)) {
+
+      $loggedIn = $authController->login($_POST['uemail'], $_POST['upassword'], 'customer');
+      if ($loggedIn) {
+        header("Location: /tiffincraft/");
+        exit();
+      } else {
+        $error = "Registration successful, but login failed.";
+      }
+
     } else {
-      $error = $message;
+      $error = $userId;
     }
   }
 } elseif (isset($_GET['error'])) {
@@ -28,21 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 }
 
 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-
-
-// $error = null;
-// if (isset($_GET['error'])) {
-//   $error = htmlspecialchars($_GET['error']);
-// }
-
-// $success = null;
-// if (isset($_GET['success'])) {
-//   $success = htmlspecialchars($_GET['success']);
-// }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8" />
@@ -62,13 +60,7 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 </head>
 
 <body>
-  <!-- Header Section Start -->
-  <header class="header-section">
-    <?php include '../../components/navbar.php' ?>
-  </header>
-  <!-- Header Section End -->
-
-  <!-- Register Form Start -->
+  <header><?php include '../../components/navbar.php' ?></header>
   <section class="form-section">
     <div class="form-container">
       <form class="register-form" action="/tiffincraft/register" method="POST">
@@ -111,11 +103,6 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
       </form>
     </div>
   </section>
-  <!-- Register Form End -->
-
-  <!-- Custom JS  -->
-  <script src="/tiffincraft/assets/js/main.js" type="module"></script>
-
 </body>
 
 </html>
