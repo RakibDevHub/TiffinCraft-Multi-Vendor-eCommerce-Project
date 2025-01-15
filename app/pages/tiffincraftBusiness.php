@@ -1,6 +1,7 @@
 <?php
-include_once '../../init.php';
-include_once '../../controllers/vendorController.php';
+
+include_once dirname(__DIR__, 2) . '/init.php';
+include_once ROOT_DIR . 'app/controllers/vendorController.php';
 
 $vendorController = new VendorController($conn);
 
@@ -37,14 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<!-- Custom CSS -->
-	<link rel="stylesheet" href="/tiffincraft/assets/css/style.css" />
+	<link rel="stylesheet" href="/tiffincraft/public/assets/css/style.css" />
 
 	<title>TiffinCraft Business</title>
 </head>
 
 <body>
 	<header class="header-section">
-		<?php include_once "../../components/navbar.php" ?>
+		<?php include_once ROOT_DIR . "app/pages/components/_navbar.php" ?>
 	</header>
 
 	<section class="tc-business home" id="#home">
@@ -75,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 			<!-- Step 1 -->
 			<div class="step reverse">
 				<div class="step-image-wrapper">
-					<img src="/tiffincraft/assets/images/step_11.png" alt="Step 1: A person holding a phone"
+					<img src="/tiffincraft/public/assets/images/step_11.png" alt="Step 1: A person holding a phone"
 						class="step-image" />
 				</div>
 				<div class="step-text">
@@ -101,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 					</p>
 				</div>
 				<div class="step-image-wrapper">
-					<img src="/tiffincraft/assets/images/step_22.png"
+					<img src="/tiffincraft/public/assets/images/step_22.png"
 						alt="Step 2: A person talking on the phone with the vendors" class="step-image" />
 				</div>
 			</div>
@@ -109,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 			<!-- Step 3 -->
 			<div class="step reverse">
 				<div class="step-image-wrapper">
-					<img src="/tiffincraft/assets/images/step_33.png"
+					<img src="/tiffincraft/public/assets/images/step_33.png"
 						alt="Step 3: A person delivering food to the customer" class="step-image" />
 				</div>
 				<div class="step-text">
@@ -134,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 					</p>
 				</div>
 				<div class="step-image-wrapper">
-					<img src="/tiffincraft/assets/images/step_44.webp"
+					<img src="/tiffincraft/public/assets/images/step_44.webp"
 						alt="Step 2: A person talking on the phone with the vendors" class="step-image" />
 				</div>
 			</div>
@@ -213,9 +214,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 			</form>
 		</div>
 	</section>
-
-	<script src="/tiffincraft/assets/js/main.js" type="module"></script>
-	<script src="/tiffincraft/assets/js/imageUpload.js" type="module"></script>
+	<?php include_once ROOT_DIR . "app/pages/components/_footer.php" ?>
+	<script src="/tiffincraft/public/assets/js/main.js" type="module"></script>
+	<script src="/tiffincraft/public/assets/js/imageUpload.js" type="module"></script>
 </body>
 
 </html>

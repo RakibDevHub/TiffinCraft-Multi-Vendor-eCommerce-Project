@@ -1,6 +1,6 @@
 <?php
-include_once __DIR__ . '../../init.php';
-include_once __DIR__ . '../../controllers/authController.php';
+include_once dirname(__DIR__, 3) . '/init.php';
+include_once ROOT_DIR . 'app/Controllers/authController.php';
 
 $auth = new AuthController($conn);
 $isLoggedIn = $auth->isUserLoggedIn();
@@ -15,7 +15,7 @@ $currentPath = $_SERVER['REQUEST_URI'];
 
 <nav class="nav-container">
 	<a href="<?= $baseUrl ?>" class="nav-logo">
-		<img src="/tiffincraft/assets/images/<?= (strpos($baseUrl, '/business') !== false) ? 'logo.png' : 'TiffinCraft.png'; ?>"
+		<img src="/tiffincraft/public/assets/images/<?= (strpos($baseUrl, '/business') !== false) ? 'logo.png' : 'TiffinCraft.png'; ?>"
 			alt="TiffinCraft Logo" />
 		<span><?= (strpos($baseUrl, '/business') !== false) ? 'TiffinCraft Business' : ''; ?></span>
 	</a>

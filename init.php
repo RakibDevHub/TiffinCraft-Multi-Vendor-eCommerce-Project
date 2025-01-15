@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Database connection
 try {
-    include_once 'config/connectDB.php';
+    include_once 'app/Config/database.php';
 
     // Check Connection successful or fail
     if (!$conn) {
@@ -30,5 +30,5 @@ try {
 }
 
 // project root
-define('PROJECT_ROOT', __DIR__ . '/');
+define('ROOT_DIR', __DIR__ . '/');
 ?>

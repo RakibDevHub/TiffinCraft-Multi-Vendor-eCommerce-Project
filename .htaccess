@@ -5,23 +5,23 @@ RewriteBase /tiffincraft/
 RewriteRule ^$ public/index.php [L]
 
 # TiffinCraft - Customers
-RewriteRule ^login$ views/shared/login.php [L]
-RewriteRule ^logout$ views/shared/logout.php [L]
-RewriteRule ^register$ views/users/userRegister.php [L]
+RewriteRule ^login$ app/pages/auth/login.php [L]
+RewriteRule ^logout$ app/pages/auth/logout.php [L]
+RewriteRule ^register$ app/pages/auth/register.php [L]
 
 # TiffinCraft - Business
-RewriteRule ^business/login$ views/shared/login.php [L]
-RewriteRule ^business/logout$ views/shared/logout.php [L]
-RewriteRule ^business$ views/layouts/tiffincraftBusiness.php [L]
-RewriteRule ^business/register$ views/layouts/tiffincraftBusiness.php [L]
-RewriteRule ^business/dashboard$ views/vendors/businessDashboard.php [L]
+RewriteRule ^business/login$ app/pages/auth/login.php [L]
+RewriteRule ^business/logout$ app/pages/auth/logout.php [L]
+RewriteRule ^business$ app/pages/tiffincraftBusiness.php [L]
+RewriteRule ^business/register$ app/pages/tiffincraftBusiness.php [L]
+RewriteRule ^business/dashboard$ app/pages/vendors/dashboard.php [L]
 
 # TiffinCraft - Admin
-RewriteRule ^admin$ views/shared/login.php [L]
-RewriteRule ^admin/login$ views/shared/login.php [L]
-RewriteRule ^admin/logout$ views/shared/logout.php [L]
-RewriteRule ^admin/dashboard$ views/admin/adminDashboard.php [L]
-RewriteRule ^admin/dashboard/manage-users$ views/admin/manageUsers.php [L]
+RewriteRule ^admin$ app/pages/auth/login.php [L]
+RewriteRule ^admin/login$ app/pages/auth/login.php [L]
+RewriteRule ^admin/logout$ app/pages/auth/logout.php [L]
+RewriteRule ^admin/dashboard$ app/pages/admin/dashboard.php [L]
+RewriteRule ^admin/dashboard/manage-users$ app/pages/admin/users.php [L]
 
 # Accept Vendor
 RewriteRule ^admin/dashboard/manage-users/accept-vendor$ controllers/adminController.php?action=accept-vendor [QSA,L]

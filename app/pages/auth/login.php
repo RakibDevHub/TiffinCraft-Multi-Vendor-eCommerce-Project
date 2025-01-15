@@ -1,7 +1,7 @@
 <?php
 
-include_once '../../init.php';
-include_once '../../controllers/authController.php';
+include_once dirname(__DIR__, 3) . '/init.php';
+include_once ROOT_DIR . 'app/Controllers/authController.php';
 
 $auth = new AuthController($conn);
 
@@ -61,18 +61,14 @@ switch ($role) {
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/tiffincraft/assets/css/style.css" />
+    <link rel="stylesheet" href="/tiffincraft/public/assets/css/style.css" />
 
     <title><?= ucfirst($formTitle); ?> Login</title>
 </head>
 
 <body>
     <header class="header-section">
-        <?php if ($role == 'customer'): ?>
-            <?php include_once '../../components/navbar.php' ?>
-        <?php elseif ($role == 'vendor'): ?>
-            <?php include_once '../../components/NavbarBusiness.php' ?>
-        <?php endif; ?>
+        <?php include_once ROOT_DIR . 'app/pages/components/_navbar.php' ?>
     </header>
 
     <section class="form-section">
@@ -102,9 +98,8 @@ switch ($role) {
             </form>
         </div>
     </section>
-
-
-    <script src="/tiffincraft/assets/js/main.js" type="module"></script>
+    <?php include_once ROOT_DIR . 'app/pages/components/_footer.php' ?>
+    <script src="/tiffincraft/public/assets/js/main.js" type="module"></script>
 </body>
 
 </html>

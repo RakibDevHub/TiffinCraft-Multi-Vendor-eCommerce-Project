@@ -4,10 +4,13 @@ include_once '../../controllers/authController.php';
 
 session_start();
 
-// Redirect if the user is not an admin
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+if (isset($_SESSION['user']) && $_SESSION['user']['role'] !== 'admin') {
     $message = "Unauthorized user.";
-    header('Location: /tiffincraft/admin/login?=' . urlencode($message));
+    header('Location: /tiffincraft/admin/login?error=' . urlencode($message));
+    exit();
+} else {
+    $message = "Logged in first.";
+    header('Location: /tiffincraft/admin/login?error=' . urlencode($message));
     exit();
 }
 

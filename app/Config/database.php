@@ -1,6 +1,6 @@
 <?php
 // Load environment variables
-$envFile = dirname(__DIR__) . '/.env';
+$envFile = dirname(__DIR__, 2) . '/.env';
 if (file_exists($envFile)) {
     $env = parse_ini_file($envFile);
 } else {

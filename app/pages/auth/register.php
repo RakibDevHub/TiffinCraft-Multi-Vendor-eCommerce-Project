@@ -1,8 +1,8 @@
 <?php
 
-include_once '../../init.php';
-include_once '../../controllers/userController.php';
-include_once '../../controllers/authController.php';
+include_once dirname(__DIR__, 3) . '/init.php';
+include_once ROOT_DIR . 'app/Controllers/userController.php';
+include_once ROOT_DIR . 'app/Controllers/authController.php';
 
 $userController = new UserController($conn);
 $authController = new AuthController($conn);
@@ -54,13 +54,13 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="/tiffincraft/assets/css/style.css" />
+  <link rel="stylesheet" href="/tiffincraft/public/assets/css/style.css" />
 
   <title>Users Regrister</title>
 </head>
 
 <body>
-  <header><?php include '../../components/navbar.php' ?></header>
+  <header><?php include_once ROOT_DIR . 'app/pages/components/_navbar.php' ?></header>
   <section class="form-section">
     <div class="form-container">
       <form class="register-form" action="/tiffincraft/register" method="POST">
@@ -103,6 +103,12 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
       </form>
     </div>
   </section>
+
+  <?php include ROOT_DIR . 'app/pages/components/_footer.php'; ?>
+
+  <!-- Custom JS  -->
+  <script src="/tiffincraft/public/assets/js/main.js" type="module"></script>
+
 </body>
 
 </html>
