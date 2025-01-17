@@ -158,12 +158,12 @@
 
 				<h2>Register Now</h2>
 
-				<?php if ($error): ?>
-					<div class="alert error"><?= $error ?></div>
+				<?php if (isset($error)): ?>
+					<div class="alert error"><?php echo $error ?></div>
 				<?php endif; ?>
 
-				<?php if ($success): ?>
-					<div class="alert success"><?= $success ?></div>
+				<?php if (isset($success)): ?>
+					<div class="alert success"><?php echo $success ?></div>
 				<?php endif; ?>
 
 				<div class="form-header">
