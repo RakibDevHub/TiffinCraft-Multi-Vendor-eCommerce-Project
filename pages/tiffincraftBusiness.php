@@ -1,26 +1,26 @@
 <?php
 
-include_once dirname(__DIR__, 2) . '/init.php';
-include_once ROOT_DIR . 'app/controllers/vendorController.php';
+// include_once dirname(__DIR__, 2) . '/init.php';
+// include_once ROOT_DIR . 'app/controllers/vendorController.php';
 
-$vendorController = new VendorController($conn);
+// $vendorController = new VendorController($conn);
 
-$error = null;
-$success = null;
+// $error = null;
+// $success = null;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
-	$message = $vendorController->vendorRegister($_POST, $_FILES);
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
+// 	$message = $vendorController->vendorRegister($_POST, $_FILES);
 
-	if (strpos($message, "successfully") !== false) {
-		$success = $message; // Set success message
-	} else {
-		$error = $message;     // Set error message
-	}
-} elseif (isset($_GET['error'])) {
-	$error = htmlspecialchars($_GET['error']);
-} elseif (isset($_GET['success'])) {
-	$success = htmlspecialchars($_GET['success']);
-}
+// 	if (strpos($message, "successfully") !== false) {
+// 		$success = $message; // Set success message
+// 	} else {
+// 		$error = $message;     // Set error message
+// 	}
+// } elseif (isset($_GET['error'])) {
+// 	$error = htmlspecialchars($_GET['error']);
+// } elseif (isset($_GET['success'])) {
+// 	$success = htmlspecialchars($_GET['success']);
+// }
 ?>
 
 <!DOCTYPE html>
@@ -38,14 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<!-- Custom CSS -->
-	<link rel="stylesheet" href="/tiffincraft/public/assets/css/style.css" />
+	<link rel="stylesheet" href="/assets/css/style.css" />
 
 	<title>TiffinCraft Business</title>
 </head>
 
 <body>
 	<header class="header-section">
-		<?php include_once ROOT_DIR . "app/pages/components/_navbar.php" ?>
+		<?php include_once ROOT_DIR . "pages/components/_navbar.php" ?>
 	</header>
 
 	<section class="tc-business home" id="#home">
@@ -54,9 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 			<div class="hero-txt">
 				<h1 class="title">Partner with TiffinCraft</h1>
 				<div class="hero-buttons business">
-					<a class="outline" href="/tiffincraft/business#how">How It Works!<i
+					<a class="outline" href="#how" data-target="how">How It Works!<i
 							class="fa-solid fa-arrow-right"></i></a>
-					<a class="fill" href="/tiffincraft/business/register">Register Now</a>
+					<a class="fill" href="/business/register">Register Now</a>
 				</div>
 			</div>
 		</div>
@@ -76,8 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 			<!-- Step 1 -->
 			<div class="step reverse">
 				<div class="step-image-wrapper">
-					<img src="/tiffincraft/public/assets/images/step_11.png" alt="Step 1: A person holding a phone"
-						class="step-image" />
+					<img src="/assets/images/step_11.png" alt="Step 1: A person holding a phone" class="step-image" />
 				</div>
 				<div class="step-text">
 					<span class="step-number orange">01</span>
@@ -102,16 +101,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 					</p>
 				</div>
 				<div class="step-image-wrapper">
-					<img src="/tiffincraft/public/assets/images/step_22.png"
-						alt="Step 2: A person talking on the phone with the vendors" class="step-image" />
+					<img src="/assets/images/step_22.png" alt="Step 2: A person talking on the phone with the vendors"
+						class="step-image" />
 				</div>
 			</div>
 
 			<!-- Step 3 -->
 			<div class="step reverse">
 				<div class="step-image-wrapper">
-					<img src="/tiffincraft/public/assets/images/step_33.png"
-						alt="Step 3: A person delivering food to the customer" class="step-image" />
+					<img src="/assets/images/step_33.png" alt="Step 3: A person delivering food to the customer"
+						class="step-image" />
 				</div>
 				<div class="step-text">
 					<span class="step-number red">03</span>
@@ -135,8 +134,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 					</p>
 				</div>
 				<div class="step-image-wrapper">
-					<img src="/tiffincraft/public/assets/images/step_44.webp"
-						alt="Step 2: A person talking on the phone with the vendors" class="step-image" />
+					<img src="/assets/images/step_44.webp" alt="Step 2: A person talking on the phone with the vendors"
+						class="step-image" />
 				</div>
 			</div>
 		</div>
@@ -154,8 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 
 	<section class="form-section business-form" id="register">
 		<div class="business-form-container">
-			<form class="register-form" action="/tiffincraft/business/register?" method="POST"
-				enctype="multipart/form-data">
+			<form class="register-form" action="/business/register?" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="action" value="register">
 
 				<h2>Register Now</h2>
@@ -214,9 +212,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
 			</form>
 		</div>
 	</section>
-	<?php include_once ROOT_DIR . "app/pages/components/_footer.php" ?>
-	<script src="/tiffincraft/public/assets/js/main.js" type="module"></script>
-	<script src="/tiffincraft/public/assets/js/imageUpload.js" type="module"></script>
+	<?php include_once ROOT_DIR . "pages/components/_footer.php" ?>
+	<script src="/assets/js/main.js" type="module"></script>
+	<script src="/assets/js/imageUpload.js" type="module"></script>
 </body>
 
 </html>

@@ -1,49 +1,49 @@
 <?php
 
-include_once dirname(__DIR__, 3) . '/init.php';
-include_once ROOT_DIR . 'app/Controllers/authController.php';
+// include_once dirname(__DIR__, 3) . '/init.php';
+// include_once ROOT_DIR . 'app/Controllers/authController.php';
 
-$auth = new AuthController($conn);
+// $auth = new AuthController($conn);
 
 // Infer the role based on the requested URL
-$currentURL = $_SERVER['REQUEST_URI'];
-$role = 'customer'; // Default
-if (strpos($currentURL, '/business') !== false) {
-    $role = 'vendor';
-} elseif (strpos($currentURL, '/admin') !== false) {
-    $role = 'admin';
-}
+// $currentURL = $_SERVER['REQUEST_URI'];
+// $role = 'customer'; // Default
+// if (strpos($currentURL, '/business') !== false) {
+//     $role = 'vendor';
+// } elseif (strpos($currentURL, '/admin') !== false) {
+//     $role = 'admin';
+// }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'login') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $role = $_POST['role'];
-    $csrfToken = $_POST['csrf_token'];
-    $auth->login($email, $password, $role, $csrfToken);
-}
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'login') {
+//     $email = $_POST['email'];
+//     $password = $_POST['password'];
+//     $role = $_POST['role'];
+//     $csrfToken = $_POST['csrf_token'];
+//     $auth->login($email, $password, $role, $csrfToken);
+// }
 
-// Generate CSRF token for the form
-$csrfToken = $auth->generateCSRFToken();
+// // Generate CSRF token for the form
+// $csrfToken = $auth->generateCSRFToken();
 
-// Generate dynamic form action based on current URL
-$currentURL = $_SERVER['REQUEST_URI'];
+// // Generate dynamic form action based on current URL
+// $currentURL = $_SERVER['REQUEST_URI'];
 
-$error = null;
-if (isset($_GET['error'])) {
-    $error = htmlspecialchars($_GET['error']);
-}
+// $error = null;
+// if (isset($_GET['error'])) {
+//     $error = htmlspecialchars($_GET['error']);
+// }
 
-switch ($role) {
-    case 'customer':
-        $formTitle = 'Tiffincraft';
-        break;
-    case 'vendor':
-        $formTitle = 'Tiffincraft Business';
-        break;
-    case 'admin':
-        $formTitle = 'Tiffincraft Admin';
-        break;
-}
+// switch ($role) {
+//     case 'customer':
+//         $formTitle = 'Tiffincraft';
+//         break;
+//     case 'vendor':
+//         $formTitle = 'Tiffincraft Business';
+//         break;
+//     case 'admin':
+//         $formTitle = 'Tiffincraft Admin';
+//         break;
+// }
 
 ?>
 <!DOCTYPE html>
@@ -61,24 +61,24 @@ switch ($role) {
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/tiffincraft/public/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
 
-    <title><?= ucfirst($formTitle); ?> Login</title>
+    <title><?= ucfirst($title); ?></title>
 </head>
 
 <body>
     <header class="header-section">
-        <?php include_once ROOT_DIR . 'app/pages/components/_navbar.php' ?>
+        <?php include_once ROOT_DIR . 'pages/components/_navbar.php' ?>
     </header>
 
     <section class="form-section">
         <div class="form-container">
             <form class="login-form" action="<?= htmlspecialchars($currentURL); ?>" method="POST">
-                <input type="hidden" name="role" value="<?= htmlspecialchars($role); ?>">
+                <input type="hidden" name="role" value="<?= htmlspecialchars($userRole); ?>">
                 <input type="hidden" name="action" value="login">
                 <input type="hidden" name="csrf_token" value="<?= $csrfToken; ?>">
 
-                <h2><?= ucfirst($role); ?> Login</h2>
+                <h2><?= ucfirst($userRole); ?> Login</h2>
 
                 <?php if (isset($error)): ?>
                     <div class="alert error"><?php echo $error; ?></div>
@@ -98,8 +98,8 @@ switch ($role) {
             </form>
         </div>
     </section>
-    <?php include_once ROOT_DIR . 'app/pages/components/_footer.php' ?>
-    <script src="/tiffincraft/public/assets/js/main.js" type="module"></script>
+    <?php include_once ROOT_DIR . 'pages/components/_footer.php' ?>
+    <script src="/assets/js/main.js" type="module"></script>
 </body>
 
 </html>

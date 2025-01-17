@@ -60,7 +60,10 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 </head>
 
 <body>
-  <header><?php include_once ROOT_DIR . 'app/pages/components/_navbar.php' ?></header>
+  <header>
+    <?php include_once ROOT_DIR . 'app/pages/components/_navbar.php' ?>
+  </header>
+
   <section class="form-section">
     <div class="form-container">
       <form class="register-form" action="/tiffincraft/register" method="POST">
