@@ -46,8 +46,8 @@ class Router
                     if (method_exists($controllerInstance, $actionName)) {
                         $context = [
                             'isLoggedIn' => $isLoggedIn,  // True/false, indicates if the user is logged in
-                            'userRole' => $userRole,      // Role of the user (e.g., 'customer', 'vendor', 'admin')
                             'userId' => $_SESSION['user_id'] ?? null, // User ID from session
+                            'userRole' => $_SESSION['user_role'] ?? null,      // Role of the user (e.g., 'customer', 'vendor', 'admin')
                             'currentPath' => $currentPath // The current route path
                         ];
                         $controllerInstance->$actionName($context);

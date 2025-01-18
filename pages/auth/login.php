@@ -1,51 +1,3 @@
-<?php
-
-// include_once dirname(__DIR__, 3) . '/init.php';
-// include_once ROOT_DIR . 'app/Controllers/authController.php';
-
-// $auth = new AuthController($conn);
-
-// Infer the role based on the requested URL
-// $currentURL = $_SERVER['REQUEST_URI'];
-// $role = 'customer'; // Default
-// if (strpos($currentURL, '/business') !== false) {
-//     $role = 'vendor';
-// } elseif (strpos($currentURL, '/admin') !== false) {
-//     $role = 'admin';
-// }
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'login') {
-//     $email = $_POST['email'];
-//     $password = $_POST['password'];
-//     $role = $_POST['role'];
-//     $csrfToken = $_POST['csrf_token'];
-//     $auth->login($email, $password, $role, $csrfToken);
-// }
-
-// // Generate CSRF token for the form
-// $csrfToken = $auth->generateCSRFToken();
-
-// // Generate dynamic form action based on current URL
-// $currentURL = $_SERVER['REQUEST_URI'];
-
-// $error = null;
-// if (isset($_GET['error'])) {
-//     $error = htmlspecialchars($_GET['error']);
-// }
-
-// switch ($role) {
-//     case 'customer':
-//         $formTitle = 'Tiffincraft';
-//         break;
-//     case 'vendor':
-//         $formTitle = 'Tiffincraft Business';
-//         break;
-//     case 'admin':
-//         $formTitle = 'Tiffincraft Admin';
-//         break;
-// }
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,31 +26,48 @@
     <section class="form-section">
         <div class="form-container">
             <form class="login-form" action="<?= htmlspecialchars($currentURL); ?>" method="POST">
-                <input type="hidden" name="role" value="<?= htmlspecialchars($userRole); ?>">
-                <input type="hidden" name="action" value="login">
                 <input type="hidden" name="csrf_token" value="<?= $csrfToken; ?>">
 
-                <h2><?= ucfirst($userRole); ?> Login</h2>
+                <h2>Login</h2>
 
+                <!-- Error Alert -->
                 <?php if (isset($error)): ?>
-                    <div class="alert error"><?php echo $error; ?></div>
+                    <div class="alert error"><?= htmlspecialchars($error); ?></div>
                 <?php endif; ?>
+
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <input type="email" id="email" name="email" placeholder="Enter your email"
+                        value="<?= htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES); ?>" required>
                 </div>
+
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <button type="button" class="toggle-password">Show</button>
                 </div>
+
                 <button type="submit" class="btn">Login</button>
                 <div class="form-footer">
-                    <a href="#">Forgot Password?</a>
+                    <a href="/forgot-password">Forgot Password?</a>
                 </div>
             </form>
         </div>
     </section>
+
     <?php include_once ROOT_DIR . 'pages/components/_footer.php' ?>
+    <script>
+        document.querySelector('.toggle-password').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                this.textContent = 'Hide';
+            } else {
+                passwordField.type = 'password';
+                this.textContent = 'Show';
+            }
+        });
+    </script>
     <script src="/assets/js/main.js" type="module"></script>
 </body>
 

@@ -213,6 +213,7 @@
 		</div>
 	</section>
 	<?php include_once ROOT_DIR . "pages/components/_footer.php" ?>
+
 	<script src="/assets/js/main.js" type="module"></script>
 	<script src="/assets/js/imageUpload.js" type="module"></script>
 </body>

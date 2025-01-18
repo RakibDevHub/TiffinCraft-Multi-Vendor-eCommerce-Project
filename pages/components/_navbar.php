@@ -1,31 +1,18 @@
 <?php
 
-$baseUrl = $currentPath;
+// $baseUrl = $currentPath;
 
 ?>
 
 <nav class="nav-container">
-	<a href="/" class="nav-logo">
-		<img src="/assets/images/<?= (strpos($baseUrl, '/business') !== false) ? 'logo.png' : 'TiffinCraft.png'; ?>"
+	<a href="<?= (strpos($currentPath, '/business') !== false) ? '/business' : '/'; ?>" class="nav-logo">
+		<img src="/assets/images/<?= (strpos($currentPath, '/business') !== false) ? 'logo.png' : 'TiffinCraft.png'; ?>"
 			alt="TiffinCraft Logo" />
-		<span><?= (strpos($baseUrl, '/business') !== false) ? 'TiffinCraft Business' : ''; ?></span>
+		<span><?= (strpos($currentPath, '/business') !== false) ? 'TiffinCraft Business' : ''; ?></span>
 	</a>
-	<!-- <ul class="nav-links">
-		<?php if (strpos($baseUrl, '/business') === false): ?>
-			<li class="<?= ($currentPath === '/' || $currentPath === '/index.php') ? 'active' : ''; ?>">
-				<a href="/">Home</a>
-			</li>
-			<li class="<?= strpos($currentPath, '#dishes') !== false ? 'active' : ''; ?>"><a href="/#dishes">Browse
-					Dishes</a></li>
-			<li class="<?= strpos($currentPath, '#vendors') !== false ? 'active' : ''; ?>"><a href="/#vendors">Browse
-					Vendors</a></li>
-			<li class="<?= strpos($currentPath, '#how') !== false ? 'active' : ''; ?>"><a href="/#how">How It
-					Works</a></li>
 
-		<?php endif; ?>
-	</ul> -->
 	<ul class="nav-links">
-		<?php if (strpos($baseUrl, '/business') === false): ?>
+		<?php if (strpos($currentPath, '/business') === false): ?>
 			<li class="<?= ($currentPath === '/' || $currentPath === '/index.php') ? 'active' : ''; ?>">
 				<a href="/">Home</a>
 			</li>
@@ -44,9 +31,10 @@ $baseUrl = $currentPath;
 	<div class="nav-buttons">
 		<?php if (!$isLoggedIn): ?>
 			<li class="nav-btn <?= strpos($currentPath, '/login') !== false ? 'active' : ''; ?>">
-				<a class="outline" href="/login">Sign In</a>
+				<a class="outline"
+					href="<?= (strpos($currentPath, '/business') !== false) ? '/business/login' : '/login'; ?>">Sign In</a>
 			</li>
-			<?php if (strpos($baseUrl, '/business') === false): ?>
+			<?php if (strpos($currentPath, '/business') === false): ?>
 				<li class="nav-btn <?= strpos($currentPath, '/register') !== false ? 'active' : ''; ?>">
 					<a class="fill" href="/register">Sign Up</a>
 				</li>
@@ -56,7 +44,7 @@ $baseUrl = $currentPath;
 			<li class="logged-in <?= strpos($currentPath, '/profile') !== false ? 'active' : ''; ?>">
 				<a class="nav-icon" href="/profile"><i class="fa-solid fa-user"></i></a>
 			</li>
-			<?php if (strpos($baseUrl, '/business') === false): ?>
+			<?php if (strpos($currentPath, '/business') === false): ?>
 				<li class="logged-in <?= strpos($currentPath, '/wishlist') !== false ? 'active' : ''; ?>">
 					<a class="nav-icon" href="/wishlist"><i class="fa-solid fa-heart"></i></a>
 				</li>
@@ -65,7 +53,7 @@ $baseUrl = $currentPath;
 				</li>
 			<?php endif; ?>
 		<?php endif; ?>
-		<?php if (strpos($baseUrl, '/business') === false): ?>
+		<?php if (strpos($currentPath, '/business') === false): ?>
 			<i class="fa-solid fa-bars" id="menu-bar"></i>
 		<?php endif ?>
 	</div>
