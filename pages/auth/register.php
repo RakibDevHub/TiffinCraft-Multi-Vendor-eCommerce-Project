@@ -69,56 +69,78 @@
             <div class="alert success"><?= htmlspecialchars($success); ?></div>
           <?php endif; ?>
 
-          <div class="f-grid">
-            <div class="form-group">
-              <label for="fname">First Name</label>
-              <input type="text" id="fname" name="fname" placeholder="Enter your first name" required>
-            </div>
-            <div class="form-group">
-              <label for="lname">Last Name</label>
-              <input type="text" id="lname" name="lname" placeholder="Enter your Last name" required>
-            </div>
-            <div class="form-group">
-              <label for="uemail">Email Address</label>
-              <input type="email" id="uemail" name="uemail" placeholder="Enter your email address" required>
-            </div>
-            <div class="form-group">
-              <label for="number">Phone Number</label>
-              <input type="text" id="number" name="number" placeholder="Enter your phone number" required>
-            </div>
-            <div class="form-group">
-              <label for="outlet">Outlet Name</label>
-              <input type="text" id="outlet" name="outlet" placeholder="Enter your outlet name" required>
-            </div>
-            <div class="form-group">
-              <label for="outlet-address">Outlet Address</label>
-              <input type="text" id="outlet-address" name="outlet-address" placeholder="Enter your outlet address"
-                required>
-            </div>
-            <div class="form-group">
-              <label for="image">Outlet Image</label>
-              <div style="display: flex">
-                <button class="btn choose-file-btn" type="button">+ Choose File</button>
+          <fieldset>
+            <legend>Vendor Information</legend>
+            <div class="f-grid">
+              <div class="form-group">
+                <label for="username">Full Name</label>
+                <input type="text" id="username" name="username" placeholder="Enter your full name" required>
               </div>
-              <input type="file" id="image" name="image" class="hidden-input" accept="image/*">
-            </div>
-            <div class="form-group">
-              <div class="preview-container hidden">
-                <img id="image-preview" alt="Preview" />
-                <button class="remove-btn" type="button">X</button>
+              <div class="form-group">
+                <label for="uemail">Email Address</label>
+                <input type="email" id="uemail" name="uemail" placeholder="Enter your email address" required>
+              </div>
+              <div class="form-group">
+                <label for="number">Phone Number</label>
+                <input type="text" id="number" name="number" placeholder="Enter your phone number" required>
               </div>
             </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Kitchen Details</legend>
+            <div class="f-grid">
+              <div class="form-group">
+                <label for="kname">Kitchen Name</label>
+                <input type="text" id="kname" name="kname" placeholder="Enter your kitchen name" required>
+              </div>
+              <div class="form-group">
+                <label for="kaddress">Kitchen Address</label>
+                <input type="text" id="kaddress" name="kaddress" placeholder="Enter your kitchen address" required>
+              </div>
+              <div class="form-group">
+                <label for="image">Kitchen Image</label>
+                <div style="display: flex;">
+                  <button class="btn choose-file-btn" type="button">+ Choose File</button>
+                </div>
+                <input type="file" id="image" name="image" class="hidden-input" accept="image/*">
+              </div>
+              <div class="form-group">
+                <div class="preview-container hidden">
+                  <img id="image-preview" alt="Preview" />
+                  <button class="remove-btn" type="button">X</button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Cuisine and Delivery</legend>
             <div class="form-group">
-              <label for="upassword">Password</label>
-              <input type="password" id="upassword" name="upassword" placeholder="Enter your password" required>
+              <label for="cuisine">Cuisine Type</label>
+              <input type="text" id="cuisine" name="cuisine" placeholder="Enter cuisine type" required>
             </div>
             <div class="form-group">
-              <label for="cpassword">Confirm Password</label>
-              <input type="password" id="cpassword" name="cpassword" placeholder="Confirm your password" required>
+              <label for="delivery">Delivery Areas</label>
+              <textarea id="delivery" name="delivery" placeholder="Enter delivery areas, e.g., zip codes or neighborhoods"
+                required></textarea>
             </div>
-          </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Account Password</legend>
+            <div class="f-grid">
+              <div class="form-group">
+                <label for="upassword">Password</label>
+                <input type="password" id="upassword" name="upassword" placeholder="Enter your password" required>
+              </div>
+              <div class="form-group">
+                <label for="cpassword">Confirm Password</label>
+                <input type="password" id="cpassword" name="cpassword" placeholder="Confirm your password" required>
+              </div>
+            </div>
+          </fieldset>
+
           <div class="form-footer">
-            <!-- <p>Fill up the form below.</p> -->
             <button type="submit" class="btn">Register</button>
           </div>
         </form>

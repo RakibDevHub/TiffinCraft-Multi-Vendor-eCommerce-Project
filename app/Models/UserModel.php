@@ -11,33 +11,37 @@ class UserModel
         $this->conn = $conn;
     }
 
+    private function getTableName($userType)
+    {
+        return match ($userType) {
+            'admin' => 'admins',
+            'vendor' => 'vendors',
+            default => 'users',
+        };
+    }
+
     public function authenticate($email, $password, $userType)
     {
         $table = $this->getTableName($userType);
-        $query = "SELECT id, password FROM " . $table . " WHERE email = :email";
+        $query = "SELECT id, password FROM $table WHERE email = :email";
 
         $stmt = oci_parse($this->conn, $query);
         if (!$stmt) {
-            $e = oci_error($this->conn);
-            error_log("OCI parse error (authenticate): " . $e['message']);
+            $this->logOciError("OCI parse error (authenticate)", $this->conn);
             return false;
         }
 
         oci_bind_by_name($stmt, ':email', $email);
 
         if (!oci_execute($stmt)) {
-            $e = oci_error($stmt);
-            error_log("Authentication query failed: " . $e['message']);
+            $this->logOciError("Authentication query failed", $stmt);
             return false;
         }
 
         $user = oci_fetch_assoc($stmt);
 
         if ($user && password_verify($password, $user['PASSWORD'])) {
-            return [
-                'id' => $user['ID'],
-                'role' => $userType,
-            ];
+            return ['id' => $user['ID'], 'role' => $userType];
         }
 
         return false;
@@ -48,71 +52,106 @@ class UserModel
         $table = $this->getTableName($userType);
         $columns = implode(", ", array_keys($userData));
         $placeholders = ":" . implode(", :", array_keys($userData));
-        $query = "INSERT INTO " . $table . " ($columns) VALUES ($placeholders)";
+        $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
 
         $stmt = oci_parse($this->conn, $query);
+
         if (!$stmt) {
-            $e = oci_error($this->conn);
-            error_log("OCI parse error (registerUser): " . $e['message']);
+            $this->logOciError("OCI parse error (registerUser)", $this->conn);
             return false;
         }
 
-        foreach ($userData as $key => $value) {
-            oci_bind_by_name($stmt, ":" . $key, $value);
+        foreach ($userData as $key => &$value) {
+            $dataType = SQLT_CHR;
+            $length = -1;
+
+            if ($key === 'password') {
+                $length = 255;
+            } elseif ($key === 'phone_number') {
+                $dataType = SQLT_CHR;
+            } elseif ($key === 'delivery_areas' || $key === 'description') {
+                // Handle CLOB fields
+                $lob = oci_new_descriptor($this->conn, OCI_D_LOB);
+                if (!$lob) {
+                    $this->logOciError("Failed to create LOB descriptor", $this->conn);
+                    return false;
+                }
+                $lob->writeTemporary($value, OCI_TEMP_CLOB);
+                $value = $lob;
+                $dataType = SQLT_CLOB;
+            }
+
+            if (!oci_bind_by_name($stmt, ":$key", $value, $length, $dataType)) {
+                $this->logOciError("OCI bind error for key $key", $stmt);
+                oci_free_statement($stmt);
+                oci_rollback($this->conn);
+                return false;
+            }
         }
 
-        if (!oci_execute($stmt)) {
-            $e = oci_error($stmt);
-            error_log("Registration query failed: " . $e['message']);
+        if (!oci_execute($stmt, OCI_NO_AUTO_COMMIT)) {
+            $this->logOciError("Registration query failed", $stmt);
+            oci_free_statement($stmt);
+            oci_rollback($this->conn);
             return false;
         }
+
+        oci_free_statement($stmt);
+
+        if (!oci_commit($this->conn)) {
+            $this->logOciError("Commit failed", $this->conn);
+            oci_rollback($this->conn);
+            return false;
+        }
+
         return true;
     }
 
     public function getUserByEmail($email, $userType)
     {
         $table = $this->getTableName($userType);
-        $query = "SELECT id FROM " . $table . " WHERE email = :email";
+        $query = "SELECT id FROM $table WHERE email = :email";
 
         $stmt = oci_parse($this->conn, $query);
         if (!$stmt) {
-            $e = oci_error($this->conn);
-            error_log("OCI parse error (getUserByEmail): " . $e['message']);
+            $this->logOciError("OCI parse error (getUserByEmail)", $this->conn);
             return false;
         }
 
         oci_bind_by_name($stmt, ':email', $email);
+
         if (!oci_execute($stmt)) {
-            $e = oci_error($stmt);
-            error_log("getUserByEmail query failed: " . $e['message']);
+            $this->logOciError("getUserByEmail query failed", $stmt);
             return false;
         }
+
         return oci_fetch_assoc($stmt);
     }
 
     public function getUserById($userId, $userType)
     {
         $table = $this->getTableName($userType);
-        $query = "SELECT * FROM " . $table . " WHERE id = :id"; // Select all columns here
+        $query = "SELECT * FROM $table WHERE id = :id";
 
         $stmt = oci_parse($this->conn, $query);
         if (!$stmt) {
-            $e = oci_error($this->conn);
-            error_log("OCI parse error (getUserById): " . $e['message']);
+            $this->logOciError("OCI parse error (getUserById)", $this->conn);
             return false;
         }
+
         oci_bind_by_name($stmt, ':id', $userId);
+
         if (!oci_execute($stmt)) {
-            $e = oci_error($stmt);
-            error_log("getUserById query failed: " . $e['message']);
+            $this->logOciError("getUserById query failed", $stmt);
             return false;
         }
 
         return oci_fetch_assoc($stmt);
     }
 
-    private function getTableName($userType)
+    private function logOciError($message, $resource)
     {
-        return ($userType === 'admin') ? 'admins' : ($userType === 'vendor' ? 'vendors' : 'users');
+        $error = oci_error($resource);
+        error_log("$message: " . $error['message'] . " (Code: " . $error['code'] . ")");
     }
 }

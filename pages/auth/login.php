@@ -41,10 +41,10 @@
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <button type="button" class="toggle-password">Show</button>
                 </div>
                 <div class="form-footer">
                     <a href="/forgot-password">Forgot Password?</a>
-                    <button type="button" class="toggle-password">Show</button>
                     <button type="submit" class="btn">Login</button>
 
                 </div>

@@ -778,11 +778,33 @@ body {
 .register-form h2 {
   text-align: center;
   color: var(--primary-color);
-  /* margin-bottom: 2rem; */
+  margin-bottom: 2rem;
   font-size: 4rem;
   font-weight: bold;
   text-transform: uppercase;
 }
+
+fieldset {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+fieldset legend {
+  font-weight: 700;
+  font-size: 2rem;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* .register-form span {
+  width: 100%;
+  border: 1px solid #ccc;
+  margin: 1rem 0rem;
+} */
 
 .form-group {
   display: flex;
@@ -795,7 +817,9 @@ body {
   /* color: #555; */
 }
 
+
 .form-group input,
+.form-group textarea,
 .form-group select {
   padding: 0.7rem;
   border: 1px solid var(--input-border);
@@ -803,6 +827,7 @@ body {
 }
 
 .form-group input:focus,
+.form-group textarea:focus,
 .form-group select:focus {
   outline: none;
   border-color: var(--input-focus);

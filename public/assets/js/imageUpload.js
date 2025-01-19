@@ -1,26 +1,3 @@
-// const imageInput = document.getElementById("image");
-// const preview = document.getElementById("preview");
-// const previewContainer = document.getElementById("preview-container");
-
-// imageInput.addEventListener("change", () => {
-//   const file = imageInput.files[0];
-
-//   // Validate file type
-//   const validTypes = ["image/jpeg", "image/png", "image/gif"];
-//   if (file && validTypes.includes(file.type)) {
-//     const reader = new FileReader();
-//     reader.onload = (e) => {
-//       preview.src = e.target.result;
-//       preview.style.display = "block";
-//     };
-//     reader.readAsDataURL(file);
-//   } else {
-//     alert("Please upload a valid image file (JPEG, PNG, or GIF).");
-//     imageInput.value = ""; // Clear the input field
-//     preview.style.display = "none";
-//   }
-// });
-
 const fileInput = document.querySelector(".hidden-input");
 const chooseFileBtn = document.querySelector(".choose-file-btn");
 const previewContainer = document.querySelector(".preview-container");
