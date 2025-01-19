@@ -739,9 +739,10 @@ body {
 /* Form Page Section  */
 
 .business-form {
-  padding: 2% 7% !important;
+  /* padding: 2% 7% !important;
   min-height: auto !important;
-  background: var(--body-bg) !important;
+  background: var(--body-bg) !important; */
+  max-width: 650px !important;
 }
 
 .form-section {
@@ -833,7 +834,7 @@ body {
 }
 
 .form-footer {
-  text-align: center;
+  text-align: right;
   margin-top: 1rem;
 }
 
@@ -992,7 +993,7 @@ body {
 }
 
 .login-form button {
-  width: 100%;
+  /* width: 100%; */
   padding: 0.7rem;
   background: var(--primary-color);
   color: var(--secondary-color);

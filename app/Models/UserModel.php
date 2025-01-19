@@ -6,56 +6,113 @@ class UserModel
 {
     private $conn;
 
-    public function __construct($dbConnection)
+    public function __construct($conn)
     {
-        $this->conn = $dbConnection;
-
-        if (!$this->conn) {
-            throw new \Exception("Database connection not initialized.");
-        }
+        $this->conn = $conn;
     }
 
-    public function authenticateAdmin($email, $password)
+    public function authenticate($email, $password, $userType)
     {
-        $query = "SELECT * FROM admin WHERE email = :email";
+        $table = $this->getTableName($userType);
+        $query = "SELECT id, password FROM " . $table . " WHERE email = :email";
+
         $stmt = oci_parse($this->conn, $query);
+        if (!$stmt) {
+            $e = oci_error($this->conn);
+            error_log("OCI parse error (authenticate): " . $e['message']);
+            return false;
+        }
+
         oci_bind_by_name($stmt, ':email', $email);
 
         if (!oci_execute($stmt)) {
             $e = oci_error($stmt);
-            error_log("Admin authentication query failed: " . $e['message']);
-            return null; // Or handle error propagation
-        }
-
-        $admin = oci_fetch_assoc($stmt);
-
-        // Verify password and return result
-        return $admin && password_verify($password, $admin['password']) ? $admin : null;
-    }
-
-    public function authenticateUser($email, $password, $role)
-    {
-        // Validate role
-        $validRoles = ['customer', 'vendor'];
-        if (!in_array($role, $validRoles)) {
-            error_log("Invalid role provided: " . $role);
-            return null;
-        }
-
-        $query = "SELECT * FROM users WHERE email = :email AND role = :role";
-        $stmt = oci_parse($this->conn, $query);
-        oci_bind_by_name($stmt, ':email', $email);
-        oci_bind_by_name($stmt, ':role', $role);
-
-        if (!oci_execute($stmt)) {
-            $e = oci_error($stmt);
-            error_log("User authentication query failed: " . $e['message']);
-            return null; // Or handle error propagation
+            error_log("Authentication query failed: " . $e['message']);
+            return false;
         }
 
         $user = oci_fetch_assoc($stmt);
 
-        // Verify password and return result
-        return $user && password_verify($password, $user['password']) ? $user : null;
+        if ($user && password_verify($password, $user['PASSWORD'])) {
+            return [
+                'id' => $user['ID'],
+                'role' => $userType,
+            ];
+        }
+
+        return false;
+    }
+
+    public function registerUser($userData, $userType)
+    {
+        $table = $this->getTableName($userType);
+        $columns = implode(", ", array_keys($userData));
+        $placeholders = ":" . implode(", :", array_keys($userData));
+        $query = "INSERT INTO " . $table . " ($columns) VALUES ($placeholders)";
+
+        $stmt = oci_parse($this->conn, $query);
+        if (!$stmt) {
+            $e = oci_error($this->conn);
+            error_log("OCI parse error (registerUser): " . $e['message']);
+            return false;
+        }
+
+        foreach ($userData as $key => $value) {
+            oci_bind_by_name($stmt, ":" . $key, $value);
+        }
+
+        if (!oci_execute($stmt)) {
+            $e = oci_error($stmt);
+            error_log("Registration query failed: " . $e['message']);
+            return false;
+        }
+        return true;
+    }
+
+    public function getUserByEmail($email, $userType)
+    {
+        $table = $this->getTableName($userType);
+        $query = "SELECT id FROM " . $table . " WHERE email = :email";
+
+        $stmt = oci_parse($this->conn, $query);
+        if (!$stmt) {
+            $e = oci_error($this->conn);
+            error_log("OCI parse error (getUserByEmail): " . $e['message']);
+            return false;
+        }
+
+        oci_bind_by_name($stmt, ':email', $email);
+        if (!oci_execute($stmt)) {
+            $e = oci_error($stmt);
+            error_log("getUserByEmail query failed: " . $e['message']);
+            return false;
+        }
+        return oci_fetch_assoc($stmt);
+    }
+
+    public function getUserById($userId, $userType)
+    {
+        $table = $this->getTableName($userType);
+        $query = "SELECT * FROM " . $table . " WHERE id = :id"; // Select all columns here
+
+        $stmt = oci_parse($this->conn, $query);
+        if (!$stmt) {
+            $e = oci_error($this->conn);
+            error_log("OCI parse error (getUserById): " . $e['message']);
+            return false;
+        }
+        oci_bind_by_name($stmt, ':id', $userId);
+        if (!oci_execute($stmt)) {
+            $e = oci_error($stmt);
+            error_log("getUserById query failed: " . $e['message']);
+            return false;
+        }
+
+        return oci_fetch_assoc($stmt);
+    }
+
+    private function getTableName($userType)
+    {
+        return ($userType === 'admin') ? 'admins' : ($userType === 'vendor' ? 'vendors' : 'users');
     }
 }

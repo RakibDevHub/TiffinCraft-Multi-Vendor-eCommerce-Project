@@ -1,44 +1,3 @@
-<?php
-
-// include_once dirname(__DIR__, 3) . '/init.php';
-// include_once ROOT_DIR . 'app/Controllers/userController.php';
-// include_once ROOT_DIR . 'app/Controllers/authController.php';
-
-// $userController = new UserController($conn);
-// $authController = new AuthController($conn);
-
-// $error = null;
-// $success = null;
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'register') {
-//   if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-//     $error = "Invalid CSRF token.";
-//   } else {
-//     $userId = $userController->userRegister($_POST);
-
-//     if (is_numeric($userId)) {
-
-//       $loggedIn = $authController->login($_POST['uemail'], $_POST['upassword'], 'customer');
-//       if ($loggedIn) {
-//         header("Location: /tiffincraft/");
-//         exit();
-//       } else {
-//         $error = "Registration successful, but login failed.";
-//       }
-
-//     } else {
-//       $error = $userId;
-//     }
-//   }
-// } elseif (isset($_GET['error'])) {
-//   $error = htmlspecialchars($_GET['error']);
-// } elseif (isset($_GET['success'])) {
-//   $success = htmlspecialchars($_GET['success']);
-// }
-
-// $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -55,8 +14,7 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="/assets/css/style.css" />
-
-  <title>Users Regrister</title>
+  <title><?= ucfirst($title); ?></title>
 </head>
 
 <body>
@@ -64,24 +22,18 @@
     <?php include_once ROOT_DIR . 'pages/components/_navbar.php' ?>
   </header>
 
-
   <section class="form-section">
-    <div class="form-container">
+    <div class="form-container <?= (strpos($currentPath, '/business') !== false) ? 'business-form' : ''; ?>">
       <?php if (strpos($currentPath, '/business') === false): ?>
         <form class="register-form" action="/register" method="POST">
-          <input type="hidden" name="action" value="register">
-          <input type="hidden" name="csrf_token" value="<?= $_SESSION["csrf_token"] ?>">
-
+          <input type="hidden" name="csrf_token" value="<?= $csrfToken; ?>">
           <h2>Register</h2>
-
-          <?php if ($error): ?>
-            <div class="alert error"><?= $error ?></div>
+          <?php if (isset($error)): ?>
+            <div class="alert error"><?= htmlspecialchars($error); ?></div>
           <?php endif; ?>
-
-          <?php if ($success): ?>
-            <div class="alert success"><?= $success ?></div>
+          <?php if (isset($success)): ?>
+            <div class="alert success"><?= htmlspecialchars($success); ?></div>
           <?php endif; ?>
-
           <div class="form-group">
             <label for="username">Full Name</label>
             <input type="text" id="username" name="username" placeholder="Enter your full name" required>
@@ -108,22 +60,15 @@
         </form>
       <?php else: ?>
         <form class="register-form" action="/business/register" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="action" value="register">
-          <!-- <input type="hidden" name="csrf_token" value="<?= $_SESSION["csrf_token"] ?>"> -->
+          <input type="hidden" name="csrf_token" value="<?= $csrfToken; ?>">
           <h2>Register Now</h2>
-
-          <?php if ($error): ?>
-            <div class="alert error"><?php echo $error ?></div>
+          <?php if (isset($error)): ?>
+            <div class="alert error"><?= htmlspecialchars($error); ?></div>
+          <?php endif; ?>
+          <?php if (isset($success)): ?>
+            <div class="alert success"><?= htmlspecialchars($success); ?></div>
           <?php endif; ?>
 
-          <?php if ($success): ?>
-            <div class="alert success"><?php echo $success ?></div>
-          <?php endif; ?>
-
-          <div class="form-header">
-            <p>Fill up the form below.</p>
-            <button type="submit" class="btn">Submit Request</button>
-          </div>
           <div class="f-grid">
             <div class="form-group">
               <label for="fname">First Name</label>
@@ -156,11 +101,25 @@
                 <button class="btn choose-file-btn" type="button">+ Choose File</button>
               </div>
               <input type="file" id="image" name="image" class="hidden-input" accept="image/*">
+            </div>
+            <div class="form-group">
               <div class="preview-container hidden">
                 <img id="image-preview" alt="Preview" />
                 <button class="remove-btn" type="button">X</button>
               </div>
             </div>
+            <div class="form-group">
+              <label for="upassword">Password</label>
+              <input type="password" id="upassword" name="upassword" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+              <label for="cpassword">Confirm Password</label>
+              <input type="password" id="cpassword" name="cpassword" placeholder="Confirm your password" required>
+            </div>
+          </div>
+          <div class="form-footer">
+            <!-- <p>Fill up the form below.</p> -->
+            <button type="submit" class="btn">Register</button>
           </div>
         </form>
       <?php endif; ?>
@@ -169,8 +128,10 @@
 
   <?php include ROOT_DIR . 'pages/components/_footer.php'; ?>
 
-  <!-- Custom JS  -->
   <script src="/assets/js/main.js" type="module"></script>
+  <?php if (strpos($currentPath, '/business') !== false): ?>
+    <script src="/assets/js/imageUpload.js" type="module"></script>
+  <?php endif; ?>
 
 </body>
 

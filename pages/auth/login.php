@@ -25,31 +25,28 @@
 
     <section class="form-section">
         <div class="form-container">
-            <form class="login-form" action="<?= htmlspecialchars($currentURL); ?>" method="POST">
+            <form class="login-form" action="<?= htmlspecialchars($currentPath); ?>" method="POST" novalidate>
                 <input type="hidden" name="csrf_token" value="<?= $csrfToken; ?>">
 
                 <h2>Login</h2>
-
-                <!-- Error Alert -->
                 <?php if (isset($error)): ?>
                     <div class="alert error"><?= htmlspecialchars($error); ?></div>
                 <?php endif; ?>
 
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email"
-                        value="<?= htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES); ?>" required>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                    <button type="button" class="toggle-password">Show</button>
                 </div>
-
-                <button type="submit" class="btn">Login</button>
                 <div class="form-footer">
                     <a href="/forgot-password">Forgot Password?</a>
+                    <button type="button" class="toggle-password">Show</button>
+                    <button type="submit" class="btn">Login</button>
+
                 </div>
             </form>
         </div>
@@ -57,14 +54,18 @@
 
     <?php include_once ROOT_DIR . 'pages/components/_footer.php' ?>
     <script>
-        document.querySelector('.toggle-password').addEventListener('click', function () {
-            const passwordField = document.getElementById('password');
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                this.textContent = 'Hide';
-            } else {
-                passwordField.type = 'password';
-                this.textContent = 'Show';
+        const formContainer = document.querySelector('.form-container');
+
+        formContainer.addEventListener('click', function (event) {
+            if (event.target.classList.contains('toggle-password')) {
+                const passwordField = event.target.previousElementSibling;
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    event.target.textContent = 'Hide';
+                } else {
+                    passwordField.type = 'password';
+                    event.target.textContent = 'Show';
+                }
             }
         });
     </script>

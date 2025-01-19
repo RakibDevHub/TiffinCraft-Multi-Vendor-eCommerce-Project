@@ -19,7 +19,7 @@ class HomeController
     }
     public function business($context)
     {
-        $title = "TiffinCraft";
+        $title = "TiffinCraft Business";
 
         // Extract context data
         $isLoggedIn = $context['isLoggedIn'] ?? false;
@@ -30,17 +30,4 @@ class HomeController
         // Pass necessary variables to the view
         include ROOT_DIR . '/pages/tiffincraftBusiness.php';
     }
-
-    /**
-     * Fetch user data from the database (Example function).
-     */
-    // private function getUserData($userId)
-    // {
-    //     // Example database fetch logic (replace with your database connection logic)
-    //     $db = new \App\Core\Database(); // Assuming you have a Database class
-    //     $query = "SELECT * FROM users WHERE id = ?";
-    //     $userData = $db->fetchOne($query, [$userId]);
-
-    //     return $userData;
-    // }
 }

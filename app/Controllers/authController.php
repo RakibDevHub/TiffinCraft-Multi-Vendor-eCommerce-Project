@@ -9,18 +9,17 @@ class AuthController
 {
     public function login($context)
     {
-        session_start();
-
         $title = "Login";
-        $isLoggedIn = $context['user_id'] ?? false;
+        $isLoggedIn = $context['isLoggedIn'] ?? false;
         $userRole = $context['userRole'] ?? null;
         $currentPath = $context['currentPath'] ?? '/';
+        $conn = $context['conn'];
+        $error = null;
 
         $csrfToken = CSRFToken::generateToken();
 
-        // Redirect if already logged in
         if ($isLoggedIn) {
-            $this->redirectToDashboard($currentPath, $userRole);
+            $this->redirectToDashboard($userRole);
             exit;
         }
 
@@ -29,41 +28,103 @@ class AuthController
             $password = $_POST['password'] ?? '';
             $submittedToken = $_POST['csrf_token'] ?? '';
 
-            // CSRF token validation
             if (!CSRFToken::validateToken($submittedToken)) {
                 $error = "Invalid CSRF token.";
-                include ROOT_DIR . 'pages/auth/login.php';
-                return;
-            }
-
-            // Authenticate user
-            $userModel = new UserModel();
-            $userType = $this->getUserTypeFromPath($currentPath);
-
-            $user = $userType === 'admin'
-                ? $userModel->authenticateAdmin($email, $password)
-                : $userModel->authenticateUser($email, $password, $userType);
-
-            if ($user) {
-                // Set session variables after successful authentication
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_role'] = $userType;
-
-                // Clear CSRF token after successful login
-                CSRFToken::clearToken();
-
-                // Redirect to the appropriate dashboard
-                $this->redirectToDashboard($currentPath, $userType);
             } else {
-                $error = "Invalid email or password.";
+                $userModel = new UserModel($conn);
+                $userType = $this->getUserTypeFromPath($currentPath);
+                $user = $userModel->authenticate($email, $password, $userType);
+
+                if ($user) {
+                    $_SESSION[SESSION_USER_ID] = $user['user_id'];
+                    $_SESSION[SESSION_USER_ROLE] = $userType;
+                    CSRFToken::clearToken();
+                    $this->redirectToDashboard($userType);
+                } else {
+                    $error = "Invalid email or password.";
+                }
             }
         }
 
         include ROOT_DIR . 'pages/auth/login.php';
     }
+
+    public function register($context)
+    {
+        $title = "Register";
+        $isLoggedIn = $context['isLoggedIn'] ?? false;
+        $userRole = $context['userRole'] ?? null;
+        $currentPath = $context['currentPath'];
+        $conn = $context['conn'];
+        $error = null;
+        $success = null;
+
+        $csrfToken = CSRFToken::generateToken();
+
+        if ($isLoggedIn) {
+            $this->redirectToDashboard($userRole);
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!CSRFToken::validateToken($_POST['csrf_token'] ?? '')) {
+                $error = "Invalid CSRF token.";
+            } else {
+                $userModel = new UserModel($conn);
+                $userType = $this->getUserTypeFromPath($currentPath);
+
+                $username = $_POST['username'] ?? ($_POST['fname'] ?? '') . ' ' . ($_POST['lname'] ?? '');
+                $email = $_POST['uemail'] ?? '';
+                $password = $_POST['upassword'] ?? '';
+                $cpassword = $_POST['cpassword'] ?? '';
+                $number = $_POST['number'] ?? '';
+                $outlet = $_POST['outlet'] ?? null;
+                $outletAddress = $_POST['outlet-address'] ?? null;
+                $image = $_FILES['image'] ?? null;
+
+                if (empty($email) || empty($password) || empty($username) || empty($number) || ($userType == 'vendor' && (empty($outlet) || empty($outletAddress)))) {
+                    $error = "Please fill in all required fields.";
+                } elseif ($password !== $cpassword) {
+                    $error = "Passwords do not match.";
+                } elseif ($userModel->getUserByEmail($email, $userType)) {
+                    $error = "Email already exists.";
+                } else {
+                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                    $userData = [
+                        'name' => $username, // Use 'name' consistently
+                        'email' => $email,
+                        'password' => $hashedPassword,
+                        'phone_number' => $number,
+                    ];
+
+                    if ($userType === 'vendor') {
+                        $userData['outlet_name'] = $outlet;
+                        $userData['outlet_address'] = $outletAddress;
+                        if ($image && $image['error'] === UPLOAD_ERR_OK) {
+                            $targetDir = "uploads/";
+                            $targetFile = $targetDir . basename($image["name"]);
+                            if (move_uploaded_file($image["tmp_name"], $targetFile)) {
+                                $userData['outlet_image'] = $targetFile;
+                            } else {
+                                $error = "Error uploading image.";
+                            }
+                        }
+                    }
+                    if ($userModel->registerUser($userData, $userType)) {
+                        $success = "Registration successful!";
+                    } else {
+                        $error = "Registration failed. Please try again.";
+                    }
+                }
+            }
+        }
+
+        include ROOT_DIR . 'pages/auth/register.php';
+    }
+
+
     private function getUserTypeFromPath($path)
     {
-        // Determine the user type based on the current path
         if (strpos($path, '/admin') !== false) {
             return 'admin';
         } elseif (strpos($path, '/business') !== false) {
@@ -72,12 +133,11 @@ class AuthController
         return 'customer';
     }
 
-    private function redirectToDashboard($currentPath, $userRole = null)
+    private function redirectToDashboard($role)
     {
-        // Redirect based on the current path and/or user role
-        if (strpos($currentPath, '/admin') !== false || $userRole === 'admin') {
+        if ($role === 'admin') {
             header('Location: /admin/dashboard');
-        } elseif (strpos($currentPath, '/business') !== false || $userRole === 'vendor') {
+        } elseif ($role === 'vendor') {
             header('Location: /business/dashboard');
         } else {
             header('Location: /');

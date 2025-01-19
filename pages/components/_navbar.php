@@ -34,11 +34,12 @@
 				<a class="outline"
 					href="<?= (strpos($currentPath, '/business') !== false) ? '/business/login' : '/login'; ?>">Sign In</a>
 			</li>
-			<?php if (strpos($currentPath, '/business') === false): ?>
-				<li class="nav-btn <?= strpos($currentPath, '/register') !== false ? 'active' : ''; ?>">
-					<a class="fill" href="/register">Sign Up</a>
-				</li>
-			<?php endif; ?>
+
+			<li class="nav-btn <?= strpos($currentPath, '/login') !== false ? 'active' : ''; ?>">
+				<a class="fill"
+					href="<?= (strpos($currentPath, '/business') !== false) ? '/business/register' : '/register'; ?>">Sign
+					Up</a>
+			</li>
 		<?php else: ?>
 			<li class="nav-btn"><a class="fill" href="/logout">Sign Out</a></li>
 			<li class="logged-in <?= strpos($currentPath, '/profile') !== false ? 'active' : ''; ?>">
