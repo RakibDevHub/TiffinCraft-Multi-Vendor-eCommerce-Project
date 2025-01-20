@@ -41,10 +41,27 @@
 						Up</a>
 				</li>
 			<?php else: ?>
-				<li class="nav-btn"><a class="fill" href="/logout">Sign Out</a></li>
-				<li class="logged-in <?= strpos($currentPath, '/profile') !== false ? 'active' : ''; ?>">
-					<a class="nav-icon" href="/profile"><i class="fa-solid fa-user"></i></a>
+				<li class="nav-btn"><a class="fill"
+						href="<?= (strpos($currentPath, '/business') !== false) ? '/business/logout' : '/logout'; ?>">Sign
+						Out</a>
 				</li>
+				<!-- <li class="logged-in <?= strpos($currentPath, '/profile') !== false ? 'active' : ''; ?>">
+					<a class="nav-icon" href="/profile"><i class="fa-solid fa-user"></i></a>
+				</li> -->
+				<li class="logged-in <?= strpos($currentPath, '/profile') !== false ? 'active' : ''; ?>">
+					<a class="nav-icon"
+						href="<?= (strpos($currentPath, '/business') !== false) ? '/business/profile' : '/profile'; ?>"
+						title="Profile">
+						<i class="fa-solid fa-user"></i>
+					</a>
+				</li>
+				<?php if ($userRole === 'vendor'): ?>
+					<li class="logged-in <?= strpos($currentPath, '/business/dashboard') !== false ? 'active' : ''; ?>">
+						<a class="nav-icon" href="/business/dashboard" title="Dashboard">
+							<i class="fa-solid fa-briefcase"></i>
+						</a>
+					</li>
+				<?php endif; ?>
 				<?php if (strpos($currentPath, '/business') === false): ?>
 					<li class="logged-in <?= strpos($currentPath, '/wishlist') !== false ? 'active' : ''; ?>">
 						<a class="nav-icon" href="/wishlist"><i class="fa-solid fa-heart"></i></a>

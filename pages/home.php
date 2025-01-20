@@ -1,6 +1,5 @@
 <?php
 
-
 $features = [
     [
         "icon" => "fa-solid fa-infinity",
@@ -32,80 +31,6 @@ $features = [
     ],
 ];
 
-$itemSlider = [
-    [
-        "itemImage" => "./assets/images/hero.jpeg",
-        "itemName" => "Bhuna Khichuri",
-        "itemDetails" => "You may combine any of the options above.",
-        "itemPrice" => "80",
-        "itemOffer" => "20",
-        "itemRating" => "No Rating Yet",
-        "itemVendor" => "Kamal Kitchen",
-    ],
-    [
-        "itemImage" => "./assets/images/hero.jpeg",
-        "itemName" => "Bhuna Khichuri",
-        "itemDetails" => "You may combine any of the options above.",
-        "itemPrice" => "80",
-        "itemOffer" => "20",
-        "itemRating" => "No Rating Yet",
-        "itemVendor" => "Kamal Kitchen",
-    ],
-    [
-        "itemImage" => "./assets/images/hero.jpeg",
-        "itemName" => "Bhuna Khichuri",
-        "itemDetails" => "You may combine any of the options above.",
-        "itemPrice" => "80",
-        "itemOffer" => "20",
-        "itemRating" => "No Rating Yet",
-        "itemVendor" => "Kamal Kitchen",
-    ],
-    [
-        "itemImage" => "./assets/images/hero.jpeg",
-        "itemName" => "Bhuna Khichuri",
-        "itemDetails" => "You may combine any of the options above.",
-        "itemPrice" => "80",
-        "itemOffer" => "20",
-        "itemRating" => "No Rating Yet",
-        "itemVendor" => "Kamal Kitchen",
-    ],
-    [
-        "itemImage" => "./assets/images/hero.jpeg",
-        "itemName" => "Bhuna Khichuri",
-        "itemDetails" => "You may combine any of the options above.",
-        "itemPrice" => "80",
-        "itemOffer" => "20",
-        "itemRating" => "No Rating Yet",
-        "itemVendor" => "Kamal Kitchen",
-    ],
-    [
-        "itemImage" => "./assets/images/hero.jpeg",
-        "itemName" => "Bhuna Khichuri",
-        "itemDetails" => "You may combine any of the options above.",
-        "itemPrice" => "80",
-        "itemOffer" => "20",
-        "itemRating" => "No Rating Yet",
-        "itemVendor" => "Kamal Kitchen",
-    ],
-    [
-        "itemImage" => "./assets/images/hero.jpeg",
-        "itemName" => "Bhuna Khichuri",
-        "itemDetails" => "You may combine any of the options above.",
-        "itemPrice" => "80",
-        "itemOffer" => "20",
-        "itemRating" => "No Rating Yet",
-        "itemVendor" => "Kamal Kitchen",
-    ],
-    [
-        "itemImage" => "./assets/images/hero.jpeg",
-        "itemName" => "Bhuna Khichuri",
-        "itemDetails" => "You may combine any of the options above.",
-        "itemPrice" => "80",
-        "itemOffer" => "20",
-        "itemRating" => "No Rating Yet",
-        "itemVendor" => "Kamal Kitchen",
-    ],
-];
 ?>
 
 <!DOCTYPE html>
@@ -145,77 +70,113 @@ $itemSlider = [
     <!-- Header Section End -->
 
     <!-- Hero Section Start -->
-    <section class="home" id="#home">
-        <!-- Dark Overlay  -->
-        <div class="overlay"></div>
-        <div class="hero">
-            <div class="hero-txt">
-                <div class="hero-link">
-                    <span>
-                        <p>
-                            Become a Seller.
-                        </p>
-                        <a class="outline" href="/business">
-                            TiffinCraft-Business
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </span>
+
+    <?php if (strpos($currentPath, '/business') === false): ?>
+        <section class="home" id="#home">
+            <!-- Dark Overlay  -->
+            <div class="overlay"></div>
+            <div class="hero">
+                <div class="hero-txt">
+                    <div class="hero-link">
+                        <span>
+                            <p>
+                                Become a Seller.
+                            </p>
+                            <a class="outline" href="/business">
+                                TiffinCraft-Business
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </span>
+                    </div>
+                    <h1 class="title">Hungry!</h1>
+                    <p class="sub-title">What are you waiting for!</p>
+                    <div class="hero-buttons">
+                        <a class="fill" href="#">Order Now <i class="fa-brands fa-opencart"></i></a>
+                    </div>
                 </div>
-                <h1 class="title">Hungry!</h1>
-                <p class="sub-title">What are you waiting for!</p>
-                <div class="hero-buttons">
-                    <a class="fill" href="#">Order Now <i class="fa-brands fa-opencart"></i></a>
+
+            </div>
+        </section>
+    <?php else: ?>
+        <section class="tc-business home" id="#home">
+            <div class="overlay"></div>
+            <div class="hero">
+                <div class="hero-txt">
+                    <h1 class="title">Partner with TiffinCraft</h1>
+                    <div class="hero-buttons business">
+                        <a class="outline" href="#how" data-target="how">How It Works!<i
+                                class="fa-solid fa-arrow-right"></i></a>
+                        <a class="fill" href="/business/register">Register Now</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php endif ?>
     <!-- Hero Section End -->
 
     <!-- Custom Shape  -->
     <div class="spacer layer"></div>
 
-    <!-- Dished Section Start  -->
-    <?php include ROOT_DIR . 'pages/components/home/_dishes.php' ?>
-    <!-- Dished Section End  -->
+    <?php if (strpos($currentPath, '/business') === false): ?>
+
+        <!-- Dished Section Start  -->
+        <?php include ROOT_DIR . 'pages/components/home/_dishes.php' ?>
+        <!-- Dished Section End  -->
+
+        <!-- Custome Shape -->
+        <div class="custom-shape shape1-color">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape1-fill"></path>
+            </svg>
+        </div>
+
+        <!-- Vendor Section Start  -->
+        <?php include ROOT_DIR . 'pages/components/home/_vendors.php' ?>
+        <!-- Vendor Section End  -->
+
+        <!-- Custome Shape -->
+        <div class="custom-shape shape2-color">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape2-fill"></path>
+            </svg>
+        </div>
+
+        <!-- About TiffinCraft Features Section Start -->
+        <?php include ROOT_DIR . 'pages/components/home/_about.php' ?>
+        <!-- About TiffinCraft Features Sectionn End -->
+
+        <!-- Custome Shape -->
+        <div class="custom-shape shape1-color">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape1-fill"></path>
+            </svg>
+        </div>
+
+        <!-- How It Works Section Start  -->
+        <?php include ROOT_DIR . 'pages/components/home/_how.php' ?>
+        <!-- How It Works Section Start  -->
+
+    <?php else: ?>
+        <!-- Become a Seller Section Start  -->
+        <?php include ROOT_DIR . 'pages/components/home/_partner.php' ?>
+        <!-- Become a Seller Section End  -->
+    <?php endif ?>
+
 
     <!-- Custome Shape -->
-    <div class="custom-shape shape1-color">
+    <div class="custom-shape <?= (strpos($currentPath, '/business') !== false) ? 'shape1-color' : 'shape2-color'; ?>">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path
                 d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
                 class="shape1-fill"></path>
         </svg>
     </div>
-
-    <!-- Vendor Section Start  -->
-    <?php include ROOT_DIR . 'pages/components/home/_vendors.php' ?>
-    <!-- Vendor Section End  -->
-
-    <!-- Custome Shape -->
-    <div class="custom-shape shape2-color">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path
-                d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                class="shape2-fill"></path>
-        </svg>
-    </div>
-
-    <!-- About TiffinCraft Features Section Start -->
-    <?php include ROOT_DIR . 'pages/components/home/_about.php' ?>
-    <!-- About TiffinCraft Features Sectionn End -->
-
-    <!-- Custome Shape -->
-    <div class="custom-shape shape1-color">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path
-                d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                class="shape1-fill"></path>
-        </svg>
-    </div>
-
-    <!-- How It Works Section Start  -->
-    <?php include ROOT_DIR . 'pages/components/home/_how.php' ?>
-    <!-- How It Works Section Start  -->
 
     <?php include ROOT_DIR . 'pages/components/_footer.php'; ?>
 

@@ -14,9 +14,9 @@ class HomeController
         $userRole = $context['userRole'] ?? null;
         $currentPath = $context['currentPath'] ?? '/';
 
-        // Pass necessary variables to the view
         include ROOT_DIR . '/pages/home.php';
     }
+
     public function business($context)
     {
         $title = "TiffinCraft Business";
@@ -27,7 +27,6 @@ class HomeController
         $userId = $context['userId'] ?? null;
         $currentPath = $context['currentPath'] ?? '/';
 
-        // Pass necessary variables to the view
-        include ROOT_DIR . '/pages/tiffincraftBusiness.php';
+        include ROOT_DIR . '/pages/home.php';
     }
 }

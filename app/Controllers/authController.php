@@ -71,7 +71,7 @@ class AuthController
             } else {
                 $userModel = new UserModel($conn);
                 $userType = $this->getUserTypeFromPath($currentPath);
-                $name = trim($_POST['username'] ?? ''); // Customer username
+                $name = trim($_POST['username'] ?? '');
                 $email = trim($_POST['uemail'] ?? '');
                 $password = $_POST['upassword'] ?? '';
                 $cpassword = $_POST['cpassword'] ?? '';
@@ -106,11 +106,10 @@ class AuthController
                         'email' => $email,
                         'password' => $hashedPassword,
                         'phone_number' => $number,
+                        'name' => $name
                     ];
 
-                    if ($userType === 'customer') {
-                        $userData['name'] = $name;
-                    } elseif ($userType === 'vendor') {
+                    if ($userType === 'vendor') {
                         $userData['kitchen_name'] = $kitchenName;
                         $userData['kitchen_address'] = $kitchenAddress;
                         $userData['cuisine_type'] = $cuisine;
@@ -118,13 +117,20 @@ class AuthController
 
                         if ($image && $image['error'] === UPLOAD_ERR_OK) {
                             $targetDir = ROOT_DIR . "uploads/vendors/";
-                            $fileName = uniqid() . "-" . basename($image["name"]);
-                            $targetFile = $targetDir . $fileName;
 
-                            if (move_uploaded_file($image["tmp_name"], $targetFile)) {
-                                $userData['kitchen_image'] = $fileName;
-                            } else {
-                                $error = "Error uploading image.";
+                            $imageFileType = strtolower(pathinfo($image["name"], PATHINFO_EXTENSION));
+                            $allowedExtensions = ["jpg", "jpeg", "png", "gif"];
+                            if (!in_array($imageFileType, $allowedExtensions)) {
+                                $error = "Invalid file type. Only JPG, JPEG, PNG, and GIF files are allowed.";
+                            } else { // Only proceed if the extension is valid
+                                $fileName = uniqid() . "." . $imageFileType;
+                                $targetFile = $targetDir . $fileName;
+
+                                if (move_uploaded_file($image["tmp_name"], $targetFile)) {
+                                    $userData['kitchen_image'] = $fileName;
+                                } else {
+                                    $error = "Error uploading file.";
+                                }
                             }
                         } else if ($image['error'] !== 4) {
                             $error = "Image upload failed. Ensure the file is valid.";
@@ -141,6 +147,31 @@ class AuthController
         }
 
         include ROOT_DIR . 'pages/auth/register.php';
+    }
+
+    public function logout($context)
+    {
+        $_SESSION = array();
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
+        }
+
+        session_destroy();
+
+        $currentPath = $context['currentPath'] ?? '/';
+        $redirectPath = ($currentPath === '/business/logout') ? '/business/login' : ($currentPath === '/admin/logout' ? '/admin' : '/');
+        header("Location: " . $redirectPath);
+        exit;
     }
 
     private function getUserTypeFromPath($path)

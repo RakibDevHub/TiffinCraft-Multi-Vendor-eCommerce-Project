@@ -1,91 +1,188 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Models\UserModel;
+
 class UserController
 {
-	private $conn;
 
-	public function __construct($conn)
+	public function profile($context)
 	{
-		$this->conn = $conn;
+		$title = "User Profile";
+
+		$isLoggedIn = $context['isLoggedIn'] ?? false;
+		$userId = $context['userId'] ?? null;
+		$userRole = $context['userRole'] ?? null;
+		$currentPath = $context['currentPath'] ?? '/';
+		$conn = $context['conn'];
+
+		if (!$isLoggedIn || !$userId || !$userRole) {
+			header("Location: /login");
+			exit;
+		}
+
+		$excludeColumns = [];
+		$userModel = new UserModel($conn);
+		$userData = $userModel->getUserById($userId, $userRole, $excludeColumns);
+
+		$filteredUserData = [];
+
+		if ($userData) {
+			$filteredUserData = array_map(function ($value) {
+				return is_string($value) ? htmlspecialchars($value, ENT_QUOTES, 'UTF-8') : $value;
+			}, $userData);
+		}
+
+		if (!$userData) {
+			$error = "User not found or invalid.";
+			include ROOT_DIR . '/pages/errors/404.php';
+			exit;
+		}
+
+		include ROOT_DIR . '/pages/profile.php';
 	}
 
-	public function userRegister($data)
+	public function updateProfile($context)
 	{
-		$username = trim($data['username']);
-		$phoneNumber = trim($data['number']);
-		$email = trim($data['uemail']);
-		$password = trim($data['upassword']);
-		$cpassword = trim($data['cpassword']);
+		$userRole = $context['userRole'] ?? null;
+		$conn = $context['conn'];
 
-		$errors = [];
+		// Trim and sanitize input
+		$userId = trim($_POST['user_id'] ?? '');
+		$name = trim($_POST['name'] ?? '');
+		$email = trim($_POST['email'] ?? '');
+		$phone = trim($_POST['phone'] ?? '');
 
-		if (empty($username)) {
-			$errors[] = "Full name is required.";
-		} elseif (!preg_match('/^[a-zA-Z\s]+$/', $username)) {
-			$errors[] = "Full name must contain only alphabets and spaces.";
-		}
+		$userModel = new UserModel($conn);
 
-		if (empty($phoneNumber)) {
-			$errors[] = "Phone number is required.";
-		} elseif (!preg_match('/^01\d{9}$/', $phoneNumber)) {
-			$errors[] = "Invalid phone number. Must be 11 digits and start with 01.";
-		}
-
-		if (empty($email)) {
-			$errors[] = "Email is required.";
+		// Input validation
+		if (empty($name) || empty($email) || empty($phone)) {
+			$error = "Please fill in all required fields.";
+		} elseif (!preg_match('/^[a-zA-Z\s]+$/', $name)) {
+			$error = "Name should only contain alphabets and spaces.";
+		} elseif (!preg_match('/^01[0-9]{9}$/', $phone)) {
+			$error = "Phone number must be 11 digits and start with '01'.";
 		} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$errors[] = "Invalid email address.";
+			$error = "Invalid email format.";
+		} elseif ($userModel->getUserByEmail($email, $userRole, $userId)) {
+			$error = "Email already exists.";
 		}
 
-		if (empty($password)) {
-			$errors[] = "Password is required.";
-		} elseif (strlen($password) < 8) {
-			$errors[] = "Password must be at least 8 characters long.";
+		// Handle validation errors
+		if (!empty($error)) {
+			$_SESSION['message'] = $error;
+			$_SESSION['message_type'] = "error";
+
+			// Redirect to the profile page to display the error
+			header('Location: /profile');
+			exit;
 		}
 
-		if ($password !== $cpassword) {
-			$errors[] = "Passwords do not match.";
-		}
+		// Attempt to update profile
+		$result = $userModel->updateProfile($userId, $name, $email, $phone);
 
-		if (!empty($errors)) {
-			return implode("<br>", $errors);
-		}
-
-		// Check email already exists
-		$sql = "SELECT * FROM users WHERE email = :email";
-		$stid = oci_parse($this->conn, $sql);
-		oci_bind_by_name($stid, ":email", $email);
-		oci_execute($stid);
-
-		if (oci_fetch_assoc($stid)) {
-			return "Email already exists.";
-		}
-
-		// Hash Password
-		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-		// Insert into database
-		$sql = "INSERT INTO users (user_name, email, phone_number, password, role, created_at)
-                VALUES (:user_name, :email, :phone_number, :password, 'customer', SYSDATE)";
-		$stid = oci_parse($this->conn, $sql);
-		oci_bind_by_name($stid, ":user_name", $username);
-		oci_bind_by_name($stid, ":email", $email);
-		oci_bind_by_name($stid, ":phone_number", $phoneNumber);
-		oci_bind_by_name($stid, ":password", $hashedPassword);
-
-		if (oci_execute($stid)) {
-			// Get the newly inserted user's ID
-			$sql = "SELECT user_id FROM users WHERE email = :email";
-			$stid = oci_parse($this->conn, $sql);
-			oci_bind_by_name($stid, ":email", $email);
-			oci_execute($stid);
-			$user = oci_fetch_assoc($stid);
-			return $user['USER_ID'];
+		if ($result) {
+			// Set a success message in the session
+			$_SESSION['message'] = "Profile updated successfully!";
+			$_SESSION['message_type'] = "success";
 		} else {
-			$e = oci_error($stid);
-			error_log("Error registering user: " . $e['message']);
-			return "Failed to register user.";
+			// Set an error message in the session
+			$_SESSION['message'] = "Failed to update profile.";
+			$_SESSION['message_type'] = "error";
+		}
+
+		// Redirect to profile page
+		header('Location: /profile');
+		exit;
+	}
+
+	public function changePassword($context)
+	{
+		$conn = $context['conn'];
+		$userId = $_POST['user_id'] ?? null;
+		$currentPassword = trim($_POST['current_password'] ?? '');
+		$newPassword = trim($_POST['new_password'] ?? '');
+		$confirmPassword = trim($_POST['confirm_password'] ?? '');
+
+		$userModel = new UserModel($conn);
+
+		// Input validation
+		if (empty($currentPassword) || empty($newPassword) || empty($confirmPassword)) {
+			$_SESSION['message'] = "All fields are required.";
+			$_SESSION['message_type'] = "error";
+		} elseif (strlen($newPassword) < 8) {
+			$_SESSION['message'] = "New password must be at least 8 characters long.";
+			$_SESSION['message_type'] = "error";
+		} elseif ($newPassword !== $confirmPassword) {
+			$_SESSION['message'] = "New password and confirm password do not match.";
+			$_SESSION['message_type'] = "error";
+		} else {
+			// Verify the current password
+			$user = $userModel->getUserById($userId, $context['userRole'], []);
+			var_dump($user);
+
+			// if(password_verify($currentPassword, $user))
+
+			if ($user && password_verify($currentPassword, $user['PASSWORD'])) {
+				// Hash the new password
+				$hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+
+				// Update the password
+				$result = $userModel->updatePassword($userId, $hashedPassword);
+				if ($result) {
+					$_SESSION['message'] = "Password updated successfully!";
+					$_SESSION['message_type'] = "success";
+				} else {
+					$_SESSION['message'] = "Failed to update password.";
+					$_SESSION['message_type'] = "error";
+				}
+			} else {
+				$_SESSION['message'] = "Current password is incorrect.";
+				$_SESSION['message_type'] = "error";
+			}
+		}
+
+		// Redirect to profile page
+		header('Location: /profile');
+		exit;
+	}
+
+	public function deleteAccount($context)
+	{
+		$conn = $context['conn'];
+		$userId = $_POST['user_id'] ?? null;
+
+		$userModel = new UserModel($conn);
+
+		// Confirm deletion
+		$confirm = $_POST['confirm'] ?? '';
+		if ($confirm !== 'DELETE') {
+			$_SESSION['message'] = "To delete your account, type 'DELETE' in the confirmation box.";
+			$_SESSION['message_type'] = "error";
+
+			// Redirect to profile page
+			header('Location: /profile');
+			exit;
+		}
+
+		// Delete the account
+		$result = $userModel->deleteUserById($userId);
+		if ($result) {
+			// Clear the session and redirect to the homepage
+			session_destroy();
+			header('Location: /');
+			exit;
+		} else {
+			$_SESSION['message'] = "Failed to delete account.";
+			$_SESSION['message_type'] = "error";
+
+			// Redirect to profile page
+			header('Location: /profile');
+			exit;
 		}
 	}
+
 }
+
 ?>

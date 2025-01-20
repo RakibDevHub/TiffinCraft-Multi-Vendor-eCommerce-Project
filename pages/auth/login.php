@@ -41,10 +41,10 @@
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                    <button type="button" class="toggle-password">Show</button>
+                    <!-- <button type="button" class="toggle-password">Show</button> -->
                 </div>
                 <div class="form-footer">
-                    <a href="/forgot-password">Forgot Password?</a>
+                    <!-- <a href="/forgot-password">Forgot Password?</a> -->
                     <button type="submit" class="btn">Login</button>
 
                 </div>
@@ -53,7 +53,7 @@
     </section>
 
     <?php include_once ROOT_DIR . 'pages/components/_footer.php' ?>
-    <script>
+    <!-- <script>
         const formContainer = document.querySelector('.form-container');
 
         formContainer.addEventListener('click', function (event) {
@@ -68,7 +68,7 @@
                 }
             }
         });
-    </script>
+    </script> -->
     <script src="/assets/js/main.js" type="module"></script>
 </body>
 

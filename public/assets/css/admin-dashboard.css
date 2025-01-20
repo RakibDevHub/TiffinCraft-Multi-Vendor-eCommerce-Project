@@ -4,6 +4,11 @@ body {
     margin: 0;
 }
 
+.main {
+    position: relative;
+    top: 60px;
+}
+
 /* Sidebar Styling */
 .sidebar {
     position: fixed;

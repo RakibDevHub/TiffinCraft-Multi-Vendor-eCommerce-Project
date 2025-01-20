@@ -10,7 +10,7 @@ function handleMenubar() {
 }
 
 // Detect current path and call the appropriate function
-const currentPath = window.location.pathname;
-if (currentPath === "/") {
+const path = window.location.pathname;
+if (path !== "/business") {
   handleMenubar();
 }
