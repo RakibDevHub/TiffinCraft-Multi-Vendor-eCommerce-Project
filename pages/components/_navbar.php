@@ -62,7 +62,7 @@
 						</a>
 					</li>
 				<?php endif; ?>
-				<?php if (strpos($currentPath, '/business') === false): ?>
+				<?php if (strpos($currentPath, '/business') === false && $userRole === 'customer'): ?>
 					<li class="logged-in <?= strpos($currentPath, '/wishlist') !== false ? 'active' : ''; ?>">
 						<a class="nav-icon" href="/wishlist"><i class="fa-solid fa-heart"></i></a>
 					</li>

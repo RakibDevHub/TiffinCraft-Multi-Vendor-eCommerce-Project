@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Font Awesome CDN  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/admin-dashboard.css">
+
+    <?php include ROOT_DIR . '/pages/components/_fonts.php' ?>
+
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
     <title>Vendor Dashboard</title>
 </head>
 
 <body>
-    <?php include_once ROOT_DIR . "pages/components/_navbar.php" ?>
     <!-- Sidebar -->
     <section class="main">
-        <div class="sidebar">
+        <!-- <div class="sidebar">
             <div class="sidebar-header">
-                <h2><?= strtoupper($filteredUserData['KITCHEN_NAME']) ?></h2>
+                <a class="" href="/business">
+                    <img src="/assets/images/TiffinCraft.png" alt="TiffinCraft Logo" />
+                </a>
+                <span>For Business</span>
             </div>
             <ul class="sidebar-menu">
                 <li><a href="/business/dashboard">Dashboard</a></li>
@@ -27,19 +27,20 @@
                 <li><a href="/business/settings">Settings</a></li>
                 <li><a href="/business/logout">Logout</a></li>
             </ul>
-        </div>
+        </div> -->
         <!-- Main Content -->
+        <?php include ROOT_DIR . '/pages/components/_sidebar.php' ?>
         <div class="main-content">
             <!-- Top Header -->
-            <header class="top-header">
+            <!-- <header class="top-header">
                 <div class="top-header-left">
                     <h1>Welcome, <?= $filteredUserData['NAME']; ?></h1>
                 </div>
-            </header>
+            </header> -->
 
 
             <!-- Dashboard Stats -->
-            <div class="dashboard-stats">
+            <!-- <div class="dashboard-stats">
                 <div class="stats-card">
                     <h3>Total Orders</h3>
                     <p>1500</p>
@@ -52,10 +53,10 @@
                     <h3>Total Revenue</h3>
                     <p>$50,000</p>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Quick Links or Content -->
-            <div class="quick-links">
+            <!-- <div class="quick-links">
                 <div class="quick-link">
                     <a href="/business/manage-users">
                         <h3>Manage Users</h3>
@@ -74,7 +75,7 @@
                         <p>Update platform settings and preferences</p>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 </body>

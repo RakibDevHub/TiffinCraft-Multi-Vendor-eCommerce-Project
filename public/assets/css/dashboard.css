@@ -1,16 +1,24 @@
-/* admin-dashboard.css */
+/* dashboard.css */
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+}
 
 body {
-    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 
 .main {
     position: relative;
-    top: 60px;
+    /* top: 60px; */
 }
 
 /* Sidebar Styling */
-.sidebar {
+/* .sidebar {
     position: fixed;
     width: 250px;
     height: 100%;
@@ -20,8 +28,15 @@ body {
 }
 
 .sidebar-header {
-    text-align: center;
     padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sidebar-header a img {
+    height: 50px;
 }
 
 .sidebar-menu {
@@ -42,6 +57,73 @@ body {
 
 .sidebar-menu li:hover {
     background-color: #444;
+} */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 16rem;
+    background: #333;
+}
+
+.sidebar-logo {
+    border-bottom: 1px solid #ccc;
+}
+
+.sidebar-logo a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    height: 60px;
+    width: 100%;
+}
+
+.sidebar-logo a img {
+    height: 40px;
+    margin-left: 0.5rem;
+}
+
+.sidebar-logo a span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f96538;
+}
+
+.sidebar-logo a i {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-left: 0.5rem;
+}
+
+.nav-links {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+}
+
+.nav-links li {
+    margin-left: 0.7rem;
+    padding: 0.5rem 0;
+}
+
+.nav-links li a {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.nav-icons i {
+    width: 2rem;
+    text-align: center;
+}
+
+.nav-icons span {}
+
+.fa-chart-simple {
+    rotate: 90deg;
 }
 
 /* Main Content Styling */
