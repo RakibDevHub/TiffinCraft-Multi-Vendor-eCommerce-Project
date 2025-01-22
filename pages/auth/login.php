@@ -15,7 +15,17 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/assets/css/style.css" />
 
-    <title><?= ucfirst($title); ?></title>
+    <title>
+        <?php
+        if (strpos($currentPath, '/business') !== false) {
+            echo 'Business ' . ucfirst($title);
+        } elseif (strpos($currentPath, '/admin') !== false) {
+            echo 'Admin ' . ucfirst($title);
+        } else {
+            echo ucfirst($title);
+        }
+        ?>
+    </title>
 </head>
 
 <body>

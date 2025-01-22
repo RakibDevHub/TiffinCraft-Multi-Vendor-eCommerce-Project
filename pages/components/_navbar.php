@@ -1,8 +1,3 @@
-<?php
-
-// $baseUrl = $currentPath;
-
-?>
 <?php if (strpos($currentPath, '/admin') === false): ?>
 	<nav class="nav-container">
 		<a href="<?= (strpos($currentPath, '/business') !== false) ? '/business' : '/'; ?>" class="nav-logo">

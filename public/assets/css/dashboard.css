@@ -70,15 +70,19 @@ body {
 
 .sidebar-logo {
     border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
 }
 
 .sidebar-logo a {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1.3rem;
     height: 60px;
-    width: 100%;
 }
 
 .sidebar-logo a img {
@@ -87,40 +91,60 @@ body {
 }
 
 .sidebar-logo a span {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: #f96538;
+    letter-spacing: 5px;
 }
 
-.sidebar-logo a i {
+.sidebar-logo i {
     font-size: 1.3rem;
     color: #fff;
-    margin-left: 0.5rem;
+    width: fit-content;
+    height: fit-content;
+    margin-right: 01rem;
 }
 
-.nav-links {
+.sidebar-links-container {
     height: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem;
+    gap: 0.5rem;
 }
 
-.nav-links li {
-    margin-left: 0.7rem;
-    padding: 0.5rem 0;
+.sidebar-links-container li {
+    margin: 0rem 0.5rem;
 }
 
-.nav-links li a {
+.sidebar-links-container li .sidebar-link {
     font-size: 1.2rem;
     color: #fff;
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
 }
 
-.nav-icons i {
+.sidebar-links-container li .sidebar-link:hover {
+    color: #333;
+    background: #fff;
+}
+
+.sidebar-link i {
     width: 2rem;
     text-align: center;
+    font-size: 1.3rem;
 }
 
-.nav-icons span {}
+.sidebar-link span {
+    /* margin-left: 0.7rem; */
+    font-weight: 400;
+}
+
+
 
 .fa-chart-simple {
     rotate: 90deg;
