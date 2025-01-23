@@ -7,10 +7,8 @@
   <meta name="description"
     content="TiffinCraft connects home chefs with food lovers. Explore delicious homemade dishes, join as a vendor, or enjoy meals crafted with care by passionate chefs." />
 
-  <!-- Font Awesome CDN  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <?php include ROOT_DIR . '/pages/components/_fonts.php' ?>
+
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="/assets/css/style.css" />
