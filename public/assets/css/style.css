@@ -250,6 +250,11 @@ body {
   cursor: pointer;
 }
 
+.nav-links li .active {
+  color: var(--primary-color);
+  transform: scale(1.05);
+}
+
 .nav-icon {
   padding: 0px !important;
 }

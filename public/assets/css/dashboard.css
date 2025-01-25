@@ -128,7 +128,8 @@ body {
     gap: 1.5rem;
 }
 
-.sidebar-links-container li .sidebar-link:hover {
+.sidebar-links-container li .sidebar-link:hover,
+.sidebar-links-container li .sidebar-link:active {
     color: #333;
     background: #fff;
 }
