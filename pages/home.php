@@ -69,7 +69,7 @@ $features = [
     <!-- Hero Section Start -->
 
     <?php if (strpos($currentPath, '/business') === false): ?>
-        <section class="home" id="#home">
+        <section class="home" id="home">
             <!-- Dark Overlay  -->
             <div class="overlay"></div>
             <div class="hero">
@@ -95,7 +95,7 @@ $features = [
             </div>
         </section>
     <?php else: ?>
-        <section class="tc-business home" id="#home">
+        <section class="tc-business home" id="home">
             <div class="overlay"></div>
             <div class="hero">
                 <div class="hero-txt">

@@ -8,7 +8,7 @@
 
 		<ul class="nav-links">
 			<?php if (strpos($currentPath, '/business') === false): ?>
-				<li><a href="/">Home</a></li>
+				<li><a href="/" data-target="home">Home</a></li>
 				<li><a href="#dishes" data-target="dishes">Browse Dishes</a></li>
 				<li><a href="#vendors" data-target="vendors">Browse Vendors</a></li>
 				<li><a href="#how" data-target="how">How It Works</a></li>
