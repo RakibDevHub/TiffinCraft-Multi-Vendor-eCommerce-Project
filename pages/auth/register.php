@@ -150,7 +150,7 @@
 
   <script src="/assets/js/main.js" type="module"></script>
   <?php if (strpos($currentPath, '/business') !== false): ?>
-    <script src="/assets/js/imageUpload.js" type="module"></script>
+    <script src="/assets/js/_imageUpload.js" type="module"></script>
   <?php endif; ?>
 
 </body>

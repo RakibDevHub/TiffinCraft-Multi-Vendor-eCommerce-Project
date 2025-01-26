@@ -1,4 +1,2 @@
-import "./navbar.js";
-import "./popupForm.js";
-
-// import "./imageUpload.js";
+import "./_navbar.js";
+import "./_popupForm.js";

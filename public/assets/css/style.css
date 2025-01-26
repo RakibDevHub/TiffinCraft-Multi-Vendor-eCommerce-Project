@@ -64,7 +64,7 @@ body {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 70px;
+  height: 7rem;
 }
 
 .shape1-color {
@@ -82,6 +82,28 @@ body {
 .custom-shape .shape2-fill {
   fill: var(--secondary-color);
 }
+
+
+.fill-white {
+  fill: #FFFFFF;
+}
+
+.color-white {
+  background-color: #FFFFFF;
+}
+
+.fill-floral-white {
+  fill: var(--secondary-color);
+}
+
+.color-floral-white {
+  background-color: var(--secondary-color);
+}
+
+.fill-devy-gray {
+  fill: #555555;
+}
+
 
 .spacer {
   aspect-ratio: 960/300;
@@ -140,8 +162,8 @@ body {
   display: none;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
+  margin: 0 auto;
   text-align: center;
   opacity: 1;
   transition: opacity 0.3s ease, height 0.3s ease;
@@ -190,6 +212,7 @@ body {
   transition: top 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   z-index: 1000;
   width: 100%;
+  margin: 0 auto;
   background: var(--secondary-color);
   box-shadow: var(--box-shadow);
   display: flex;
@@ -508,6 +531,12 @@ body {
   justify-content: center;
   align-items: center;
   gap: 3rem;
+}
+
+.section-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .section-heading {
@@ -1048,25 +1077,6 @@ fieldset legend {
   align-items: center;
 }
 
-/* .popup-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-} */
-
-/* .login-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-} */
-
 .popup-content {
   background: var(--body-bg);
   padding: 2rem;
@@ -1119,7 +1129,6 @@ fieldset legend {
 }
 
 .login-form button {
-  /* width: 100%; */
   padding: 0.7rem;
   background: var(--primary-color);
   color: var(--secondary-color);
@@ -1183,13 +1192,147 @@ fieldset legend {
   text-align: center;
 }
 
-/* Footer Styling */
-.footer {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 12px;
+.russian-black {
+  background-color: #111827;
+}
+
+footer {
+  padding: 5% 7%;
+}
+
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 1rem;
+  gap: 2rem;
+}
+
+.footer-logo-info {
+  flex: 1 1 300px;
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 1rem;
+  margin-left: -0.5rem;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 2 1 600px;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  gap: 1rem;
+}
+
+.footer-nav-column {
+  flex: 1 1 150px;
+  margin-bottom: 20px;
+}
+
+.footer-nav h3,
+.footer-social h3,
+.contact-info h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
   color: #777;
 }
+
+.footer-nav ul,
+.footer-social ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-nav a,
+.footer-social a,
+.contact-info p {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover,
+.footer-social a:hover {
+  color: #555;
+}
+
+.footer-social {
+  flex: 1 1 200px;
+  text-align: right;
+}
+
+.footer-info p {
+  margin-bottom: 2rem;
+}
+
+.social-links {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.social-links li {
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.social-links a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #374151;
+  /* Darker background for social icons */
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: #6b7280;
+  /* Slightly lighter on hover */
+}
+
+.social-links i {
+  color: #fff;
+}
+
+.contact-info {
+  margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    /* Stack columns on smaller screens */
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-nav,
+  .footer-social {
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}
+
+
 
 /* Responsive Design */
 @media (max-width: 1124px) {

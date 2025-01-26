@@ -18,7 +18,8 @@
 			<?php if (!$isLoggedIn): ?>
 				<li class="nav-btn">
 					<a class="outline"
-						href="<?= (strpos($currentPath, '/business') !== false) ? '/business/login' : '/login'; ?>">Sign In</a>
+						href="<?= (strpos($currentPath, '/business') !== false) ? '/business/login' : '/login'; ?>">Sign
+						In</a>
 				</li>
 				<li class="nav-btn">
 					<a class="fill"
