@@ -19,6 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Show/hide business link on scroll
   window.addEventListener("scroll", () => {
+    if (window.location.pathname !== "/") {
+      businessLink?.classList.remove("show");
+      navContainer.style.top = "0";
+      return;
+    }
+
     if (!isClosed && window.scrollY > window.innerHeight - 100) {
       businessLink?.classList.add("show");
     } else {

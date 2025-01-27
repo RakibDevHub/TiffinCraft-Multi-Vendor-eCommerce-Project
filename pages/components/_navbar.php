@@ -62,5 +62,7 @@
 <?php endif ?>
 
 <script>
-	const userLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+	const App = {
+		userLoggedIn: <?php echo json_encode($isLoggedIn); ?>
+	};
 </script>

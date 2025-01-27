@@ -5,36 +5,25 @@
                 <img src="/assets/images/TiffinCraft.png" alt="Your E-commerce Logo">
             </div>
             <div class="footer-info">
-                <p>Making shopping easier and connecting customers with the best vendors.</p>
-                <p>&copy; 2024 Your E-commerce Company, Inc. All rights reserved.</p>
+                <p>Connecting home chefs with food lovers. Explore delicious homemade dishes crafted with care.</p>
             </div>
         </div>
         <div class="footer-nav">
             <div class="footer-nav-column">
-                <h3>Solutions</h3>
-                <ul>
-                    <li><a href="#">For Customers</a></li>
-                    <li><a href="#">For Vendors</a></li>
-                    <li><a href="#">Product Catalog</a></li>
-                    <li><a href="#">Pricing</a></li>
+                <h3>Quick Links</h3>
+                <ul class="quick-links">
+                    <li><a href="/" data-target="home">Home</a></li>
+                    <li><a href="#dishes" data-target="dishes">Browse Dishes</a></li>
+                    <li><a href="#vendors" data-target="vendors">Browse Vendors</a></li>
+                    <li><a href="#how" data-target="how">How It Works</a></li>
                 </ul>
             </div>
             <div class="footer-nav-column">
-                <h3>Support</h3>
+                <h3>Business</h3>
                 <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Help Center</a></li>
-                </ul>
-            </div>
-            <div class="footer-nav-column">
-                <h3>Company</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Press</a></li>
+                    <li><a href="/business">Sell on Our Platform</a></li>
+                    <li><a href="/business/register">Open a Business Account</a></li>
+                    <li><a href="/business">How it Works</a></li>
                 </ul>
             </div>
             <div class="footer-nav-column">
@@ -45,15 +34,24 @@
                     <li><a href="#">Cookie Policy</a></li>
                 </ul>
             </div>
-            <div class="footer-nav-column">
-                <h3>Business/Vendors</h3>
-                <ul>
-                    <li><a href="#">Sell on Our Platform</a></li>
-                    <li><a href="#">Vendor Dashboard</a></li>
-                    <li><a href="#">Vendor Resources</a></li>
-                </ul>
-            </div>
         </div>
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p>Email: info@tiffincraft.com</p>
+            <p>Phone: +1-555-123-4567</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 TiffinCraft. All rights reserved.</p>
+        <!-- <div class="footer-social">
+            <h3>Follow Us</h3>
+            <ul class="social-links">
+                <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+        </div> -->
         <div class="footer-social">
             <h3>Follow Us</h3>
             <ul class="social-links">
@@ -62,11 +60,6 @@
                 <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
                 <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
             </ul>
-            <div class="contact-info">
-                <h3>Contact</h3>
-                <p>Email: info@yourecommerce.com</p>
-                <p>Phone: +1-555-123-4567</p>
-            </div>
         </div>
     </div>
 </footer>
