@@ -80,7 +80,7 @@ $features = [
                                 Become a Seller.
                             </p>
                             <a class="outline" href="/business">
-                                TiffinCraft-Business
+                                TiffinCraft Business
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </span>

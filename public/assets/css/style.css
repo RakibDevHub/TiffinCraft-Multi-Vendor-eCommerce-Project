@@ -213,7 +213,7 @@ body {
   z-index: 1000;
   width: 100%;
   margin: 0 auto;
-  background: var(--secondary-color);
+  /* background: var(--secondary-color); */
   box-shadow: var(--box-shadow);
   display: flex;
   flex-direction: row;
@@ -226,7 +226,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--secondary-color);
+  /* background: var(--secondary-color); */
 }
 
 .nav-logo img {

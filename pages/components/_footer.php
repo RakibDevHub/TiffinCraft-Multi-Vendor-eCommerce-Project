@@ -16,7 +16,7 @@
             <div class="footer-nav-column">
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/"><?= (strpos($currentPath, '/business') !== false) ? 'TiffinCraft' : ''; ?></a></li>
                     <li><a href="/dishes">Browse Dishes</a></li>
                     <li><a href="/vendors">Browse Vendors</a></li>
                     <li><a href="/login">Login to Your Account</a></li>

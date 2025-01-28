@@ -1,5 +1,5 @@
 <?php if (strpos($currentPath, '/admin') === false): ?>
-	<nav class="nav-container">
+	<nav class="nav-container <?= (strpos($currentPath, '/business') !== false) ? 'color-white' : 'color-floral-white'; ?>">
 		<a href="<?= (strpos($currentPath, '/business') !== false) ? '/business' : '/'; ?>" class="nav-logo">
 			<img src="/assets/images/<?= (strpos($currentPath, '/business') !== false) ? 'logo.png' : 'TiffinCraft.png'; ?>"
 				alt="TiffinCraft Logo" />
