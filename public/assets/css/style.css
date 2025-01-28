@@ -1220,11 +1220,29 @@ footer {
   margin-bottom: 20px;
 }
 
-.footer-logo img {
+.footer-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.footer-logo .logo-tc {
   max-width: 150px;
   height: auto;
-  margin-bottom: 1rem;
   margin-left: -0.5rem;
+}
+
+.footer-logo .logo-tcb {
+  height: 40px;
+  width: auto;
+  margin-left: -0.5rem;
+}
+
+.footer-logo span {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .footer-nav {

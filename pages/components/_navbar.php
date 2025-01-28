@@ -41,7 +41,7 @@
 				<?php if ($userRole === 'vendor'): ?>
 					<li class="logged-in">
 						<a class="nav-icon" href="/business/dashboard" title="Dashboard">
-							<i class="fa-solid fa-briefcase"></i>
+							<i class="fa-solid fa-chart-pie"></i>
 						</a>
 					</li>
 				<?php endif; ?>

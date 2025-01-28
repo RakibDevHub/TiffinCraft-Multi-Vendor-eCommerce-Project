@@ -1,5 +1,9 @@
 import { handleBusinessLink } from "./_businessLink.js";
-import { initActiveNavLinks, initActiveFooterLinks } from "./_activeLinks.js";
+import {
+  initActiveNavLinks,
+  initActiveFooterLinks,
+  initPageLinks,
+} from "./_manageLinks.js";
 import { toggleMenu, toggleLinks } from "./_toggle.js";
 import { initFilePreview } from "./_imageUpload.js";
 
@@ -13,12 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
     closeBtn.addEventListener("click", closeBusinessLink);
   }
 
-  // Initialize active links
+  // Initialize links
   const navLinks = document.querySelectorAll(".nav-links a");
   initActiveNavLinks(navLinks, businessLink);
 
   const footerLinks = document.querySelectorAll(".footer-links a");
   initActiveFooterLinks(footerLinks);
+
+  const pageLinks = document.querySelectorAll(".hero-buttons a");
+  initPageLinks(pageLinks);
 
   // Initialize mobile menu toggle
   const menuBar = document.getElementById("menu-bar");

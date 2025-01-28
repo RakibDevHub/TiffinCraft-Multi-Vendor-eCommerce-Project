@@ -86,3 +86,24 @@ export function initActiveFooterLinks(footerLinks) {
     }
   });
 }
+
+export function initPageLinks(pageLinks) {
+  pageLinks.forEach((link) => {
+    const href = link.getAttribute("href");
+
+    // Handle internal hash links without updating the browser URL
+    if (href.startsWith("#")) {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const target = document.querySelector(href);
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop,
+            behavior: "smooth",
+          });
+        }
+      });
+    }
+  });
+}

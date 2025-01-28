@@ -2,7 +2,11 @@
     <div class="footer-container">
         <div class="footer-logo-info">
             <div class="footer-logo">
-                <img src="/assets/images/TiffinCraft.png" alt="Your E-commerce Logo">
+                <!-- <img src="/assets/images/TiffinCraft.png" alt="Your E-commerce Logo"> -->
+                <img src="/assets/images/<?= (strpos($currentPath, '/business') !== false) ? 'logo.png' : 'TiffinCraft.png'; ?>"
+                    class="<?= (strpos($currentPath, '/business') !== false) ? 'logo-tcb' : 'logo-tc'; ?>"
+                    alt="TiffinCraft Logo" />
+                <span><?= (strpos($currentPath, '/business') !== false) ? 'TiffinCraft Business' : ''; ?></span>
             </div>
             <div class="footer-info">
                 <p>Connecting home chefs with food lovers. Explore delicious homemade dishes crafted with care.</p>
@@ -25,7 +29,6 @@
                     <li><a href="/business">Sell on Our Platform</a></li>
                     <li><a href="/business/login">Login to Your Account</a></li>
                     <li><a href="/business/register">Open a Business Account</a></li>
-                    <li><a href="/business">How it Works</a></li>
                 </ul>
             </div>
             <div class="footer-nav-column">
