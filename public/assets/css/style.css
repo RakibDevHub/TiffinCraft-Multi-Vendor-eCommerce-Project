@@ -118,7 +118,7 @@ body {
   position: absolute;
   bottom: 0;
   height: auto;
-  margin-bottom: -7rem;
+  margin-bottom: -3rem;
 }
 
 .top {
@@ -273,7 +273,12 @@ body {
   cursor: pointer;
 }
 
-.nav-links li .active {
+/* .nav-links li .active {
+  color: var(--primary-color);
+  transform: scale(1.05);
+} */
+
+.nav-links a.active {
   color: var(--primary-color);
   transform: scale(1.05);
 }
@@ -374,7 +379,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  /* gap: 2rem; */
   padding: 0 var(--padding);
   height: inherit;
   z-index: 10;
@@ -1234,6 +1239,15 @@ footer {
 .footer-nav-column {
   /* flex: 1 1 150px; */
   margin-bottom: 20px;
+}
+
+.footer-links a:hover {
+  border-bottom: 2px solid #888;
+}
+
+.footer-links a.active {
+  border-bottom: 2px solid #555;
+  color: #555 !important;
 }
 
 .footer-nav h3,

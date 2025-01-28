@@ -11,24 +11,26 @@
         <div class="footer-nav">
             <div class="footer-nav-column">
                 <h3>Quick Links</h3>
-                <ul class="quick-links">
-                    <li><a href="/" data-target="home">Home</a></li>
-                    <li><a href="#dishes" data-target="dishes">Browse Dishes</a></li>
-                    <li><a href="#vendors" data-target="vendors">Browse Vendors</a></li>
-                    <li><a href="#how" data-target="how">How It Works</a></li>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/dishes">Browse Dishes</a></li>
+                    <li><a href="/vendors">Browse Vendors</a></li>
+                    <li><a href="/login">Login to Your Account</a></li>
+                    <li><a href="/register">Register Now</a></li>
                 </ul>
             </div>
             <div class="footer-nav-column">
-                <h3>Business</h3>
-                <ul>
+                <h3>TiffinCraft Business</h3>
+                <ul class="footer-links">
                     <li><a href="/business">Sell on Our Platform</a></li>
+                    <li><a href="/business/login">Login to Your Account</a></li>
                     <li><a href="/business/register">Open a Business Account</a></li>
                     <li><a href="/business">How it Works</a></li>
                 </ul>
             </div>
             <div class="footer-nav-column">
                 <h3>Legal</h3>
-                <ul>
+                <ul class="footer-links">
                     <li><a href="#">Terms of Service</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Cookie Policy</a></li>

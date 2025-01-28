@@ -100,7 +100,7 @@ $features = [
             <div class="hero">
                 <div class="hero-txt">
                     <h1 class="title">Partner with TiffinCraft</h1>
-                    <div class="hero-buttons business">
+                    <div class="hero-buttons tcBusiness">
                         <a class="outline" href="#how" data-target="how">How It Works!<i
                                 class="fa-solid fa-arrow-right"></i></a>
                         <a class="fill" href="/business/register">Register Now</a>
