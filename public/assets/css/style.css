@@ -864,7 +864,7 @@ body {
   position: relative;
   justify-content: center;
   align-items: center;
-  background-color: var(--secondary-color);
+  /* background-color: var(--secondary-color); */
   padding-bottom: 60px;
   padding-top: 60px;
   min-height: 100vh;
