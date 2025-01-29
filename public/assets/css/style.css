@@ -173,7 +173,7 @@ body {
   display: flex;
   gap: 1.5rem;
   align-items: center;
-  padding: 1rem 8%;
+  padding: 1rem 7%;
 }
 
 .business-link.show {
@@ -182,7 +182,7 @@ body {
 
 .close-btn {
   position: absolute;
-  right: 8%;
+  right: 7%;
   background: transparent;
   border: none;
   font-size: 2.5rem;
@@ -219,7 +219,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 8%;
+  padding: 1rem 7%;
 }
 
 .nav-logo {
@@ -803,6 +803,10 @@ body {
   background: var(--body-bg);
 }
 
+.card-btn {
+  margin-bottom: 1.5rem;
+}
+
 
 /* Form Page Section  */
 
@@ -1179,7 +1183,7 @@ fieldset legend {
   align-items: center;
   justify-content: space-between;
   padding: 0rem 0.5rem;
-  margin-bottom: 1rem;
+  margin: 0.5rem;
 }
 
 .slide-top span {

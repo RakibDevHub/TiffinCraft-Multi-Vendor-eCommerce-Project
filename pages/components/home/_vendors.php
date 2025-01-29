@@ -15,7 +15,7 @@
             <div class="swiper vendor-slider-popular">
                 <div class="container-header">
                     <h2>Popular Vendors</h2>
-                    <a href="#">Browse More</a>
+                    <a href="/vendors">Browse More</a>
                 </div>
                 <div class="swiper-wrapper">
                     <?php foreach ($vendors as $vendor): ?>
@@ -37,7 +37,9 @@
                             <div class="slider-bottom">
                                 <h2><?= htmlspecialchars($vendor['KITCHEN_NAME']); ?></h2>
                                 <span>Location: <?= htmlspecialchars($vendor['KITCHEN_ADDRESS']); ?></span>
+                                <span>Service area: <?= htmlspecialchars($vendor['DELIVERY_AREAS']); ?></span>
                             </div>
+                            <a href="/vendors?id=<?= htmlspecialchars($vendor['ID']); ?>" class="btn card-btn">See Menu</a>
                         </div>
                     <?php endforeach; ?>
                 </div>

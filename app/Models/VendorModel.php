@@ -23,6 +23,20 @@ class VendorModel
 
             $vendors = [];
             while ($row = oci_fetch_assoc($stmt)) {
+                $clobColumns = ['DESCRIPTION', 'DELIVERY_AREAS'];
+
+                foreach ($clobColumns as $column) {
+                    if (isset($row[$column])) {
+                        $clob = $row[$column];
+                        if (is_object($clob)) {
+                            $data = $clob->load();
+                            $row[$column] = $data;
+                        } else {
+                            $row[$column] = null;
+                        }
+                    }
+                }
+
                 $vendors[] = $row;
             }
 
@@ -46,6 +60,20 @@ class VendorModel
 
             $vendors = [];
             while ($row = oci_fetch_assoc($stmt)) {
+                $clobColumns = ['DESCRIPTION', 'DELIVERY_AREAS'];
+
+                foreach ($clobColumns as $column) {
+                    if (isset($row[$column])) {
+                        $clob = $row[$column];
+                        if (is_object($clob)) {
+                            $data = $clob->load();
+                            $row[$column] = $data;
+                        } else {
+                            $row[$column] = null;
+                        }
+                    }
+                }
+
                 $vendors[] = $row;
             }
 
@@ -75,7 +103,20 @@ class VendorModel
                 throw new \Exception("Vendor not found.");
             }
 
+            $clobColumns = ['DESCRIPTION', 'DELIVERY_AREAS'];
+            foreach ($clobColumns as $column) {
+                if (isset($vendor[$column])) {
+                    $clob = $vendor[$column];
+                    if (is_object($clob)) {
+                        $vendor[$column] = $clob->load();
+                    } else {
+                        $vendor[$column] = null;
+                    }
+                }
+            }
+
             return $vendor;
+
         } catch (\Exception $e) {
             error_log("Error fetching vendor by ID: " . $e->getMessage());
             return null;
