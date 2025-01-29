@@ -1,3 +1,5 @@
+<?php ob_start(); ?>
+
 <section class="section vendors" id="vendors">
     <div class="section-container">
         <div class="section-heading">
@@ -7,153 +9,37 @@
 
         <div class="container popular">
             <!-- Swiper Slider -->
+
+
+
             <div class="swiper vendor-slider-popular">
                 <div class="container-header">
                     <h2>Popular Vendors</h2>
                     <a href="#">Browse More</a>
                 </div>
                 <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div class="swiper-slide">
-                        <img src="/assets/images/hero.jpeg" alt="Slide 1">
-                        <div class="slide-top">
-                            <span>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </span>
-                            <span>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
+                    <?php foreach ($vendors as $vendor): ?>
+                        <div class="swiper-slide">
+                            <img src="/uploads/vendors/<?php echo $vendor['KITCHEN_IMAGE']; ?>"
+                                alt="<?php echo htmlspecialchars($vendor['KITCHEN_NAME']); ?>">
+                            <div class="slide-top">
+                                <span>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fa-solid fa-heart"></i>
+                                </span>
+                            </div>
+                            <div class="slider-bottom">
+                                <h2><?= htmlspecialchars($vendor['KITCHEN_NAME']); ?></h2>
+                                <span>Location: <?= htmlspecialchars($vendor['KITCHEN_ADDRESS']); ?></span>
+                            </div>
                         </div>
-                        <div class="slider-bottom">
-                            <h2>Kitchen Name</h2>
-                            <span>Customer Served</span>
-                            <span>Location</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/assets/images/hero.jpeg" alt="Slide 1">
-                        <div class="slide-top">
-                            <span>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </span>
-                            <span>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                        </div>
-                        <div class="slider-bottom">
-                            <h2>Kitchen Name</h2>
-                            <span>Customer Served</span>
-                            <span>Location</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/assets/images/hero.jpeg" alt="Slide 1">
-                        <div class="slide-top">
-                            <span>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </span>
-                            <span>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                        </div>
-                        <div class="slider-bottom">
-                            <h2>Kitchen Name</h2>
-                            <span>Customer Served</span>
-                            <span>Location</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/assets/images/hero.jpeg" alt="Slide 1">
-                        <div class="slide-top">
-                            <span>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </span>
-                            <span>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                        </div>
-                        <div class="slider-bottom">
-                            <h2>Kitchen Name</h2>
-                            <span>Customer Served</span>
-                            <span>Location</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/assets/images/hero.jpeg" alt="Slide 1">
-                        <div class="slide-top">
-                            <span>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </span>
-                            <span>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                        </div>
-                        <div class="slider-bottom">
-                            <h2>Kitchen Name</h2>
-                            <span>Customer Served</span>
-                            <span>Location</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/assets/images/hero.jpeg" alt="Slide 1">
-                        <div class="slide-top">
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </span>
-                            <span>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                        </div>
-                        <div class="slider-bottom">
-                            <h2>Kitchen Name</h2>
-                            <span>Customer Served</span>
-                            <span>Location</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/assets/images/hero.jpeg" alt="Slide 1">
-                        <div class="slide-top">
-                            <span>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </span>
-                            <span>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                        </div>
-                        <div class="slider-bottom">
-                            <h2>Kitchen Name</h2>
-                            <span>Customer Served</span>
-                            <span>Location</span>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
                 <!-- Pagination -->
                 <div class="swiper-buttons">
@@ -165,6 +51,7 @@
                     <!-- <div class="swiper-button-next"></div> -->
                 </div>
             </div>
+
         </div>
 
         <div class="container new">
@@ -328,3 +215,5 @@
         </div>
     </div>
 </section>
+
+<?php ob_end_flush(); ?>

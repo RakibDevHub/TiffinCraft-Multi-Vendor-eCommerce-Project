@@ -932,7 +932,6 @@ fieldset legend {
   /* color: #555; */
 }
 
-
 .form-group input,
 .form-group textarea,
 .form-group select {
@@ -953,6 +952,26 @@ fieldset legend {
   border-bottom: 2px solid var(--input-border);
   margin-top: 2rem;
 }
+
+/* .custom-select select {
+  padding: 0.7rem;
+  border: 1px solid var(--input-border);
+  border-radius: 0.5rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.custom-select select:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+}
+
+.custom-select select option:hover {
+  background-color: #ff5722;
+  color: white;
+} */
+
 
 .btn {
   /* padding: 12px 15px; */

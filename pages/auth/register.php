@@ -69,7 +69,7 @@
           <?php endif; ?>
 
           <fieldset>
-            <legend>Vendor Information</legend>
+            <legend>Personal Information</legend>
             <div class="f-grid">
               <div class="form-group">
                 <label for="username">Full Name</label>
@@ -94,9 +94,26 @@
                 <input type="text" id="kname" name="kname" placeholder="Enter your kitchen name" required>
               </div>
               <div class="form-group">
-                <label for="kaddress">Kitchen Address</label>
-                <input type="text" id="kaddress" name="kaddress" placeholder="Enter your kitchen address" required>
+                <label for="ktype">Kitchen Type</label>
+                <select id="ktype" name="ktype" required>
+                  <option value="" disabled selected>Select Kitchen Type</option>
+                  <option value="homemade">Home Made</option>
+                  <option value="restaurant">Restaurant</option>
+                </select>
               </div>
+            </div>
+
+            <div class="form-group">
+              <label for="kaddress">Kitchen Address</label>
+              <input type="text" id="kaddress" name="kaddress" placeholder="Enter your kitchen address" required>
+            </div>
+            <div class="form-group">
+              <label for="delivery">Delivery Areas</label>
+              <textarea id="delivery" name="delivery" placeholder="Enter delivery areas, e.g., zip codes or neighborhoods"
+                required></textarea>
+            </div>
+
+            <div class="f-grid">
               <div class="form-group">
                 <label for="image">Kitchen Image</label>
                 <div style="display: flex;">
@@ -112,19 +129,6 @@
               </div>
             </div>
           </fieldset>
-          <fieldset>
-            <legend>Cuisine and Delivery</legend>
-            <div class="form-group">
-              <label for="cuisine">Cuisine Type</label>
-              <input type="text" id="cuisine" name="cuisine" placeholder="Enter cuisine type" required>
-            </div>
-            <div class="form-group">
-              <label for="delivery">Delivery Areas</label>
-              <textarea id="delivery" name="delivery" placeholder="Enter delivery areas, e.g., zip codes or neighborhoods"
-                required></textarea>
-            </div>
-          </fieldset>
-
           <fieldset>
             <legend>Account Password</legend>
             <div class="f-grid">
@@ -160,6 +164,35 @@
 
   <?php include ROOT_DIR . 'pages/components/_footer.php'; ?>
 
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const customSelect = document.querySelector(".custom-select");
+      const selected = customSelect.querySelector(".selected");
+      const optionsContainer = customSelect.querySelector(".select-options");
+      const hiddenInput = document.getElementById("cuisine");
+
+      customSelect.addEventListener("click", () => {
+        optionsContainer.classList.toggle("show");
+      });
+
+      document.querySelectorAll(".select-options li").forEach(option => {
+        option.addEventListener("click", (e) => {
+          const value = option.dataset.value;
+          selected.textContent = option.textContent;
+          hiddenInput.value = value;
+          optionsContainer.classList.remove("show");
+        });
+      });
+
+      // Close dropdown if clicking outside
+      document.addEventListener("click", (e) => {
+        if (!customSelect.contains(e.target)) {
+          optionsContainer.classList.remove("show");
+        }
+      });
+    });
+
+  </script> -->
   <script src="/assets/js/main.js" type="module"></script>
 
 </body>

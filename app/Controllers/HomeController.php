@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Controllers\VendorController;
 
 class HomeController
 {
@@ -14,7 +15,12 @@ class HomeController
         $userRole = $context['userRole'] ?? null;
         $currentPath = $context['currentPath'] ?? '/';
 
+        // Fetch vendors using VendorController
+        $vendorController = new VendorController();
+        $vendors = $vendorController->getVendorsForHomePage($context);
+
         include ROOT_DIR . '/pages/home.php';
+
     }
 
     public function business($context)
@@ -29,4 +35,6 @@ class HomeController
 
         include ROOT_DIR . '/pages/home.php';
     }
+
+
 }

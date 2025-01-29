@@ -31,13 +31,6 @@
 	background-color: #ff3c00;
 }
 
-
-/* .container h2 {
-	font-size: 1.7rem;
-	padding: 0rem 1.5rem;
-	margin-top: 1rem;
-} */
-
 .container.new {
 	margin-top: 2rem;
 }
@@ -51,7 +44,8 @@
 
 .swiper-slide {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
+	height: auto;
 	align-items: center;
 	flex-direction: column;
 	background: #fff7ed;
@@ -65,10 +59,10 @@
 }
 
 .swiper-slide img {
-	max-width: 100%;
-	height: auto;
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
 	border-radius: 0.5rem;
-	/* border-radius: 0.5rem 0.5rem 0rem 0rem; */
 }
 
 .swiper-horizontal>.swiper-pagination-bullets,

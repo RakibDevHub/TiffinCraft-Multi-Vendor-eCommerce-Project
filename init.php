@@ -6,6 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 date_default_timezone_set('Asia/Dhaka');
 define('ROOT_DIR', __DIR__ . '/');
+define('PUBLIC_DIR', __DIR__ . '/public');
 
 // Autoload function
 spl_autoload_register(function ($className) {

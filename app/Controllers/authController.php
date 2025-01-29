@@ -78,7 +78,7 @@ class AuthController
                 $number = trim($_POST['number'] ?? '');
                 $kitchenName = trim($_POST['kname'] ?? '');
                 $kitchenAddress = trim($_POST['kaddress'] ?? '');
-                $cuisine = trim($_POST['cuisine'] ?? '');
+                $kitchenType = trim($_POST['ktype'] ?? '');
                 $delivery = trim($_POST['delivery'] ?? '');
                 $image = $_FILES['image'] ?? null;
 
@@ -97,7 +97,7 @@ class AuthController
                     $error = "Invalid email format.";
                 } elseif ($userModel->getUserByEmail($email, $userType)) {
                     $error = "Email already exists.";
-                } elseif ($userType === 'vendor' && (empty($kitchenName) || empty($kitchenAddress) || empty($cuisine) || empty($delivery))) {
+                } elseif ($userType === 'vendor' && (empty($kitchenName) || empty($kitchenAddress) || empty($kitchenType) || empty($delivery))) {
                     $error = "Please provide kitchen details for vendor registration.";
                 } else {
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -112,11 +112,11 @@ class AuthController
                     if ($userType === 'vendor') {
                         $userData['kitchen_name'] = $kitchenName;
                         $userData['kitchen_address'] = $kitchenAddress;
-                        $userData['cuisine_type'] = $cuisine;
+                        $userData['kitchen_type'] = $kitchenType;
                         $userData['delivery_areas'] = $delivery;
 
                         if ($image && $image['error'] === UPLOAD_ERR_OK) {
-                            $targetDir = ROOT_DIR . "uploads/vendors/";
+                            $targetDir = PUBLIC_DIR . "/uploads/vendors/";
 
                             $imageFileType = strtolower(pathinfo($image["name"], PATHINFO_EXTENSION));
                             $allowedExtensions = ["jpg", "jpeg", "png", "gif"];

@@ -16,18 +16,18 @@ new Swiper(".vendor-slider-popular", {
       slidesPerView: 2,
       slidesPerGroup: 2,
     },
-    768: {
+    // 768: {
+    //   slidesPerView: 2,
+    //   slidesPerGroup: 2,
+    // },
+    1024: {
       slidesPerView: 3,
       slidesPerGroup: 3,
     },
-    1024: {
-      slidesPerView: 4,
-      slidesPerGroup: 4,
-    },
-    1280: {
-      slidesPerView: 5,
-      slidesPerGroup: 5,
-    },
+    // 1280: {
+    //   slidesPerView: 4,
+    //   slidesPerGroup: 4,
+    // },
   },
 });
 
@@ -49,18 +49,18 @@ new Swiper(".vendor-slider-new", {
       slidesPerView: 2,
       slidesPerGroup: 2,
     },
-    768: {
+    // 768: {
+    //   slidesPerView: 3,
+    //   slidesPerGroup: 3,
+    // },
+    1024: {
       slidesPerView: 3,
       slidesPerGroup: 3,
     },
-    1024: {
-      slidesPerView: 4,
-      slidesPerGroup: 4,
-    },
-    1280: {
-      slidesPerView: 5,
-      slidesPerGroup: 5,
-    },
+    // 1280: {
+    //   slidesPerView: 5,
+    //   slidesPerGroup: 5,
+    // },
   },
 });
 
@@ -82,18 +82,18 @@ new Swiper(".dishes-slider-popular", {
       slidesPerView: 2,
       slidesPerGroup: 2,
     },
-    768: {
+    // 768: {
+    //   slidesPerView: 3,
+    //   slidesPerGroup: 3,
+    // },
+    1024: {
       slidesPerView: 3,
       slidesPerGroup: 3,
     },
-    1024: {
-      slidesPerView: 4,
-      slidesPerGroup: 4,
-    },
-    1280: {
-      slidesPerView: 5,
-      slidesPerGroup: 5,
-    },
+    // 1280: {
+    //   slidesPerView: 5,
+    //   slidesPerGroup: 5,
+    // },
   },
 });
 
@@ -115,18 +115,18 @@ new Swiper(".dishes-slider-home", {
       slidesPerView: 2,
       slidesPerGroup: 2,
     },
-    768: {
+    // 768: {
+    //   slidesPerView: 3,
+    //   slidesPerGroup: 3,
+    // },
+    1024: {
       slidesPerView: 3,
       slidesPerGroup: 3,
     },
-    1024: {
-      slidesPerView: 4,
-      slidesPerGroup: 4,
-    },
-    1280: {
-      slidesPerView: 5,
-      slidesPerGroup: 5,
-    },
+    // 1280: {
+    //   slidesPerView: 5,
+    //   slidesPerGroup: 5,
+    // },
   },
 });
 
@@ -148,17 +148,17 @@ new Swiper(".dishes-slider-restaurant", {
       slidesPerView: 2,
       slidesPerGroup: 2,
     },
-    768: {
+    // 768: {
+    //   slidesPerView: 3,
+    //   slidesPerGroup: 3,
+    // },
+    1024: {
       slidesPerView: 3,
       slidesPerGroup: 3,
     },
-    1024: {
-      slidesPerView: 4,
-      slidesPerGroup: 4,
-    },
-    1280: {
-      slidesPerView: 5,
-      slidesPerGroup: 5,
-    },
+    // 1280: {
+    //   slidesPerView: 5,
+    //   slidesPerGroup: 5,
+    // },
   },
 });

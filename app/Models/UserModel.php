@@ -107,30 +107,6 @@ class UserModel
         return true;
     }
 
-    // public function getUserByEmail($email, $userType)
-    // {
-    //     $table = $this->getTableName($userType);
-    //     $query = "SELECT id FROM $table WHERE email = :email";
-
-    //     $stmt = oci_parse($this->conn, $query);
-    //     if (!$stmt) {
-    //         $this->logOciError("OCI parse error (getUserByEmail)", $this->conn);
-    //         return false;
-    //     }
-
-    //     oci_bind_by_name($stmt, ':email', $email);
-    //     if (!oci_execute($stmt)) {
-    //         $this->logOciError("getUserByEmail query failed", $stmt);
-    //         oci_free_statement($stmt);
-    //         return false;
-    //     }
-
-    //     $result = oci_fetch_assoc($stmt);
-    //     oci_free_statement($stmt); // Free statement here
-
-    //     return $result !== false ? $result : null;
-    // }
-
     public function getUserByEmail($email, $userRole, $excludeUserId = null)
     {
         $query = "SELECT * FROM users WHERE email = :email";
