@@ -910,7 +910,7 @@ body {
   cursor: default;
 }
 
-.orange {
+.orange-b {
   background: linear-gradient(to bottom right, #ffc107 0%, #f57c00 100%);
   color: #f68401;
 }

@@ -18,7 +18,7 @@
                     <?php foreach ($vendors as $vendor): ?>
                         <div class="swiper-slide">
                             <div class="slider-top">
-                                <div class="badge orange">
+                                <div class="badge orange-b">
                                     <div class="circle"> <i class="fa-solid fa-medal"></i></div>
                                     <div class="ribbon">Top Seller</div>
                                 </div>
