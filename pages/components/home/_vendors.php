@@ -9,9 +9,6 @@
 
         <div class="container popular">
             <!-- Swiper Slider -->
-
-
-
             <div class="swiper vendor-slider-popular">
                 <div class="container-header">
                     <h2>Popular Vendors</h2>
@@ -20,23 +17,25 @@
                 <div class="swiper-wrapper">
                     <?php foreach ($vendors as $vendor): ?>
                         <div class="swiper-slide">
-                            <div class="badge orange">
-                                <div class="circle"> <i class="fa-solid fa-ribbon"></i></div>
-                                <div class="ribbon">Top Seller</div>
-                            </div>
-                            <img src="/uploads/vendors/<?php echo $vendor['KITCHEN_IMAGE']; ?>"
-                                alt="<?php echo htmlspecialchars($vendor['KITCHEN_NAME']); ?>">
-                            <div class="slide-top">
-                                <span>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </span>
-                                <span>
-                                    <i class="fa-solid fa-heart"></i>
-                                </span>
+                            <div class="slider-top">
+                                <div class="badge orange">
+                                    <div class="circle"> <i class="fa-solid fa-medal"></i></div>
+                                    <div class="ribbon">Top Seller</div>
+                                </div>
+                                <img src="/uploads/vendors/<?php echo $vendor['KITCHEN_IMAGE']; ?>"
+                                    alt="<?php echo htmlspecialchars($vendor['KITCHEN_NAME']); ?>">
+                                <div class="slider-icons">
+                                    <span>
+                                        <i class="fa-solid fa-star" data-value="1"></i>
+                                        <i class="fa-solid fa-star" data-value="2"></i>
+                                        <i class="fa-solid fa-star" data-value="3"></i>
+                                        <i class="fa-solid fa-star" data-value="4"></i>
+                                        <i class="fa-solid fa-star" data-value="5"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa-solid fa-heart"></i>
+                                    </span>
+                                </div>
                             </div>
                             <div class="slider-bottom">
                                 <h2><?= htmlspecialchars($vendor['KITCHEN_NAME']); ?></h2>
@@ -53,8 +52,6 @@
                     <div class="swiper-button-prev vendor-slider-popular-prev"></div>
                     <div class="swiper-pagination vendor-slider-popular-pagination"></div>
                     <div class="swiper-button-next vendor-slider-popular-next"></div>
-
-                    <!-- <div class="swiper-button-next"></div> -->
                 </div>
             </div>
 

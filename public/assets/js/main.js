@@ -5,6 +5,7 @@ import {
   initPageLinks,
 } from "./_manageLinks.js";
 import { toggleMenu, toggleLinks } from "./_toggle.js";
+import { initRatingSystem } from "./_interactions.js";
 import { initFilePreview } from "./_imageUpload.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -36,6 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const loggedInLinks = document.querySelectorAll(".logged-in");
   const loggedOutLinks = document.querySelectorAll(".logged-out");
   toggleLinks(loggedInLinks, loggedOutLinks, App.userLoggedIn);
+
+  // Rating & Added to Fav
+  const stars = document.querySelectorAll(".slider-icons span:first-child i");
+  const heart = document.querySelectorAll(".slider-icons span:last-child i");
+  // initRatingSystem(stars, heart);
+  initRatingSystem();
 
   // Initialize file preview only on /business/register path
   if (window.location.pathname === "/business/register") {
