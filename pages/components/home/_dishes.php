@@ -9,7 +9,7 @@
             <!-- Swiper Slider -->
             <div class="swiper dishes-slider-popular">
                 <div class="container-header">
-                    <h2>Popular Dishes</h2>
+                    <h2>Trending Dishes</h2>
                     <a href="#">Browse More</a>
                 </div>
                 <div class="swiper-wrapper">
@@ -172,7 +172,7 @@
             <!-- Swiper Slider -->
             <div class="swiper dishes-slider-home">
                 <div class="container-header">
-                    <h2>Home-Made Dishes</h2>
+                    <h2>Family Kitchen Creations</h2>
                     <a href="#">Browse More</a>
                 </div>
                 <div class="swiper-wrapper">
@@ -332,7 +332,7 @@
             <!-- Swiper Slider -->
             <div class="swiper dishes-slider-restaurant">
                 <div class="container-header">
-                    <h2>Restaurant Dishes</h2>
+                    <h2>Restaurant Specials</h2>
                     <a href="#">Browse More</a>
                 </div>
                 <div class="swiper-wrapper">

@@ -20,6 +20,10 @@
                 <div class="swiper-wrapper">
                     <?php foreach ($vendors as $vendor): ?>
                         <div class="swiper-slide">
+                            <div class="badge orange">
+                                <div class="circle"> <i class="fa-solid fa-ribbon"></i></div>
+                                <div class="ribbon">Top Seller</div>
+                            </div>
                             <img src="/uploads/vendors/<?php echo $vendor['KITCHEN_IMAGE']; ?>"
                                 alt="<?php echo htmlspecialchars($vendor['KITCHEN_NAME']); ?>">
                             <div class="slide-top">
