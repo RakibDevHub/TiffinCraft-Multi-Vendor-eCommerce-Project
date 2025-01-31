@@ -55,10 +55,9 @@ class UserModel
         $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
 
         $stmt = oci_parse($this->conn, $query);
-
         if (!$stmt) {
             $this->logOciError("OCI parse error (registerUser)", $this->conn);
-            return false;
+            return ['status' => false, 'message' => "Database error occurred"];
         }
 
         foreach ($userData as $key => &$value) {
@@ -67,33 +66,44 @@ class UserModel
 
             if ($key === 'password') {
                 $length = 255;
-            } elseif ($key === 'phone_number') {
-                $dataType = SQLT_CHR;
-            } elseif ($key === 'delivery_areas' || $key === 'description') {
-                // Handle CLOB fields
-                $lob = oci_new_descriptor($this->conn, OCI_D_LOB);
-                if (!$lob) {
-                    $this->logOciError("Failed to create LOB descriptor", $this->conn);
-                    return false;
-                }
-                $lob->writeTemporary($value, OCI_TEMP_CLOB);
-                $value = $lob;
-                $dataType = SQLT_CLOB;
             }
 
             if (!oci_bind_by_name($stmt, ":$key", $value, $length, $dataType)) {
                 $this->logOciError("OCI bind error for key $key", $stmt);
                 oci_free_statement($stmt);
                 oci_rollback($this->conn);
-                return false;
+                return ['status' => false, 'message' => "Error binding data"];
             }
+        }
+
+        // Check for unique phone and email
+        $checkPhoneQuery = "SELECT COUNT(*) FROM $table WHERE phone_number = :phone_number";
+        $checkPhoneStmt = oci_parse($this->conn, $checkPhoneQuery);
+        oci_bind_by_name($checkPhoneStmt, ':phone_number', $userData['phone_number']);
+        oci_execute($checkPhoneStmt);
+        $phoneCount = oci_fetch_row($checkPhoneStmt)[0];
+        oci_free_statement($checkPhoneStmt);
+
+        $checkEmailQuery = "SELECT COUNT(*) FROM $table WHERE email = :email";
+        $checkEmailStmt = oci_parse($this->conn, $checkEmailQuery);
+        oci_bind_by_name($checkEmailStmt, ':email', $userData['email']);
+        oci_execute($checkEmailStmt);
+        $emailCount = oci_fetch_row($checkEmailStmt)[0];
+        oci_free_statement($checkEmailStmt);
+
+        if ($phoneCount > 0 && $emailCount > 0) {
+            return ['status' => false, 'message' => "Phone number and email already exist."];
+        } elseif ($phoneCount > 0) {
+            return ['status' => false, 'message' => "Phone number already exists."];
+        } else {
+            return ['status' => false, 'message' => "Email already exists."];
         }
 
         if (!oci_execute($stmt, OCI_NO_AUTO_COMMIT)) {
             $this->logOciError("Registration query failed", $stmt);
             oci_free_statement($stmt);
             oci_rollback($this->conn);
-            return false;
+            return ['status' => false, 'message' => "Registration failed"];
         }
 
         oci_free_statement($stmt);
@@ -101,10 +111,10 @@ class UserModel
         if (!oci_commit($this->conn)) {
             $this->logOciError("Commit failed", $this->conn);
             oci_rollback($this->conn);
-            return false;
+            return ['status' => false, 'message' => "Commit failed"];
         }
 
-        return true;
+        return ['status' => true, 'message' => "Registration successful!"];
     }
 
     public function getUserByEmail($email, $userRole, $excludeUserId = null)

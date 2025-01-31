@@ -76,9 +76,10 @@ class AuthController
                 $password = $_POST['upassword'] ?? '';
                 $cpassword = $_POST['cpassword'] ?? '';
                 $number = trim($_POST['number'] ?? '');
-                $kitchenName = trim($_POST['kname'] ?? '');
-                $kitchenAddress = trim($_POST['kaddress'] ?? '');
+                $businessName = trim($_POST['bname'] ?? '');
+                $businessAddress = trim($_POST['baddress'] ?? '');
                 $kitchenType = trim($_POST['ktype'] ?? '');
+                $cuisineType = trim($_POST['ctype'] ?? '');
                 $delivery = trim($_POST['delivery'] ?? '');
                 $image = $_FILES['image'] ?? null;
 
@@ -97,8 +98,8 @@ class AuthController
                     $error = "Invalid email format.";
                 } elseif ($userModel->getUserByEmail($email, $userType)) {
                     $error = "Email already exists.";
-                } elseif ($userType === 'vendor' && (empty($kitchenName) || empty($kitchenAddress) || empty($kitchenType) || empty($delivery))) {
-                    $error = "Please provide kitchen details for vendor registration.";
+                } elseif ($userType === 'vendor' && (empty($businessName) || empty($businessAddress) || empty($kitchenType) || empty($cuisineType) || empty($delivery))) {
+                    $error = "Please provide business details for vendor registration.";
                 } else {
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -110,9 +111,10 @@ class AuthController
                     ];
 
                     if ($userType === 'vendor') {
-                        $userData['kitchen_name'] = $kitchenName;
-                        $userData['kitchen_address'] = $kitchenAddress;
+                        $userData['business_name'] = $businessName;
+                        $userData['business_address'] = $businessAddress;
                         $userData['kitchen_type'] = $kitchenType;
+                        $userData['cuisine_type'] = $cuisineType;
                         $userData['delivery_areas'] = $delivery;
 
                         if ($image && $image['error'] === UPLOAD_ERR_OK) {
@@ -127,7 +129,7 @@ class AuthController
                                 $targetFile = $targetDir . $fileName;
 
                                 if (move_uploaded_file($image["tmp_name"], $targetFile)) {
-                                    $userData['kitchen_image'] = $fileName;
+                                    $userData['outlet_image'] = $fileName;
                                 } else {
                                     $error = "Error uploading file.";
                                 }
@@ -137,11 +139,13 @@ class AuthController
                         }
                     }
 
-                    if (!$error && $userModel->registerUser($userData, $userType)) {
-                        $success = "Registration successful!";
+                    $result = $userModel->registerUser($userData, $userType);
+                    if (!$error && $result['status']) {
+                        $success = $result['message'];
                     } else {
-                        $error = $error ?? "Registration failed. Please try again.";
+                        $error = $result['message'];
                     }
+
                 }
             }
         }
@@ -151,8 +155,8 @@ class AuthController
 
     public function logout($context)
     {
-        $_SESSION = array();
 
+        $_SESSION = array();
         if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(

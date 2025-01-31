@@ -58,6 +58,16 @@ body {
 .sidebar-menu li:hover {
     background-color: #444;
 } */
+.dt,
+.db {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.db {
+    margin-bottom: 1rem;
+}
 
 .sidebar {
     position: fixed;
@@ -106,11 +116,12 @@ body {
 }
 
 .sidebar-links-container {
-    height: 100%;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem;
     gap: 0.5rem;
+    justify-content: space-between;
 }
 
 .sidebar-links-container li {

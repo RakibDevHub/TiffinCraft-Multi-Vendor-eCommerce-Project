@@ -24,7 +24,7 @@ $router->addRoute('/business/dashboard/orders', 'VendorController@orders', true,
 $router->addRoute('/business/dashboard/customers', 'VendorController@customers', true, ['vendor']);
 
 // Define admin routes
-$router->addRoute('/admin', 'AdminController@login');
+$router->addRoute('/admin', 'AuthController@login');
 $router->addRoute('/admin/login', 'AuthController@login');
 $router->addRoute('/admin/logout', 'AuthController@logout');
 $router->addRoute('/admin/dashboard', 'AdminController@dashboard', true, ['admin']);

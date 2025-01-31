@@ -87,35 +87,44 @@
           </fieldset>
 
           <fieldset>
-            <legend>Kitchen Details</legend>
+            <legend>Business Details</legend>
             <div class="f-grid">
               <div class="form-group">
-                <label for="kname">Kitchen Name</label>
-                <input type="text" id="kname" name="kname" placeholder="Enter your kitchen name" required>
+                <label for="bname">Business Name</label>
+                <input type="text" id="bname" name="bname" placeholder="Enter your business name" required>
               </div>
               <div class="form-group">
-                <label for="ktype">Kitchen Type</label>
+                <label for="baddress">Business Address</label>
+                <input type="text" id="baddress" name="baddress" placeholder="Enter your business address" required>
+              </div>
+              <div class="form-group">
+                <label for="ktype">Where will you be cooking?</label>
                 <select id="ktype" name="ktype" required>
-                  <option value="" disabled selected>Select Kitchen Type</option>
-                  <option value="homemade">Home Made</option>
-                  <option value="restaurant">Restaurant</option>
+                  <option value="" disabled selected>Choose your cooking location</option>
+                  <option value="Home-cooked">Home</i></option>
+                  <option value="Restaurant-made">Restaurant</i></option>
                 </select>
+              </div>
+              <div class="form-group">
+                <label for="ctype">Cuisine Type</label>
+                <input type="text" id="ctype" name="ctype"
+                  placeholder="Enter your cuisine type, e.g., Bengali Vegetarian." required>
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="kaddress">Kitchen Address</label>
-              <input type="text" id="kaddress" name="kaddress" placeholder="Enter your kitchen address" required>
-            </div>
+            <!-- <div class="form-group">
+              <label for="baddress">Business Address</label>
+              <input type="text" id="baddress" name="baddress" placeholder="Enter your kitchen address" required>
+            </div> -->
             <div class="form-group">
               <label for="delivery">Delivery Areas</label>
-              <textarea id="delivery" name="delivery" placeholder="Enter delivery areas, e.g., zip codes or neighborhoods"
+              <textarea id="delivery" name="delivery" placeholder="Enter delivery areas, e.g., Badda, Gulshan, Banani"
                 required></textarea>
             </div>
 
             <div class="f-grid">
               <div class="form-group">
-                <label for="image">Kitchen Image</label>
+                <label for="image">Outlet Image</label>
                 <div style="display: flex;">
                   <button class="btn choose-file-btn" type="button">+ Choose File</button>
                 </div>

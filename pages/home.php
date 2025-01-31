@@ -179,9 +179,30 @@ $features = [
         </svg>
     </div>
 
+    <button id="scrollToTopBtn" class="scroll-to-top">↑</button>
+
+
     <?php include ROOT_DIR . 'pages/components/_footer.php'; ?>
 
     <!-- Custom JS  -->
+    <script>
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        // Show the button when scrolling down 300px
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        });
+
+        // Scroll to the top smoothly
+        scrollToTopBtn.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+    </script>
     <script src="/assets/js/main.js" type="module"></script>
 
     <!-- Swiper Js  -->

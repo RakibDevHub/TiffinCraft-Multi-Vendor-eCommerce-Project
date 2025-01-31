@@ -31,7 +31,7 @@ class VendorController
 			$userData = $userModel->getUserById($userId, $userRole, $excludeColumns);
 
 			if (!$userData) {
-				throw new UserNotFoundException("User not found or invalid."); // Custom exception
+				throw new UserNotFoundException("User not found or invalid.");
 			}
 
 			$filteredUserData = [];
@@ -42,7 +42,7 @@ class VendorController
 				}, $userData);
 			}
 
-			include ROOT_DIR . '/pages/vendors/dashboard.php';
+			include ROOT_DIR . '/pages/auth/dashboard.php';
 			exit;
 
 		} catch (UserNotFoundException $e) {
@@ -80,7 +80,7 @@ class VendorController
 
 		try {
 			$vendorModel = new VendorModel($conn);
-			$vendors = $vendorModel->getAllVendors();
+			$vendors = $vendorModel->getAllVendors(null);
 
 			include ROOT_DIR . '/pages/vendors/list.php';
 		} catch (\Exception $e) {
@@ -114,6 +114,4 @@ class VendorController
 		}
 	}
 }
-
-
 ?>

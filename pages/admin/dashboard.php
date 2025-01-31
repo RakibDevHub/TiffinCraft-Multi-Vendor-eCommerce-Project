@@ -1,32 +1,12 @@
-<?php
-// Include session and authentication check
-include_once '../../controllers/authController.php';
-
-session_start();
-
-if (isset($_SESSION['user']) && $_SESSION['user']['role'] !== 'admin') {
-    $message = "Unauthorized user.";
-    header('Location: /tiffincraft/admin/login?error=' . urlencode($message));
-    exit();
-} else {
-    $message = "Logged in first.";
-    header('Location: /tiffincraft/admin/login?error=' . urlencode($message));
-    exit();
-}
-
-$user = $_SESSION['user'];
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../../tiffincraft/assets/css/style.css">
-    <link rel="stylesheet" href="../../tiffincraft/assets/css/admin-dashboard.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <title><?= htmlspecialchars($title) ?></title>
 </head>
 
 <body>
@@ -36,10 +16,10 @@ $user = $_SESSION['user'];
             <h2>TiffinCraft Admin</h2>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="/tiffincraft/admin/dashboard">Dashboard</a></li>
-            <li><a href="/tiffincraft/admin/dashboard/manage-users">Manage Users</a></li>
-            <li><a href="/tiffincraft/admin/dashboard/settings">Settings</a></li>
-            <li><a href="/tiffincraft/admin/logout">Logout</a></li>
+            <li><a href="/admin/dashboard">Dashboard</a></li>
+            <li><a href="/admin/dashboard/manage-users">Manage Users</a></li>
+            <li><a href="/admin/dashboard/settings">Settings</a></li>
+            <li><a href="/admin/logout">Logout</a></li>
         </ul>
     </div>
 
@@ -48,7 +28,7 @@ $user = $_SESSION['user'];
         <!-- Top Header -->
         <header class="top-header">
             <div class="top-header-left">
-                <h1>Welcome, <?= htmlspecialchars($user['email']); ?></h1>
+                <h1>Welcome, <?= htmlspecialchars($userRole); ?></h1>
             </div>
             <div class="top-header-right">
                 <a href="?action=logout" class="logout-btn">Logout</a>

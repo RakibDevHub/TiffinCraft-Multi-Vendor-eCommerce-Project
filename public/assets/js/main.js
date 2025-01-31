@@ -39,10 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleLinks(loggedInLinks, loggedOutLinks, App.userLoggedIn);
 
   // Rating & Added to Fav
-  const stars = document.querySelectorAll(".slider-icons span:first-child i");
-  const heart = document.querySelectorAll(".slider-icons span:last-child i");
-  // initRatingSystem(stars, heart);
-  initRatingSystem();
+  const vendorCards = document.querySelectorAll(".swiper-slide");
+  vendorCards.forEach((card) => {
+    initRatingSystem(card);
+  });
 
   // Initialize file preview only on /business/register path
   if (window.location.pathname === "/business/register") {

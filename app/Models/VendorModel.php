@@ -48,10 +48,14 @@ class VendorModel
         }
     }
 
-    public function getAllVendors()
+    public function getAllVendors($status)
     {
         try {
-            $query = "SELECT * FROM vendors WHERE STATUS = 'accept'";
+            if ($status) {
+                $query = "SELECT * FROM vendors WHERE STATUS = $status";
+            } else {
+                $query = "SELECT * FROM vendors";
+            }
             $stmt = oci_parse($this->conn, $query);
 
             if (!oci_execute($stmt)) {

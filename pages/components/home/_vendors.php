@@ -18,12 +18,13 @@
                     <?php foreach ($vendors as $vendor): ?>
                         <div class="swiper-slide">
                             <div class="slider-top">
+                                <span class="k-type"><?= htmlspecialchars($vendor['KITCHEN_TYPE']); ?></span>
                                 <div class="badge orange-b">
                                     <div class="circle"> <i class="fa-solid fa-medal"></i></div>
                                     <div class="ribbon">Top Seller</div>
                                 </div>
-                                <img src="/uploads/vendors/<?php echo $vendor['KITCHEN_IMAGE']; ?>"
-                                    alt="<?php echo htmlspecialchars($vendor['KITCHEN_NAME']); ?>">
+                                <img src="/uploads/vendors/<?php echo $vendor['OUTLET_IMAGE']; ?>"
+                                    alt="<?php echo htmlspecialchars($vendor['BUSINESS_NAME']); ?>">
                                 <div class="slider-icons">
                                     <span>
                                         <i class="fa-solid fa-star" data-value="1"></i>
@@ -38,11 +39,23 @@
                                 </div>
                             </div>
                             <div class="slider-bottom">
-                                <h2><?= htmlspecialchars($vendor['KITCHEN_NAME']); ?></h2>
-                                <span>Location: <?= htmlspecialchars($vendor['KITCHEN_ADDRESS']); ?></span>
-                                <span>Service area: <?= htmlspecialchars($vendor['DELIVERY_AREAS']); ?></span>
+                                <div class="slider-content">
+                                    <h2><?= htmlspecialchars($vendor['BUSINESS_NAME']); ?></h2>
+                                    <p>Cuisine Categories:</p>
+                                    <p>Service Area:
+                                        <?php
+                                        $deliveryAreas = explode(',', $vendor['DELIVERY_AREAS']);
+                                        foreach ($deliveryAreas as $area) {
+                                            ?>
+                                            <span><?= htmlspecialchars(trim($area)); ?></span>
+                                            <?php
+                                        }
+                                        ?>
+                                    </p>
+                                </div>
+                                <a href="/vendors?id=<?= htmlspecialchars($vendor['ID']); ?>" class="btn slider-btn">See
+                                    Menu</a>
                             </div>
-                            <a href="/vendors?id=<?= htmlspecialchars($vendor['ID']); ?>" class="btn card-btn">See Menu</a>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -61,7 +74,7 @@
             <!-- Swiper Slider -->
             <div class="swiper vendor-slider-new">
                 <div class="container-header">
-                    <h2>New Vendors</h2>
+                    <h2>New Arrivals</h2>
                     <a href="#">Browse More</a>
                 </div>
                 <div class="swiper-wrapper">
