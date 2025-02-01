@@ -32,31 +32,46 @@
         <?php include ROOT_DIR . '/pages/components/_sidebar.php' ?>
         <div class="main-content">
             <!-- Top Header -->
-            <!-- <header class="top-header">
+            <header class="top-header">
                 <div class="top-header-left">
-                    <h1>Welcome, <?= $filteredUserData['NAME']; ?></h1>
+                    <h1>Welcome, <?= $userData['NAME']; ?></h1>
                 </div>
-            </header> -->
-
+            </header>
 
             <!-- Dashboard Stats -->
-            <!-- <div class="dashboard-stats">
+            <div class="dashboard-stats">
                 <div class="stats-card">
                     <h3>Total Orders</h3>
                     <p>1500</p>
                 </div>
-                <div class="stats-card">
+                <!-- <div class="stats-card">
                     <h3>Active Vendors</h3>
                     <p>320</p>
-                </div>
+                </div> -->
                 <div class="stats-card">
                     <h3>Total Revenue</h3>
                     <p>$50,000</p>
                 </div>
-            </div> -->
+            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stats-card">
+                    <h3>Today Orders</h3>
+                    <p>1500</p>
+                </div>
+                <div class="stats-card">
+                    <h3>Panding Orders</h3>
+                    <p>320</p>
+                </div>
+                <div class="stats-card">
+                    <h3>Order Complect</h3>
+                    <p>$50,000</p>
+                </div>
+            </div>
 
             <!-- Quick Links or Content -->
-            <!-- <div class="quick-links">
+            <div class="quick-links">
                 <div class="quick-link">
                     <a href="/business/manage-users">
                         <h3>Manage Users</h3>
@@ -75,7 +90,7 @@
                         <p>Update platform settings and preferences</p>
                     </a>
                 </div>
-            </div> -->
+            </div>
         </div>
     </section>
 </body>

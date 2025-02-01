@@ -20,13 +20,13 @@
                 <li>
                     <a href="/business/menus" class="sidebar-link">
                         <i class="fa-solid fa-shrimp"></i>
-                        <span>Food Menu</span>
+                        <span>Manage Menu</span>
                     </a>
                 </li>
                 <li>
                     <a href="/business/orders" class="sidebar-link">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <span>Food Orders</span>
+                        <span>Manage Orders</span>
                     </a>
                 </li>
                 <li>
@@ -63,9 +63,9 @@
                     background: #ccc;
                 "></span> -->
             <li>
-                <a href="/business/account" class="sidebar-link">
+                <a href="/business/profile" class="sidebar-link">
                     <i class="fa-solid fa-user"></i>
-                    <span>Account</span>
+                    <span>Manage Profile</span>
                 </a>
             </li>
             <li>

@@ -39,22 +39,51 @@ class AuthController
             if (!CSRFToken::validateToken($submittedToken)) {
                 $error = "Invalid CSRF token.";
             } else {
-
-                $userType = $this->getUserType($currentPath);
-                $user = $this->authModel->authenticate($email, $password, $userType);
-
-                if ($user) {
-                    $_SESSION[SESSION_USER_ID] = $user['id'];
-                    $_SESSION[SESSION_USER_ROLE] = $userType;
-                    CSRFToken::clearToken();
-                    $this->redirectTo($userType);
+                if (empty($email)) {
+                    $error = "Email is required.";
+                } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $error = "Invalid email format.";
+                } elseif (empty($password)) {
+                    $error = "Password is required.";
                 } else {
-                    $error = "Invalid email or password.";
+                    $userType = $this->getUserType($currentPath);
+
+                    $maxAttempts = 5;
+                    $lockoutTime = 60;
+
+                    if (isset($_SESSION['login_attempts']) && isset($_SESSION['login_attempts'][$email]) && $_SESSION['login_attempts'][$email]['count'] >= $maxAttempts && (time() - $_SESSION['login_attempts'][$email]['last_attempt'] < $lockoutTime)) {
+                        $error = "Too many login attempts. Please try again later.";
+                    } else {
+
+                        $user = $this->authModel->getUserByEmail($email, $userType, null);
+
+                        if (!$user) {
+                            $error = "Email not found.";
+                        } elseif (!password_verify($password, $user['PASSWORD'])) {
+                            $error = "Incorrect password.";
+                        } else {
+                            unset($user['PASSWORD']);
+                            $_SESSION[SESSION_USER_ID] = $user['ID'];
+                            $_SESSION[SESSION_USER_ROLE] = $userType;
+                            $_SESSION[SESSION_USER_DATA] = $user;
+                            CSRFToken::clearToken();
+                            unset($_SESSION['login_attempts'][$email]);
+                            $this->redirectTo($userType);
+                        }
+
+                        if (!$user) {
+                            if (!isset($_SESSION['login_attempts'][$email])) {
+                                $_SESSION['login_attempts'][$email] = ['count' => 0, 'last_attempt' => 0];
+                            }
+                            $_SESSION['login_attempts'][$email]['count']++;
+                            $_SESSION['login_attempts'][$email]['last_attempt'] = time();
+                            error_log("Authentication failed for email: " . $email . " (User Type: " . $userType . ")"); //Keep the logging!
+                        }
+                    }
                 }
             }
         }
 
-        Database::closeConnection();
         include ROOT_DIR . 'pages/auth/login.php';
     }
 
@@ -92,22 +121,28 @@ class AuthController
                 $image = $_FILES['image'] ?? null;
 
                 // Validation
-                if (empty($email) || empty($password) || empty($number) || ($userType === 'customer' && empty($name))) {
+                if (empty($email) || empty($password) || empty($number) || empty($name)) {
                     $error = "Please fill in all required fields.";
-                } elseif ($userType === 'customer' && !preg_match('/^[a-zA-Z\s]+$/', $name)) {
+                } elseif (!preg_match('/^[a-zA-Z\s]+$/', $name)) {
                     $error = "Name should only contain alphabets and spaces.";
+                } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $error = "Invalid email format.";
                 } elseif (!preg_match('/^01[0-9]{9}$/', $number)) {
                     $error = "Phone number must be 11 digits and start with '01'.";
-                } elseif (strlen($password) < 8) {
-                    $error = "Password must be at least 8 characters long.";
+                } elseif ($response = $this->authModel->checkPhoneNumberForRegistration($number)) {
+                    $error = $response;
+                } elseif (strlen($password) < 8 || !preg_match('/[a-z]/', $password) || !preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password)) {
+                    $error = "Password must be at least 8 characters long and contain lowercase, uppercase, and numbers.";
                 } elseif ($password !== $cpassword) {
                     $error = "Passwords do not match.";
                 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $error = "Invalid email format.";
-                } elseif ($this->authModel->getUserByEmail($email, $userType, null)) {
-                    $error = "Email already exists.";
+                } elseif ($response = $this->authModel->chekEmailForRegistration($email)) {
+                    $error = $response;
                 } elseif ($userType === 'vendor' && (empty($businessName) || empty($businessAddress) || empty($kitchenType) || empty($cuisineType) || empty($delivery))) {
                     $error = "Please provide business details for vendor registration.";
+                } elseif (!preg_match('/^[a-zA-Z0-9\s\-\_\.]+$/', $businessName)) {
+                    $error = "Invalid business name format. Only letters, numbers, spaces, hyphens, underscores, and periods are allowed.";
                 } else {
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -126,34 +161,44 @@ class AuthController
                         $userData['delivery_areas'] = $delivery;
 
                         if ($image && $image['error'] === UPLOAD_ERR_OK) {
-                            $targetDir = PUBLIC_DIR . "/uploads/vendors/";
+                            $maxFileSize = 2 * 1024 * 1024;
+                            if ($image['size'] > $maxFileSize) {
+                                $error = "Image size exceeds the limit.";
+                            } else {
+                                $targetDir = PUBLIC_DIR . "/uploads/vendors/";
 
-                            $imageFileType = strtolower(pathinfo($image["name"], PATHINFO_EXTENSION));
-                            $allowedExtensions = ["jpg", "jpeg", "png", "gif"];
-                            if (!in_array($imageFileType, $allowedExtensions)) {
-                                $error = "Invalid file type. Only JPG, JPEG, PNG, and GIF files are allowed.";
-                            } else { // Only proceed if the extension is valid
-                                $fileName = uniqid() . "." . $imageFileType;
-                                $targetFile = $targetDir . $fileName;
-
-                                if (move_uploaded_file($image["tmp_name"], $targetFile)) {
-                                    $userData['outlet_image'] = $fileName;
+                                $imageFileType = strtolower(pathinfo($image["name"], PATHINFO_EXTENSION));
+                                $allowedExtensions = ["jpg", "jpeg", "png", "gif"];
+                                if (!in_array($imageFileType, $allowedExtensions)) {
+                                    $error = "Invalid file type. Only JPG, JPEG, PNG, and GIF files are allowed.";
                                 } else {
-                                    $error = "Error uploading file.";
+                                    $fileName = uniqid() . "." . $imageFileType;
+                                    $targetFile = $targetDir . $fileName;
+
+                                    if (move_uploaded_file($image["tmp_name"], $targetFile)) {
+                                        $userData['outlet_image'] = $fileName;
+                                    } else {
+                                        $error = "Error uploading file.";
+                                    }
                                 }
                             }
+
                         } else if ($image['error'] !== 4) {
                             $error = "Image upload failed. Ensure the file is valid.";
                         }
                     }
 
-                    $result = $this->authModel->registerUser($userData, $userType);
-                    if (!$error && $result['status']) {
-                        $success = $result['message'];
+                    $user = $this->authModel->registerUser($userData, $userType);
+                    if ($user) {
+                        unset($user['PASSWORD']);
+                        $_SESSION[SESSION_USER_ID] = $user['ID'];
+                        $_SESSION[SESSION_USER_ROLE] = $userType;
+                        $_SESSION[SESSION_USER_DATA] = $user;
+                        CSRFToken::clearToken();
+                        $this->redirectTo($userType);
                     } else {
-                        $error = $result['message'];
+                        $error = "Registration failed. Please check the form and try again.";
                     }
-
                 }
             }
         }
@@ -163,8 +208,8 @@ class AuthController
 
     public function logout($context)
     {
+        $_SESSION = [];
 
-        $_SESSION = array();
         if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(
@@ -177,11 +222,15 @@ class AuthController
                 $params["httponly"]
             );
         }
-
         session_destroy();
 
         $currentPath = $context['currentPath'] ?? '/';
-        $redirectPath = ($currentPath === '/business/logout') ? '/business/login' : ($currentPath === '/admin/logout' ? '/admin' : '/');
+        $redirectPath = match ($currentPath) {
+            '/business/logout' => '/business/login',
+            '/admin/logout' => '/admin/login',
+            default => '/login',
+        };
+
         header("Location: " . $redirectPath);
         exit;
     }

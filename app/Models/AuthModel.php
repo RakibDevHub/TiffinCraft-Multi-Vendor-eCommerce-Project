@@ -10,54 +10,25 @@ class AuthModel
         $this->conn = $conn;
     }
 
-    public function authenticate($email, $password, $userType)
-    {
-        $table = $this->getTableName($userType);
-        $query = "SELECT id, password FROM $table WHERE email = :email";
-
-        $stmt = oci_parse($this->conn, $query);
-        if (!$stmt) {
-            $this->logOciError("OCI parse error (authenticate)", $this->conn);
-            return false;
-        }
-
-        oci_bind_by_name($stmt, ':email', $email);
-
-        if (!oci_execute($stmt)) {
-            $this->logOciError("Authentication query failed", $stmt);
-            return false;
-        }
-
-        $user = oci_fetch_assoc($stmt);
-
-        if ($user && password_verify($password, $user['PASSWORD'])) {
-            return ['id' => $user['ID'], 'role' => $userType];
-        }
-
-        return false;
-    }
-
-    public function getUserByEmail($email, $userType, $excludeUserId = null)
+    public function getUserByEmail($email, $userType, $excludeId)
     {
         $table = $this->getTableName($userType);
         $query = "SELECT * FROM $table WHERE email = :email";
 
-        // Exclude the current user's ID from the check
-        if ($excludeUserId) {
+        if ($excludeId) {
             $query .= " AND id != :excludeUserId";
         }
 
         $stmt = oci_parse($this->conn, $query);
         oci_bind_by_name($stmt, ':email', $email);
-        if ($excludeUserId) {
-            oci_bind_by_name($stmt, ':excludeUserId', $excludeUserId, -1, SQLT_INT);
+        if ($excludeId) {
+            oci_bind_by_name($stmt, ':excludeUserId', $excludeId, -1, SQLT_INT);
         }
 
         oci_execute($stmt);
-        $result = oci_fetch_assoc($stmt);
+        $user = oci_fetch_assoc($stmt);
         oci_free_statement($stmt);
-
-        return $result !== false ? $result : null;
+        return $user;
     }
 
     public function getUserById($userId, $userType, array $excludeColumns = [])
@@ -66,7 +37,7 @@ class AuthModel
 
         $columns = $this->getColumnsExcluding($table, $excludeColumns);
         if (!$columns) {
-            return false;
+            $columns = "ID";
         }
 
         $query = "SELECT $columns FROM $table WHERE id = :id";
@@ -91,6 +62,53 @@ class AuthModel
         return $result !== false ? $result : null;
     }
 
+    public function chekEmailForRegistration($email)
+    {
+        $query = "SELECT 'users' AS table_name FROM users WHERE email = :email
+                  UNION ALL
+                  SELECT 'vendors' AS table_name FROM vendors WHERE email = :email
+                  UNION ALL
+                  SELECT 'admins' AS table_name FROM admins WHERE email = :email";
+
+        $stmt = oci_parse($this->conn, $query);
+        oci_bind_by_name($stmt, ':email', $email);
+        oci_execute($stmt);
+
+        if ($row = oci_fetch_assoc($stmt)) {
+            switch ($row['TABLE_NAME']) {
+                case 'admins':
+                    return "Already have an admin account with this email";
+                case 'vendors':
+                    return "Already have a vendor account with this email";
+                default:
+                    return "Already have an account with this email";
+            }
+        } else {
+            return false;
+        }
+        oci_free_statement($stmt);
+    }
+
+    public function checkPhoneNumberForRegistration($phoneNumber)
+    {
+        $query = "SELECT 1 FROM users WHERE phone_number = :phone_number
+                  UNION ALL
+                  SELECT 1 FROM vendors WHERE phone_number = :phone_number
+                  UNION ALL
+                  SELECT 1 FROM admins WHERE phone_number = :phone_number"; // Check ALL tables
+
+        $stmt = oci_parse($this->conn, $query);
+        oci_bind_by_name($stmt, ':phone_number', $phoneNumber);
+        oci_execute($stmt);
+
+        if (oci_fetch_row($stmt)) { // Phone number exists in ANY table
+            return "Phone number is already in use. Please choose a different number.";
+        } else {
+            return false; // Phone number is unique
+        }
+        oci_free_statement($stmt);
+    }
+
     public function registerUser($userData, $userType)
     {
         $table = $this->getTableName($userType);
@@ -101,64 +119,72 @@ class AuthModel
         $stmt = oci_parse($this->conn, $query);
         if (!$stmt) {
             $this->logOciError("OCI parse error (registerUser)", $this->conn);
-            return ['status' => false, 'message' => "Database error occurred"];
+            return false;
         }
 
         foreach ($userData as $key => &$value) {
             $dataType = SQLT_CHR;
             $length = -1;
 
-            if ($key === 'password') {
-                $length = 255;
+            switch ($key) {
+                case 'id':
+                case 'is_verified':
+                    $dataType = SQLT_INT;
+                    break;
+                case 'name':
+                case 'email':
+                case 'password':
+                case 'business_name':
+                case 'business_address':
+                case 'outlet_image':
+                case 'kitchen_type':
+                case 'cuisine_type':
+                case 'verification_token':
+                case 'status':
+                    $length = 255;
+                    break;
+                case 'phone_number':
+                    $length = 20;
+                    break;
+                case 'description':
+                case 'delivery_areas':
+                    $dataType = SQLT_CLOB;
+                    break;
+                case 'created_at':
+                case 'updated_at':
+                    $dataType = SQLT_TIMESTAMP;
+                    break;
+                default:
+                    break;
             }
 
             if (!oci_bind_by_name($stmt, ":$key", $value, $length, $dataType)) {
                 $this->logOciError("OCI bind error for key $key", $stmt);
                 oci_free_statement($stmt);
                 oci_rollback($this->conn);
-                return ['status' => false, 'message' => "Error binding data"];
+                return false;
             }
         }
-
-        // Check for unique phone and email
-        $checkPhoneQuery = "SELECT COUNT(*) FROM $table WHERE phone_number = :phone_number";
-        $checkPhoneStmt = oci_parse($this->conn, $checkPhoneQuery);
-        oci_bind_by_name($checkPhoneStmt, ':phone_number', $userData['phone_number']);
-        oci_execute($checkPhoneStmt);
-        $phoneCount = oci_fetch_row($checkPhoneStmt)[0];
-        oci_free_statement($checkPhoneStmt);
-
-        $checkEmailQuery = "SELECT COUNT(*) FROM $table WHERE email = :email";
-        $checkEmailStmt = oci_parse($this->conn, $checkEmailQuery);
-        oci_bind_by_name($checkEmailStmt, ':email', $userData['email']);
-        oci_execute($checkEmailStmt);
-        $emailCount = oci_fetch_row($checkEmailStmt)[0];
-        oci_free_statement($checkEmailStmt);
-
-        if ($phoneCount > 0 && $emailCount > 0) {
-            return ['status' => false, 'message' => "Phone number and email already exist."];
-        } elseif ($phoneCount > 0) {
-            return ['status' => false, 'message' => "Phone number already exists."];
-        } else {
-            return ['status' => false, 'message' => "Email already exists."];
-        }
+        unset($value);
 
         if (!oci_execute($stmt, OCI_NO_AUTO_COMMIT)) {
             $this->logOciError("Registration query failed", $stmt);
             oci_free_statement($stmt);
             oci_rollback($this->conn);
-            return ['status' => false, 'message' => "Registration failed"];
+            return false;
         }
 
         oci_free_statement($stmt);
 
-        if (!oci_commit($this->conn)) {
+        if (oci_commit($this->conn)) {
+            $user = $this->getUserByEmail($userData['email'], $userType, null);
+            return $user ? $user : false;
+        } else {
             $this->logOciError("Commit failed", $this->conn);
             oci_rollback($this->conn);
-            return ['status' => false, 'message' => "Commit failed"];
-        }
+            return false;
 
-        return ['status' => true, 'message' => "Registration successful!"];
+        }
     }
 
     private function getColumnsExcluding($tableName, array $excludeColumns = [])
@@ -195,7 +221,7 @@ class AuthModel
 
         oci_free_statement($stmt);
 
-        return $columns ? implode(", ", $columns) : 'ID';
+        return $columns ? implode(", ", $columns) : false;
     }
 
     private function getTableName($userType)
@@ -207,10 +233,10 @@ class AuthModel
         };
     }
 
-    private function logOciError($message, $resource)
+    private function logOciError($functionName, $message, $resource)
     {
         $error = oci_error($resource);
-        error_log("$message: " . $error['message'] . " (Code: " . $error['code'] . ")");
+        error_log("Error in $functionName: $message - " . $error['message'] . " (Code: " . $error['code'] . ")");
     }
 }
 

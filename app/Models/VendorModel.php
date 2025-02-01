@@ -42,6 +42,7 @@ class VendorModel
 
             oci_free_statement($stmt);
             return $vendors;
+
         } catch (\Exception $e) {
             error_log("Error fetching popular vendors: " . $e->getMessage());
             return [];

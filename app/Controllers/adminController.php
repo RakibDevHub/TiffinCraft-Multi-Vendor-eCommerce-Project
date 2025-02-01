@@ -3,9 +3,13 @@
 namespace App\Controllers;
 
 use App\Models\AuthModel;
+use App\Service\Database;
 
 class AdminController
 {
+    private $adminModel;
+
+
 
     public function dashboard($context)
     {
