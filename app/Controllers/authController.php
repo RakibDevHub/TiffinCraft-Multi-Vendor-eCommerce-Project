@@ -2,24 +2,33 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\AuthModel;
+use App\Service\Database;
 use App\Utils\CSRFToken;
 
 class AuthController
 {
+
+    private $authModel;
+
+    public function __construct()
+    {
+        $conn = Database::getConnection();
+        $this->authModel = new AuthModel($conn);
+    }
+
     public function login($context)
     {
         $title = "Login";
         $isLoggedIn = $context['isLoggedIn'] ?? false;
         $userRole = $context['userRole'] ?? null;
         $currentPath = $context['currentPath'] ?? '/';
-        $conn = $context['conn'];
         $error = null;
 
         $csrfToken = CSRFToken::generateToken();
 
         if ($isLoggedIn) {
-            $this->redirectToDashboard($userRole);
+            $this->redirectTo($userRole);
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -30,22 +39,22 @@ class AuthController
             if (!CSRFToken::validateToken($submittedToken)) {
                 $error = "Invalid CSRF token.";
             } else {
-                $userModel = new UserModel($conn);
-                $userType = $this->getUserTypeFromPath($currentPath);
 
-                $user = $userModel->authenticate($email, $password, $userType);
+                $userType = $this->getUserType($currentPath);
+                $user = $this->authModel->authenticate($email, $password, $userType);
 
                 if ($user) {
                     $_SESSION[SESSION_USER_ID] = $user['id'];
                     $_SESSION[SESSION_USER_ROLE] = $userType;
                     CSRFToken::clearToken();
-                    $this->redirectToDashboard($userType);
+                    $this->redirectTo($userType);
                 } else {
                     $error = "Invalid email or password.";
                 }
             }
         }
 
+        Database::closeConnection();
         include ROOT_DIR . 'pages/auth/login.php';
     }
 
@@ -55,22 +64,21 @@ class AuthController
         $isLoggedIn = $context['isLoggedIn'] ?? false;
         $userRole = $context['userRole'] ?? null;
         $currentPath = $context['currentPath'];
-        $conn = $context['conn'];
         $error = null;
         $success = null;
 
         $csrfToken = CSRFToken::generateToken();
 
         if ($isLoggedIn) {
-            $this->redirectToDashboard($userRole);
+            $this->redirectTo($userRole);
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!CSRFToken::validateToken($_POST['csrf_token'] ?? '')) {
                 $error = "Invalid CSRF token.";
             } else {
-                $userModel = new UserModel($conn);
-                $userType = $this->getUserTypeFromPath($currentPath);
+
+                $userType = $this->getUserType($currentPath);
                 $name = trim($_POST['username'] ?? '');
                 $email = trim($_POST['uemail'] ?? '');
                 $password = $_POST['upassword'] ?? '';
@@ -96,7 +104,7 @@ class AuthController
                     $error = "Passwords do not match.";
                 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $error = "Invalid email format.";
-                } elseif ($userModel->getUserByEmail($email, $userType)) {
+                } elseif ($this->authModel->getUserByEmail($email, $userType, null)) {
                     $error = "Email already exists.";
                 } elseif ($userType === 'vendor' && (empty($businessName) || empty($businessAddress) || empty($kitchenType) || empty($cuisineType) || empty($delivery))) {
                     $error = "Please provide business details for vendor registration.";
@@ -139,7 +147,7 @@ class AuthController
                         }
                     }
 
-                    $result = $userModel->registerUser($userData, $userType);
+                    $result = $this->authModel->registerUser($userData, $userType);
                     if (!$error && $result['status']) {
                         $success = $result['message'];
                     } else {
@@ -178,7 +186,7 @@ class AuthController
         exit;
     }
 
-    private function getUserTypeFromPath($path)
+    private function getUserType($path)
     {
         if (strpos($path, '/admin') !== false) {
             return 'admin';
@@ -188,7 +196,7 @@ class AuthController
         return 'customer';
     }
 
-    private function redirectToDashboard($role)
+    private function redirectTo($role)
     {
         switch ($role) {
             case 'admin':

@@ -20,5 +20,15 @@ spl_autoload_register(function ($className) {
     }
 });
 
-include_once ROOT_DIR . 'app/Config/database.php';
-include_once ROOT_DIR . 'app/Config/config.php';
+include_once ROOT_DIR . 'app/Service/Database.php';
+include_once ROOT_DIR . 'app/Service/Config.php';
+
+use App\Service\Database;
+
+Database::initialize();
+
+register_shutdown_function(function () {
+    Database::closeConnection();
+});
+
+

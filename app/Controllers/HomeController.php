@@ -36,5 +36,4 @@ class HomeController
         include ROOT_DIR . '/pages/home.php';
     }
 
-
 }

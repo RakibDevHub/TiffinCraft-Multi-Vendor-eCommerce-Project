@@ -2,11 +2,23 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\AuthModel;
 use App\Models\VendorModel;
+use App\Service\Database;
+
+use Exception;
 
 class VendorController
 {
+	private $vendorModel;
+	private $authModel;
+
+	public function __construct()
+	{
+		$conn = Database::getConnection();
+		$this->vendorModel = new VendorModel($conn);
+		$this->authModel = new AuthModel($conn);
+	}
 
 	public function dashboard($context)
 	{
@@ -16,7 +28,6 @@ class VendorController
 		$userId = $context['userId'] ?? null;
 		$userRole = $context['userRole'] ?? null;
 		$currentPath = $context['currentPath'] ?? '/';
-		$conn = $context['conn'];
 
 		if (!$isLoggedIn || !$userId || !$userRole) {
 			header("Location: /business/login");
@@ -27,8 +38,7 @@ class VendorController
 
 
 		try {
-			$userModel = new UserModel($conn);
-			$userData = $userModel->getUserById($userId, $userRole, $excludeColumns);
+			$userData = $this->authModel->getUserById($userId, $userRole, $excludeColumns);
 
 			if (!$userData) {
 				throw new UserNotFoundException("User not found or invalid.");
@@ -62,12 +72,10 @@ class VendorController
 
 	public function getVendorsForHomePage($context)
 	{
-		$conn = $context['conn'];
 		$limit = 10;
 
 		try {
-			$vendorModel = new VendorModel($conn);
-			return $vendorModel->getPopularVendors($limit);
+			return $this->vendorModel->getPopularVendors($limit);
 		} catch (\Exception $e) {
 			error_log("Error fetching vendors for homepage: " . $e->getMessage());
 			return [];
@@ -76,11 +84,9 @@ class VendorController
 
 	public function listAllVendors($context)
 	{
-		$conn = $context['conn'];
 
 		try {
-			$vendorModel = new VendorModel($conn);
-			$vendors = $vendorModel->getAllVendors(null);
+			$vendors = $this->vendorModel->getAllVendors(null);
 
 			include ROOT_DIR . '/pages/vendors/list.php';
 		} catch (\Exception $e) {
@@ -91,7 +97,6 @@ class VendorController
 
 	public function vendorDetails($context)
 	{
-		$conn = $context['conn'];
 		$vendorId = $_GET['id'] ?? null;
 
 		try {
@@ -99,8 +104,7 @@ class VendorController
 				throw new \Exception("Invalid vendor ID.");
 			}
 
-			$vendorModel = new VendorModel($conn);
-			$vendor = $vendorModel->getVendorById($vendorId);
+			$vendor = $this->vendorModel->getVendorById($vendorId);
 
 			if (!$vendor) {
 				throw new \Exception("Vendor not found.");

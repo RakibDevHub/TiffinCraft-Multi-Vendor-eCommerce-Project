@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Controllers;
-use App\Models\UserModel;
+
+use App\Models\AuthModel;
 
 class AdminController
 {
@@ -24,8 +26,8 @@ class AdminController
 
 
         try {
-            $userModel = new UserModel($conn);
-            $userData = $userModel->getUserById($userId, $userRole, $excludeColumns);
+            $authModel = new AuthModel($conn);
+            $userData = $authModel->getUserById($userId, $userRole, $excludeColumns);
 
             if (!$userData) {
                 throw new UserNotFoundException("Admin not found or invalid.");
@@ -63,68 +65,69 @@ class AdminController
     }
 }
 
+?>
 
 // // Function to accept a vendor
 // function acceptVendor($vendorId, $conn)
 // {
-//     if (!ctype_digit($vendorId)) {
-//         $error = "Invalid vendor ID.";
-//         $_SESSION['error'] = $error;
-//         header("Location: /tiffincraft/admin/dashboard/manage-users?error=" . urlencode($error));
-//         exit();
-//     }
+// if (!ctype_digit($vendorId)) {
+// $error = "Invalid vendor ID.";
+// $_SESSION['error'] = $error;
+// header("Location: /tiffincraft/admin/dashboard/manage-users?error=" . urlencode($error));
+// exit();
+// }
 
-//     $sql = "UPDATE vendors SET status = 'accept' WHERE vendor_id = :vendor_id";
-//     $stid = oci_parse($conn, $sql);
-//     oci_bind_by_name($stid, ":vendor_id", $vendorId);
+// $sql = "UPDATE vendors SET status = 'accept' WHERE vendor_id = :vendor_id";
+// $stid = oci_parse($conn, $sql);
+// oci_bind_by_name($stid, ":vendor_id", $vendorId);
 
-//     if (oci_execute($stid)) {
-//         $message = "Vendor accepted.";
-//         $_SESSION['success'] = $message;
-//     } else {
-//         $message = "Failed to accept the vendor.";
-//         $_SESSION['error'] = $message;
-//     }
+// if (oci_execute($stid)) {
+// $message = "Vendor accepted.";
+// $_SESSION['success'] = $message;
+// } else {
+// $message = "Failed to accept the vendor.";
+// $_SESSION['error'] = $message;
+// }
 
-//     header("Location: /tiffincraft/admin/dashboard/manage-users?message=" . urlencode($message));
-//     exit();
+// header("Location: /tiffincraft/admin/dashboard/manage-users?message=" . urlencode($message));
+// exit();
 // }
 
 // // Function to reject (delete) a vendor
 // function rejectVendor($vendorId, $conn)
 // {
-//     if (!ctype_digit($vendorId)) {
-//         $error = "Invalid vendor ID.";
-//         $_SESSION['error'] = $error;
-//         header("Location: /tiffincraft/admin/dashboard/manage-users?error=" . urlencode($error));
-//         exit();
-//     }
+// if (!ctype_digit($vendorId)) {
+// $error = "Invalid vendor ID.";
+// $_SESSION['error'] = $error;
+// header("Location: /tiffincraft/admin/dashboard/manage-users?error=" . urlencode($error));
+// exit();
+// }
 
-//     $sql = "UPDATE vendors SET status = 'reject' WHERE vendor_id = :vendor_id";
-//     $stid = oci_parse($conn, $sql);
-//     oci_bind_by_name($stid, ":vendor_id", $vendorId);
+// $sql = "UPDATE vendors SET status = 'reject' WHERE vendor_id = :vendor_id";
+// $stid = oci_parse($conn, $sql);
+// oci_bind_by_name($stid, ":vendor_id", $vendorId);
 
-//     if (oci_execute($stid)) {
-//         $message = "Vendor rejected.";
-//         $_SESSION['success'] = $message;
-//     } else {
-//         $message = "Failed to reject the vendor.";
-//         $_SESSION['error'] = $message;
-//     }
+// if (oci_execute($stid)) {
+// $message = "Vendor rejected.";
+// $_SESSION['success'] = $message;
+// } else {
+// $message = "Failed to reject the vendor.";
+// $_SESSION['error'] = $message;
+// }
 
-//     header("Location: /tiffincraft/admin/dashboard/manage-users?message=" . urlencode($message));
-//     exit();
+// header("Location: /tiffincraft/admin/dashboard/manage-users?message=" . urlencode($message));
+// exit();
 // }
 
 // // Handle actions
 // if (isset($_GET['id']) && isset($_GET['action'])) {
-//     $vendorId = $_GET['id'];
-//     $action = $_GET['action'];
+// $vendorId = $_GET['id'];
+// $action = $_GET['action'];
 
-//     if ($action === 'accept-vendor') {
-//         acceptVendor($vendorId, $conn);
-//     } elseif ($action === 'reject-vendor') {
-//         rejectVendor($vendorId, $conn);
-//     }
+// if ($action === 'accept-vendor') {
+// acceptVendor($vendorId, $conn);
+// } elseif ($action === 'reject-vendor') {
+// rejectVendor($vendorId, $conn);
+// }
 // }
 ?>
