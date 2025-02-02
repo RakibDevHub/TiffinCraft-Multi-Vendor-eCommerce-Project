@@ -36,7 +36,7 @@ class VendorController
 		}
 	}
 
-	public function getVendorsForHomePage($context)
+	public function getVendorsPopular($context)
 	{
 		$limit = 10;
 

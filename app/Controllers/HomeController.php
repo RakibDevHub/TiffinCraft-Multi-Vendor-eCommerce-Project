@@ -17,7 +17,7 @@ class HomeController
 
         // Fetch vendors using VendorController
         $vendorController = new VendorController();
-        $vendors = $vendorController->getVendorsForHomePage($context);
+        $vendors = $vendorController->getVendorsPopular($context);
 
         include ROOT_DIR . '/pages/home.php';
 

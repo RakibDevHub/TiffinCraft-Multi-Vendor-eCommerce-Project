@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\AdminModel;
 use App\Models\AuthModel;
 use App\Service\Database;
 
@@ -9,6 +10,11 @@ class AdminController
 {
     private $adminModel;
 
+    public function __construct()
+    {
+        $conn = Database::getConnection();
+        $this->adminModel = new AdminModel($conn);
+    }
 
 
     public function dashboard($context)
@@ -19,54 +25,59 @@ class AdminController
         $userId = $context['userId'] ?? null;
         $userRole = $context['userRole'] ?? null;
         $currentPath = $context['currentPath'] ?? '/';
-        $conn = $context['conn'];
 
-        if (!$isLoggedIn || !$userId || !$userRole) {
+        if (!$isLoggedIn || !$userId || $userRole !== 'vendor') {
             header("Location: /admin/login");
             exit;
-        }
-
-        $excludeColumns = [];
-
-
-        try {
-            $authModel = new AuthModel($conn);
-            $userData = $authModel->getUserById($userId, $userRole, $excludeColumns);
-
-            if (!$userData) {
-                throw new UserNotFoundException("Admin not found or invalid.");
-            }
-
-            $filteredUserData = [];
-
-            if ($userData) {
-                $filteredUserData = array_map(function ($value) {
-                    return is_string($value) ? htmlspecialchars($value, ENT_QUOTES, 'UTF-8') : $value;
-                }, $userData);
-            }
+        } else {
+            $userData = $_SESSION[SESSION_USER_DATA];
+            $userCount = $this->adminModel->userCount();
 
             include ROOT_DIR . '/pages/auth/dashboard.php';
-            exit;
-
-        } catch (UserNotFoundException $e) {
-            error_log("Admin not found: " . $e->getMessage());
-            $error = "Admin not found.";
-            include ROOT_DIR . '/pages/errors/404.php';
-            exit;
-
-        } catch (\Exception $e) {
-            error_log("Error in adminController dashboard: " . $e->getMessage());
-            $error = "An error occurred. Please try again later.";
-            include ROOT_DIR . '/pages/errors/500.php';
-            exit;
         }
 
     }
+
+    // $excludeColumns = [];
+
+
+    // try {
+    //     $authModel = new AuthModel($conn);
+    //     $userData = $authModel->getUserById($userId, $userRole, $excludeColumns);
+
+    //     if (!$userData) {
+    //         throw new UserNotFoundException("Admin not found or invalid.");
+    //     }
+
+    //     $filteredUserData = [];
+
+    //     if ($userData) {
+    //         $filteredUserData = array_map(function ($value) {
+    //             return is_string($value) ? htmlspecialchars($value, ENT_QUOTES, 'UTF-8') : $value;
+    //         }, $userData);
+    //     }
+
+    //     include ROOT_DIR . '/pages/auth/dashboard.php';
+    //     exit;
+
+    // } catch (UserNotFoundException $e) {
+    //     error_log("Admin not found: " . $e->getMessage());
+    //     $error = "Admin not found.";
+    //     include ROOT_DIR . '/pages/errors/404.php';
+    //     exit;
+
+    // } catch (\Exception $e) {
+    //     error_log("Error in adminController dashboard: " . $e->getMessage());
+    //     $error = "An error occurred. Please try again later.";
+    //     include ROOT_DIR . '/pages/errors/500.php';
+    //     exit;
+    // }
 
     public function manageUsers($context)
     {
 
     }
+
 }
 
 ?>
