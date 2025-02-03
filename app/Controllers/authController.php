@@ -77,7 +77,7 @@ class AuthController
                             }
                             $_SESSION['login_attempts'][$email]['count']++;
                             $_SESSION['login_attempts'][$email]['last_attempt'] = time();
-                            error_log("Authentication failed for email: " . $email . " (User Type: " . $userType . ")"); //Keep the logging!
+                            error_log("Authentication failed for email: " . $email . " (User Type: " . $userType . ")");
                         }
                     }
                 }
@@ -85,6 +85,7 @@ class AuthController
         }
 
         include ROOT_DIR . 'pages/auth/login.php';
+        return;
     }
 
     public function register($context)
@@ -204,6 +205,7 @@ class AuthController
         }
 
         include ROOT_DIR . 'pages/auth/register.php';
+        return;
     }
 
     public function logout($context)

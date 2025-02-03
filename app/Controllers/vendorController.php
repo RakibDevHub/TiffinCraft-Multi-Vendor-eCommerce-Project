@@ -30,58 +30,66 @@ class VendorController
 		if (!$isLoggedIn || !$userId || $userRole !== 'vendor') {
 			header("Location: /business/login");
 			exit;
-		} else {
-			$userData = $_SESSION[SESSION_USER_DATA];
-			include ROOT_DIR . '/pages/auth/dashboard.php';
 		}
+		$userData = $_SESSION[SESSION_USER_DATA];
+		include ROOT_DIR . '/pages/vendor/dashboard.php';
+		return;
 	}
 
-	public function getVendorsPopular($context)
+	public function getVendorsPopular($limit)
 	{
-		$limit = 10;
-
 		try {
 			return $this->vendorModel->getPopularVendors($limit);
 		} catch (Exception $e) {
 			error_log("Error fetching vendors for homepage: " . $e->getMessage());
-			return [];
+			return false;
 		}
 	}
 
-	public function listAllVendors($context)
+	public function listAllVendors($status = null, $for = null)
 	{
-
 		try {
-			$vendors = $this->vendorModel->getAllVendors(null);
+			$vendors = $this->vendorModel->getAllVendors($status);
 
-			include ROOT_DIR . '/pages/vendors/list.php';
-		} catch (Exception $e) {
-			error_log("Error in listAllVendors: " . $e->getMessage());
-			include ROOT_DIR . '/pages/errors/500.php';
-		}
-	}
-
-	public function vendorDetails($context)
-	{
-		$vendorId = $_GET['id'] ?? null;
-
-		try {
-			if (!$vendorId) {
-				throw new Exception("Invalid vendor ID.");
+			if ($vendors === false) {
+				error_log("Error fetching vendors in listAllVendors.");
+				return false;
 			}
 
-			$vendor = $this->vendorModel->getVendorById($vendorId);
-
-			if (!$vendor) {
-				throw new Exception("Vendor not found.");
+			if ($for !== 'admin') {
+				include ROOT_DIR . '/pages/vendors.php';
+				return $vendors;
 			}
 
-			include ROOT_DIR . '/pages/vendors/details.php';
+			return $vendors;
+
 		} catch (Exception $e) {
-			error_log("Error in vendorDetails: " . $e->getMessage());
-			http_response_code(404);
-			include ROOT_DIR . '/pages/errors/404.php';
+			error_log("Exception in listAllVendors: " . $e->getMessage());
+			return false;
 		}
 	}
+
+	// public function vendorDetails($context)
+	// {
+	// 	$vendorId = $_GET['id'] ?? null;
+
+	// 	try {
+	// 		if (!$vendorId) {
+	// 			throw new Exception("Invalid vendor ID.");
+	// 		}
+
+	// 		$vendor = $this->vendorModel->getVendorById($vendorId);
+
+	// 		if (!$vendor) {
+	// 			throw new Exception("Vendor not found.");
+	// 		}
+
+	// 		include ROOT_DIR . '/pages/vendors/details.php';
+	// 	} catch (Exception $e) {
+	// 		error_log("Error in vendorDetails: " . $e->getMessage());
+	// 		http_response_code(404);
+	// 		include ROOT_DIR . '/pages/errors/404.php';
+	// 	}
+	// }
 }
 ?>

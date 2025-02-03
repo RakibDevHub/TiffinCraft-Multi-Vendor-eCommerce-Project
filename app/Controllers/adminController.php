@@ -3,17 +3,19 @@
 namespace App\Controllers;
 
 use App\Models\AdminModel;
-use App\Models\AuthModel;
 use App\Service\Database;
+use App\Controllers\VendorController;
 
 class AdminController
 {
     private $adminModel;
+    private $vendorController;
 
     public function __construct()
     {
         $conn = Database::getConnection();
         $this->adminModel = new AdminModel($conn);
+        $this->vendorController = new VendorController();
     }
 
 
@@ -26,61 +28,103 @@ class AdminController
         $userRole = $context['userRole'] ?? null;
         $currentPath = $context['currentPath'] ?? '/';
 
-        if (!$isLoggedIn || !$userId || $userRole !== 'vendor') {
+        if (!$isLoggedIn || !$userId || $userRole !== 'admin') {
             header("Location: /admin/login");
             exit;
         } else {
             $userData = $_SESSION[SESSION_USER_DATA];
             $userCount = $this->adminModel->userCount();
 
-            include ROOT_DIR . '/pages/auth/dashboard.php';
+            $userData = $_SESSION[SESSION_USER_DATA];
+            if ($userData === false) {
+                error_log("Error retrieving user data in manageUsers. Possible session issue.");
+                header("Location: /admin/login");
+                exit;
+            }
+
+
+            include ROOT_DIR . '/pages/admin/dashboard.php';
         }
 
     }
 
-    // $excludeColumns = [];
-
-
-    // try {
-    //     $authModel = new AuthModel($conn);
-    //     $userData = $authModel->getUserById($userId, $userRole, $excludeColumns);
-
-    //     if (!$userData) {
-    //         throw new UserNotFoundException("Admin not found or invalid.");
-    //     }
-
-    //     $filteredUserData = [];
-
-    //     if ($userData) {
-    //         $filteredUserData = array_map(function ($value) {
-    //             return is_string($value) ? htmlspecialchars($value, ENT_QUOTES, 'UTF-8') : $value;
-    //         }, $userData);
-    //     }
-
-    //     include ROOT_DIR . '/pages/auth/dashboard.php';
-    //     exit;
-
-    // } catch (UserNotFoundException $e) {
-    //     error_log("Admin not found: " . $e->getMessage());
-    //     $error = "Admin not found.";
-    //     include ROOT_DIR . '/pages/errors/404.php';
-    //     exit;
-
-    // } catch (\Exception $e) {
-    //     error_log("Error in adminController dashboard: " . $e->getMessage());
-    //     $error = "An error occurred. Please try again later.";
-    //     include ROOT_DIR . '/pages/errors/500.php';
-    //     exit;
-    // }
-
     public function manageUsers($context)
     {
+        $title = "Admin Dashboard";
 
+        $isLoggedIn = $context['isLoggedIn'] ?? false;
+        $userId = $context['userId'] ?? null;
+        $userRole = $context['userRole'] ?? null;
+        $currentPath = $context['currentPath'] ?? '/';
+
+        if (!$isLoggedIn || !$userId || $userRole !== 'admin') {
+            header("Location: /admin/login");
+            exit;
+        } else {
+            $for = 'admin';
+            $vendors = $this->vendorController->listAllVendors(null, $for);
+            if ($vendors === false) {
+                error_log("Error listing vendors in manageUsers.");
+                $error = "There was an error listing the vendors.";
+            } elseif (is_array($vendors) && count($vendors) === 0) {
+                $message = "No vendors found.";
+            }
+
+            $userData = $_SESSION[SESSION_USER_DATA];
+            if ($userData === false) {
+                error_log("Error retrieving user data in manageUsers. Possible session issue.");
+                header("Location: /admin/login");
+                exit;
+            }
+
+            $breadcrumb = [
+                'Dashboard' => '/admin/dashboard',
+                'Manage Users' => null,
+            ];
+
+            include ROOT_DIR . '/pages/admin/manageUsers.php';
+            return;
+        }
     }
 
 }
 
-?>
+
+// $excludeColumns = [];
+
+
+// try {
+//     $authModel = new AuthModel($conn);
+//     $userData = $authModel->getUserById($userId, $userRole, $excludeColumns);
+
+//     if (!$userData) {
+//         throw new UserNotFoundException("Admin not found or invalid.");
+//     }
+
+//     $filteredUserData = [];
+
+//     if ($userData) {
+//         $filteredUserData = array_map(function ($value) {
+//             return is_string($value) ? htmlspecialchars($value, ENT_QUOTES, 'UTF-8') : $value;
+//         }, $userData);
+//     }
+
+//     include ROOT_DIR . '/pages/auth/dashboard.php';
+//     exit;
+
+// } catch (UserNotFoundException $e) {
+//     error_log("Admin not found: " . $e->getMessage());
+//     $error = "Admin not found.";
+//     include ROOT_DIR . '/pages/errors/404.php';
+//     exit;
+
+// } catch (\Exception $e) {
+//     error_log("Error in adminController dashboard: " . $e->getMessage());
+//     $error = "An error occurred. Please try again later.";
+//     include ROOT_DIR . '/pages/errors/500.php';
+//     exit;
+// }
+
 
 // // Function to accept a vendor
 // function acceptVendor($vendorId, $conn)

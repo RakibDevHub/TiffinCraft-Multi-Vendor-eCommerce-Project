@@ -17,7 +17,7 @@
         <?php include ROOT_DIR . '/pages/components/_sidebar.php' ?>
 
         <!-- Main Content -->
-        <?php if ($userRole !== 'admin'): ?>
+        <?php if (htmlspecialchars($userRole) !== 'admin'): ?>
             <div class="main-content">
                 <!-- Top Header -->
                 <header class="top-header">
@@ -92,16 +92,16 @@
                 <!-- Dashboard Stats -->
                 <div class="dashboard-stats">
                     <div class="stats-card">
-                        <h3>Total Users</h3>
+                        <h3>Number of Users</h3>
                         <p><?= htmlspecialchars($userCount['total']) ?></p>
                     </div>
-                    <!-- <div class="stats-card">
-                    <h3>Active Vendors</h3>
-                    <p>320</p>
-                </div> -->
                     <div class="stats-card">
-                        <h3>Total Revenue</h3>
-                        <p>$50,000</p>
+                        <h3>Number of Vendors</h3>
+                        <p><?= htmlspecialchars($userCount['vendors']) ?></p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>Number of Customers</h3>
+                        <p><?= htmlspecialchars($userCount['users']) ?></p>
                     </div>
                 </div>
 

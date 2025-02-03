@@ -43,7 +43,7 @@
                 </li>
             <?php else: ?>
                 <li>
-                    <a href="/admin/dashboard/users" class="sidebar-link">
+                    <a href="/admin/dashboard/manage-users" class="sidebar-link">
                         <i class="fa-solid fa-inbox"></i>
                         <span>Manage Users</span>
                     </a>

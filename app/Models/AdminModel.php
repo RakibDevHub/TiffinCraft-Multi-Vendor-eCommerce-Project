@@ -21,7 +21,6 @@ class AdminModel
                 return false;
             }
 
-            // Count vendors
             $vendorCount = $this->getCount('vendors');
             if ($vendorCount === false) {
                 return false;
@@ -39,6 +38,15 @@ class AdminModel
             return false;
         }
     }
+
+    // public function listAllUser()
+    // {
+    //     try {
+
+    //     } catch (\Exception $e) {
+
+    //     }
+    // }
 
     private function getCount($table)
     {
@@ -62,7 +70,6 @@ class AdminModel
         oci_free_statement($stmt);
         return $count;
     }
-
 
     private function logOciError($functionName, $message, $resource, $query = null, $params = null, \Exception $e = null)
     {
