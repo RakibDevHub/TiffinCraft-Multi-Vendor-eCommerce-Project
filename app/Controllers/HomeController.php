@@ -5,6 +5,13 @@ use App\Controllers\VendorController;
 
 class HomeController
 {
+    private $vendorController;
+
+    public function __construct()
+    {
+        $this->vendorController = new VendorController();
+    }
+
     public function home($context)
     {
         $title = "TiffinCraft";
@@ -14,16 +21,24 @@ class HomeController
         $userRole = $context['userRole'] ?? null;
         $currentPath = $context['currentPath'] ?? '/';
 
-        $limit = 10;
+        $limit = 20;
 
-        $vendorController = new VendorController();
-        $vendors = $vendorController->getVendorsPopular($limit);
-        if ($vendors === false) {
+        $popularVendors = $this->vendorController->getPopularVendors($limit);
+        if ($popularVendors === false) {
             error_log("Error listing vendors in getVendorsPopular.");
             $error = "There was an error listing the  popular vendors.";
-        } elseif (is_array($vendors) && count($vendors) === 0) {
+        } elseif (is_array($popularVendors) && count($popularVendors) === 0) {
             $message = "No data found.";
         }
+
+        $newVendors = $this->vendorController->getNewArrivalVendors($limit, null);
+        if ($newVendors === false) {
+            error_log("Error listing vendors in getNewArrivalVendors.");
+            $error = "There was an error listing the  new arrival vendors.";
+        } elseif (is_array($newVendors) && count($newVendors) === 0) {
+            $message = "No data found.";
+        }
+
         include ROOT_DIR . '/pages/home.php';
         return;
     }

@@ -36,12 +36,22 @@ class VendorController
 		return;
 	}
 
-	public function getVendorsPopular($limit)
+	public function getPopularVendors($limit = null)
 	{
 		try {
-			return $this->vendorModel->getPopularVendors($limit);
+			return $this->vendorModel->getPopular($limit);
 		} catch (Exception $e) {
 			error_log("Error fetching vendors for homepage: " . $e->getMessage());
+			return false;
+		}
+	}
+
+	public function getNewArrivalVendors($limit = null, $timeframe = null)
+	{
+		try {
+			return $this->vendorModel->getNewArrivals($limit, $timeframe);
+		} catch (Exception $e) {
+			error_log("Error fetching vendors: " . $e->getMessage());
 			return false;
 		}
 	}

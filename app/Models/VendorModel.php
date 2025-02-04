@@ -10,21 +10,21 @@ class VendorModel
         $this->conn = $conn;
     }
 
-    public function getPopularVendors(int $limit)
+    public function getPopular(int $limit)
     {
         try {
             $query = "SELECT * FROM (SELECT * FROM vendors WHERE STATUS = 'accept' ORDER BY id DESC) WHERE ROWNUM <= :limit";
 
             $stmt = oci_parse($this->conn, $query);
             if (!$stmt) {
-                $this->logOciError("getPopularVendors", "OCI parse error", $this->conn, $query);
+                $this->logOciError("getPopular", "OCI parse error", $this->conn, $query);
                 return [];
             }
 
             oci_bind_by_name($stmt, ':limit', $limit, -1, SQLT_INT);
 
             if (!oci_execute($stmt)) {
-                $this->logOciError("getPopularVendors", "Query execution failed", $stmt, $query, [':limit' => $limit]);
+                $this->logOciError("getPopular", "Query execution failed", $stmt, $query, [':limit' => $limit]);
                 oci_free_statement($stmt);
                 return [];
             }
@@ -56,6 +56,70 @@ class VendorModel
             return [];
         }
     }
+
+    public function getNewArrivals($limit = null, $timeframe = null)
+    {
+        try {
+            $query = "SELECT * FROM vendors WHERE STATUS = 'accept'";
+            $whereClause = "";
+
+            if ($timeframe !== null) {
+                $whereClause = " AND created_at >= SYSDATE - :timeframe";
+            }
+
+            $orderByClause = " ORDER BY created_at DESC";
+
+            $limitClause = "";
+            if ($limit !== null) {
+                $limitClause = " FETCH FIRST :limit ROWS ONLY";
+            }
+
+            $query = $query . $whereClause . $orderByClause . $limitClause;
+
+            $stmt = oci_parse($this->conn, $query);
+
+            if ($timeframe !== null) {
+                oci_bind_by_name($stmt, ':timeframe', $timeframe, -1, SQLT_INT);
+            }
+
+            if ($limit !== null) {
+                oci_bind_by_name($stmt, ':limit', $limit, -1, SQLT_INT);
+            }
+
+            if (!oci_execute($stmt)) {
+                $this->logOciError("getNewArrivals", "Query execution failed", $stmt, $query, [':timeframe' => $timeframe, ':limit' => $limit]);
+                oci_free_statement($stmt);
+                return [];
+            }
+
+            $vendors = [];
+            while ($row = oci_fetch_assoc($stmt)) {
+                $clobColumns = ['DESCRIPTION', 'DELIVERY_AREAS'];
+
+                foreach ($clobColumns as $column) {
+                    if (isset($row[$column])) {
+                        $clob = $row[$column];
+                        if (is_object($clob)) {
+                            $data = $clob->load();
+                            $row[$column] = $data;
+                        } else {
+                            $row[$column] = null;
+                        }
+                    }
+                }
+                unset($vendors['PASSWORD']);
+                $vendors[] = $row;
+            }
+
+            oci_free_statement($stmt);
+            return $vendors;
+
+        } catch (\Exception $e) {
+            $this->logOciError("getNewArrivals", "Exception caught", null, $query, [':timeframe' => $timeframe, ':limit' => $limit], $e);
+            return [];
+        }
+    }
+
 
     public function getAllVendors($status = null)
     {

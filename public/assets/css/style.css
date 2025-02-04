@@ -494,7 +494,7 @@ body {
   align-items: center;
   gap: 1rem;
   margin-top: 2rem;
-  font-size: 1.7rem;
+  font-size: 2.5rem;
   font-weight: bold;
   padding: 0.5rem 2rem;
   border-radius: 0.5rem;
@@ -912,8 +912,6 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.27);
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   text-transform: uppercase;
-  background: linear-gradient(to bottom right, #FEDB37 8%, #FDB931 100%);
-  /* background: gold; */
   cursor: default;
   text-align: center;
   cursor: default;
@@ -922,6 +920,20 @@ body {
 .orange-b {
   background: linear-gradient(to bottom right, #ffc107 0%, #f57c00 100%);
   color: #f68401;
+}
+
+.orange-r {
+  /* background: linear-gradient(to bottom right, #FEDB37 8%, #FDB931 100%); */
+  background: linear-gradient(to bottom right, #ffc107 0%, #f57c00 100%);
+}
+
+.green-b {
+  background: linear-gradient(to bottom right, var(--green-light) 0%, var(--green-dark) 100%);
+  color: #34d399;
+}
+
+.green-r {
+  background: linear-gradient(to bottom right, var(--green-light) 0%, var(--green-dark) 100%);
 }
 
 /* Form Page Section  */
@@ -1087,19 +1099,54 @@ fieldset legend {
 }
 
 .form-footer {
-  text-align: right;
   margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.form-footer a {
-  color: var(--input-focus);
-  text-decoration: none;
-  font-size: 1.5rem;
+.form-footer .form-links {
+  width: 100%;
+  display: flex;
+  margin-top: 2rem;
+  justify-content: center;
 }
 
-.form-footer a:hover {
+.form-footer .form-links a {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.form-footer .form-links a i {
+  font-size: 3rem;
+  line-height: normal;
+}
+
+.form-footer .form-links a:hover i {
+  transform: scale(1.2);
+}
+
+/* .form-footer a:hover {
   text-decoration: underline;
+} */
+
+/* .form-footer .footer-links a {
+  font-size: 2rem;
+  text-decoration: none;
+  border-bottom: none;
+} */
+
+/* .form-footer .footer-links i {
+  font-size: 3rem;
 }
+
+.form-footer .footer-links a,
+.form-footer .footer-links i {
+  cursor: pointer;
+} */
 
 .hidden-input {
   display: none;
@@ -1353,14 +1400,30 @@ fieldset legend {
 }
 
 .slider-top span.k-type,
-.slider-content span {
-  border: 1px solid var(--green-light);
-  background: var(--green-light);
-  color: #000;
+.slider-content span.area-tags {
   padding: 0rem 0.5rem;
   border-radius: 0.4rem;
   cursor: pointer;
   width: fit-content;
+}
+
+.slider-top span.k-type {
+  border: 1px solid var(--blue-dark);
+  background: var(--blue-dark);
+  color: #FFF;
+}
+
+.slider-content span.area-tags {
+  border: 1px solid var(--green-dark);
+  background: var(--green-dark);
+  color: #FFF;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .card-list .card-link,

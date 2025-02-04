@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const vendorStatus = document.getElementById("vendorStatus");
   const vendorCuisineType = document.getElementById("vendorCuisineType");
   const vendorCreatedAt = document.getElementById("vendorCreatedAt");
+  const vendorImage = document.getElementById("vendorImage");
 
   vendorsTableBody.addEventListener("click", (e) => {
     const row = e.target.closest("tr");
@@ -31,6 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
       vendorStatus.textContent = row.dataset.status;
       vendorCuisineType.textContent = row.dataset.cuisineType;
       vendorCreatedAt.textContent = row.dataset.createdAt;
+
+      const imagePath = `/uploads/vendors/${row.dataset.outletImage}`;
+      vendorImage.src = imagePath;
+      vendorImage.alt = row.dataset.name;
 
       vendorModal.show();
     }

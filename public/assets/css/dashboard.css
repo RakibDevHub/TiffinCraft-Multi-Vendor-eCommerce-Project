@@ -346,14 +346,18 @@ body {
     border-radius: 10px;
     width: 400px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
 }
 
 .close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0rem;
+    right: 0.7rem;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 2rem;
 }
 
 /* Search and Filter */
@@ -370,4 +374,30 @@ body {
 
 #statusFilter {
     padding: 5px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+td,
+th {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 150px;
+}
+
+img#vendorImage {
+    height: 200px;
+    width: auto;
 }

@@ -55,7 +55,13 @@
                 <div class="form-footer">
                     <!-- <a href="/forgot-password">Forgot Password?</a> -->
                     <button type="submit" class="btn">Login</button>
-
+                    <?php if ($currentPath !== '/login'): ?>
+                        <div class="form-links">
+                            <a href="/">
+                                <i class="fa-solid fa-circle-arrow-left"></i>
+                                Go back to TiffinCraft.</a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </form>
         </div>
