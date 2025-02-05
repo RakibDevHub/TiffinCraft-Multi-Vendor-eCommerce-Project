@@ -206,8 +206,8 @@ $features = [
     <script src="/assets/js/main.js" type="module"></script>
 
     <!-- Swiper Js  -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="/assets/js/_swiper-init.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+    <!-- <script src="/assets/js/_swiper-init.js"></script> -->
 </body>
 
 </html>

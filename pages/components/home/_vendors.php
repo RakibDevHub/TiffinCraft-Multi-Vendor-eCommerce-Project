@@ -14,7 +14,7 @@
             <?php if ($popularVendors): ?>
                 <div class="container popular">
                     <!-- Swiper Slider -->
-                    <div class="swiper vendor-slider-popular">
+                    <div class="swiper vendorSlider">
                         <div class="container-header">
                             <h2>Popular Vendors</h2>
                         </div>
@@ -69,8 +69,8 @@
                                                 ?>
                                             </p>
                                         </div>
-                                        <a href="/vendors?id=<?= htmlspecialchars($vendor['ID']); ?>" class="btn slider-btn">See
-                                            Menu</a>
+                                        <a href="/vendors?id=<?= htmlspecialchars($vendor['ID']); ?>" class="slider-btn">See
+                                            Menu <i class="fa-solid fa-border-all"></i></a>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -78,12 +78,12 @@
                         <!-- Pagination -->
                         <div class="swiper-buttons">
                             <!-- Navigation -->
-                            <div class="swiper-button-prev vendor-slider-popular-prev"></div>
-                            <div class="swiper-pagination vendor-slider-popular-pagination"></div>
-                            <div class="swiper-button-next vendor-slider-popular-next"></div>
+                            <div class="swiper-button-prev vendorSlider-prev"></div>
+                            <div class="swiper-pagination vendorSlider-pagination"></div>
+                            <div class="swiper-button-next vendorSlider-next"></div>
                         </div>
                         <div class="slider-browse">
-                            <a href="/vendors">Browse More</a>
+                            <a href="/vendors">Browse More <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
                 </div>
@@ -150,8 +150,8 @@
                                             ?>
                                         </p>
                                     </div>
-                                    <a href="/vendors?id=<?= htmlspecialchars($vendor['ID']); ?>" class="btn slider-btn">See
-                                        Menu</a>
+                                    <a href="/vendors?id=<?= htmlspecialchars($vendor['ID']); ?>" class="gallery-btn">See
+                                        Menu <i class="fa-solid fa-border-all"></i></a>
                                 </div>
 
                             </div>
@@ -159,12 +159,12 @@
                     </div>
                     <div class="gallery-browse">
                         <button id="load-more" <?php if ($totalItems <= $visibleItems)
-                            echo 'disabled'; ?>>Load More</button>
-                        <a href="/vendors">Browse All</a>
+                            echo 'disabled'; ?>>Load More <i
+                                class="fa-solid fa-spinner"></i>
+                        </button>
+                        <a href="/vendors">Browse All <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
-
-
             <?php endif; ?>
         <?php endif; ?>
 

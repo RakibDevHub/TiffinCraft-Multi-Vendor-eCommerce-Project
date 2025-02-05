@@ -7,8 +7,9 @@ import {
 import { toggleMenu, toggleLinks } from "./_toggle.js";
 import { initRatingSystem } from "./_interactions.js";
 import { initFilePreview } from "./_imageUpload.js";
+import { initSwiper } from "./_swiper-init.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   // Initialize business link
   const businessLink = document.querySelector(".business-link");
   const closeBtn = document.querySelector(".close-btn");
@@ -66,6 +67,46 @@ document.addEventListener("DOMContentLoaded", () => {
         imagePreview,
         removeBtn
       );
+    }
+  }
+
+  if (window.location.pathname === "/") {
+    try {
+      const sliderConfigs = [
+        {
+          selector: ".vendorSlider",
+          pagination: ".vendorSlider-pagination",
+          next: ".vendorSlider-next",
+          prev: ".vendorSlider-prev",
+        },
+        {
+          selector: ".dishes-slider-popular",
+          pagination: ".dishes-slider-popular-pagination",
+          next: ".dishes-slider-popular-next",
+          prev: ".dishes-slider-popular-prev",
+        },
+        {
+          selector: ".dishes-slider-home",
+          pagination: ".dishes-slider-home-pagination",
+          next: ".dishes-slider-home-next",
+          prev: ".dishes-slider-home-prev",
+        },
+        {
+          selector: ".dishes-slider-restaurant",
+          pagination: ".dishes-slider-restaurant-pagination",
+          next: ".dishes-slider-restaurant-next",
+          prev: ".dishes-slider-restaurant-prev",
+        },
+      ];
+
+      for (const { selector, pagination, next, prev } of sliderConfigs) {
+        const sliderElement = document.querySelector(selector);
+        if (sliderElement) {
+          await initSwiper(selector, pagination, next, prev);
+        }
+      }
+    } catch (error) {
+      console.error("Initialization error:", error);
     }
   }
 });
