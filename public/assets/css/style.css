@@ -1308,7 +1308,7 @@ fieldset legend {
 
 
 
-/* Slider Design  */
+/* Slider Design & Gallery */
 .slider {
   padding: 5rem;
 }
@@ -1322,8 +1322,11 @@ fieldset legend {
 
 .slider-top img {
   opacity: 0.7;
+  width: 100%;
+  height: 200px;
 }
 
+.gallery-icons,
 .slider-icons {
   width: 100%;
   display: flex;
@@ -1335,6 +1338,7 @@ fieldset legend {
   top: 164px;
 }
 
+.gallery-icons span,
 .slider-icons span {
   display: flex;
   justify-content: center;
@@ -1343,19 +1347,22 @@ fieldset legend {
   gap: 0.5rem;
 }
 
+.gallery-icons span i,
 .slider-icons span i {
   color: #fff;
   font-size: 2.2rem;
   cursor: pointer;
 }
 
+.gallery-icons span i:hover,
+.gallery-icons span i:hover~i,
 .slider-icons span i:hover,
 .slider-icons span i:hover~i {
   color: gold;
 }
 
+.gallery-icons span:last-child i:hover,
 .slider-icons span:last-child i:hover {
-  /* color: red; */
   color: var(--primary-color);
 }
 
@@ -1369,51 +1376,54 @@ fieldset legend {
   transition: all 0.2s;
 }
 
+.gallery-bottom,
 .slider-bottom {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
-  padding-top: 0rem;
+  padding: 0.5rem 0;
+  padding-bottom: 0;
   gap: 1.5rem;
   font-size: 1.5rem;
   height: -webkit-fill-available;
 }
 
+.gallery-bottom .gallery-content,
 .slider-bottom .slider-content {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
+.gallery-content p,
 .slider-content p {
-  color: #000;
+  color: #666;
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-.slider-top span.k-type {
+span.k-type {
   position: absolute;
   margin: 0.5rem;
   z-index: 1;
 }
 
-.slider-top span.k-type,
-.slider-content span.area-tags {
+span.k-type,
+span.area-tags {
   padding: 0rem 0.5rem;
   border-radius: 0.4rem;
   cursor: pointer;
   width: fit-content;
 }
 
-.slider-top span.k-type {
-  border: 1px solid var(--blue-dark);
-  background: var(--blue-dark);
+span.k-type {
+  border: 1px solid var(--green-dark);
+  background: var(--green-dark);
   color: #FFF;
 }
 
-.slider-content span.area-tags {
+span.area-tags {
   border: 1px solid var(--green-dark);
   background: var(--green-dark);
   color: #FFF;
@@ -1425,6 +1435,85 @@ fieldset legend {
   gap: 0.5rem;
   align-items: center;
 }
+
+.gallery-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.gallery-item {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-top {
+  position: relative;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+
+
+.gallery-image {
+  width: 100%;
+  height: 200px;
+  display: block;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.gallery-browse {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.gallery-browse button {
+  padding: 0.5rem 2rem;
+  background-color: var(--blue-dark);
+  color: #fff;
+  border-radius: 0.5rem;
+  font-size: 1.7rem;
+}
+
+.gallery-browse button:hover {
+  transform: scale(1.05);
+  background-color: #1C64F2;
+}
+
+.gallery-browse a {
+  padding: 0.5rem 2rem;
+  background-color: #ff5622;
+  color: #fff;
+  border-radius: 0.5rem;
+}
+
+.gallery-browse a:hover {
+  transform: scale(1.05);
+  background-color: #ff3c00;
+}
+
+/* @media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 15px;
+  }
+} */
 
 .card-list .card-link,
 .card-image {
@@ -1731,7 +1820,7 @@ footer {
   .business-link {
     justify-content: flex-start;
     transition: opacity 0.3s ease;
-    opacity: 0;
+    opacity: 1;
   }
 
   .nav-buttons {

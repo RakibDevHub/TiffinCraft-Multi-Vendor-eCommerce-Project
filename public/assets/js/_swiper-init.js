@@ -12,10 +12,10 @@ new Swiper(".vendor-slider-popular", {
   slidesPerGroup: 1,
   spaceBetween: 20,
   breakpoints: {
-    // 640: {
-    //   slidesPerView: 2,
-    //   slidesPerGroup: 2,
-    // },
+    640: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+    },
     768: {
       slidesPerView: 2,
       slidesPerGroup: 2,
