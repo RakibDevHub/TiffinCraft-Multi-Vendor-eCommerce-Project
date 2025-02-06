@@ -79,6 +79,30 @@ class VendorController
 		}
 	}
 
+	public function menu($context)
+	{
+		$title = "Manage Menu";
+
+		$isLoggedIn = $context['isLoggedIn'] ?? false;
+		$userId = $context['userId'] ?? null;
+		$userRole = $context['userRole'] ?? null;
+		$currentPath = $context['currentPath'] ?? '/';
+
+		if (!$isLoggedIn || !$userId || $userRole !== 'vendor') {
+			header("Location: /business/login");
+			exit;
+		}
+
+		$breadcrumb = [
+			'Dashboard' => '/vendor/dashboard',
+			'Manage Menu' => null,
+		];
+
+		$userData = $_SESSION[SESSION_USER_DATA];
+		include ROOT_DIR . '/pages/vendor/menu.php';
+		return;
+	}
+
 	// public function vendorDetails($context)
 	// {
 	// 	$vendorId = $_GET['id'] ?? null;

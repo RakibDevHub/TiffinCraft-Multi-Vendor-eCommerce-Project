@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\AuthModel;
+use App\Models\VendorModel;
 use App\Service\Database;
 use App\Utils\CSRFToken;
 
@@ -10,11 +11,13 @@ class AuthController
 {
 
     private $authModel;
+    private $vendorModel;
 
     public function __construct()
     {
         $conn = Database::getConnection();
         $this->authModel = new AuthModel($conn);
+        $this->vendorModel = new VendorModel($conn);
     }
 
     public function login($context)
@@ -104,6 +107,7 @@ class AuthController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             if (!CSRFToken::validateToken($_POST['csrf_token'] ?? '')) {
                 $error = "Invalid CSRF token.";
             } else {
@@ -142,7 +146,7 @@ class AuthController
                     $error = $response;
                 } elseif ($userType === 'vendor' && (empty($businessName) || empty($businessAddress) || empty($kitchenType) || empty($cuisineType) || empty($delivery))) {
                     $error = "Please provide business details for vendor registration.";
-                } elseif (!preg_match('/^[a-zA-Z0-9\s\-\_\.]+$/', $businessName)) {
+                } elseif ($userType === 'vendor' && !preg_match('/^[a-zA-Z0-9\s\-\_\.]+$/', $businessName)) {
                     $error = "Invalid business name format. Only letters, numbers, spaces, hyphens, underscores, and periods are allowed.";
                 } else {
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -189,16 +193,41 @@ class AuthController
                         }
                     }
 
+                    $conn = $this->authModel->getConnection();
+
                     $user = $this->authModel->registerUser($userData, $userType);
+
                     if ($user) {
                         unset($user['PASSWORD']);
                         $_SESSION[SESSION_USER_ID] = $user['ID'];
                         $_SESSION[SESSION_USER_ROLE] = $userType;
                         $_SESSION[SESSION_USER_DATA] = $user;
                         CSRFToken::clearToken();
+
+                        if ($userType === 'vendor' && isset($_POST['ctype'])) {
+                            $vendorId = $user['ID'];
+                            $cuisineTypes = explode(",", $_POST['ctype']);
+
+                            if (!$this->vendorModel->addCuisineTypes($vendorId, $cuisineTypes)) {
+                                oci_rollback($conn);
+
+                                $error = "Registration failed. Error adding cuisine types.";
+                                $this->logOciError("register", "Error adding cuisine types", null, null, $this->vendorModel->getLastError());
+                                include ROOT_DIR . 'pages/auth/register.php';
+                                return;
+                            }
+
+                        }
+
+                        oci_commit($conn);
                         $this->redirectTo($userType);
+
                     } else {
+                        oci_rollback($conn);
                         $error = "Registration failed. Please check the form and try again.";
+
+                        include ROOT_DIR . 'pages/auth/register.php';
+                        return;
                     }
                 }
             }

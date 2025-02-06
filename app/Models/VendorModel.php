@@ -4,6 +4,7 @@ namespace App\Models;
 class VendorModel
 {
     private $conn;
+    private $lastError = null;
 
     public function __construct($conn)
     {
@@ -120,7 +121,6 @@ class VendorModel
         }
     }
 
-
     public function getAllVendors($status = null)
     {
         try {
@@ -168,7 +168,7 @@ class VendorModel
             return $vendors;
 
         } catch (\Exception $e) {
-            $this->logOciError("getAllVendors", "Exception caught", null, $query, [':status' => $status], $e); // Log with exception details
+            $this->logOciError("getAllVendors", "Exception caught", null, $query, [':status' => $status], $e);
             return [];
         }
     }
@@ -218,7 +218,121 @@ class VendorModel
         }
     }
 
-    private function logOciError($functionName, $message, $resource, $query = null, $params = null, \Exception $e = null)
+    public function addCuisineTypes($vendorId, $cuisineTypes)
+    {
+        try {
+            foreach ($cuisineTypes as $cuisineName) {
+                $cuisineName = trim($cuisineName);
+                $cuisineType = $this->getCuisineTypeByName($cuisineName);
+
+                if (!$cuisineType) {
+                    $cuisineTypeId = $this->createCuisineType($cuisineName);
+                    if ($cuisineTypeId === false) {
+                        oci_rollback($this->conn);
+                        return false;
+                    }
+                } else {
+                    $cuisineTypeId = $cuisineType['id'];
+                }
+
+                $existingAssociation = $this->checkVendorCuisineAssociation($vendorId, $cuisineTypeId);
+                if (!$existingAssociation) {
+                    if (!$this->insertVendorCuisine($vendorId, $cuisineTypeId)) {
+                        oci_rollback($this->conn);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        } catch (\Exception $e) {
+            oci_rollback($this->conn);
+            $this->logOciError("addCuisineTypes", "Exception in addCuisineTypes", null, null, $e);
+            return false;
+        }
+    }
+
+    private function getCuisineTypeByName($cuisineName)
+    {
+        try {
+            $query = "SELECT id FROM Cuisine_Types WHERE LOWER(cuisine_name) = LOWER(:cuisineName)";
+            $stmt = oci_parse($this->conn, $query);
+            oci_bind_by_name($stmt, ":cuisineName", $cuisineName);
+            oci_execute($stmt);
+            $row = oci_fetch_assoc($stmt);
+            oci_free_statement($stmt);
+            return $row;
+        } catch (\Exception $e) {
+            $this->logOciError("getCuisineTypeByName", "Exception in getCuisineTypeByName", null, null, $e);
+            return false; // Or throw the exception
+        }
+    }
+
+    private function createCuisineType($cuisineName)
+    {
+        try {
+            $query = "INSERT INTO Cuisine_Types (cuisine_name) VALUES (:cuisineName) RETURNING id INTO :id";
+            $stmt = oci_parse($this->conn, $query);
+            oci_bind_by_name($stmt, ":cuisineName", $cuisineName);
+            $id = null;
+            oci_bind_by_name($stmt, ":id", $id, -1, SQLT_INT);
+
+            oci_execute($stmt, OCI_NO_AUTO_COMMIT);
+
+            if (oci_error($stmt)) {
+                $this->logOciError("createCuisineType", "Error creating cuisine type", $stmt, $query, $cuisineName);
+                oci_free_statement($stmt);
+                return false;
+            }
+
+            oci_free_statement($stmt);
+            return $id;
+        } catch (\Exception $e) {
+            $this->logOciError("createCuisineType", "Exception in createCuisineType", null, null, $cuisineName, $e);
+            return false;
+        }
+    }
+
+    private function checkVendorCuisineAssociation($vendorId, $cuisineTypeId)
+    {
+        try {
+            $query = "SELECT 1 FROM Vendors_Cuisine_Types WHERE vendor_id = :vendorId AND cuisine_type_id = :cuisineTypeId";
+            $stmt = oci_parse($this->conn, $query);
+            oci_bind_by_name($stmt, ":vendorId", $vendorId, -1, SQLT_INT);
+            oci_bind_by_name($stmt, ":cuisineTypeId", $cuisineTypeId, -1, SQLT_INT);
+            oci_execute($stmt);
+            $row = oci_fetch_assoc($stmt);
+            oci_free_statement($stmt);
+            return $row;
+        } catch (\Exception $e) {
+            $this->logOciError("checkVendorCuisineAssociation", "Exception in checkVendorCuisineAssociation", null, null, $e);
+            return false;
+        }
+    }
+
+    private function insertVendorCuisine($vendorId, $cuisineTypeId)
+    {
+        try {
+            $query = "INSERT INTO Vendors_Cuisine_Types (vendor_id, cuisine_type_id) VALUES (:vendorId, :cuisineTypeId)";
+            $stmt = oci_parse($this->conn, $query);
+            oci_bind_by_name($stmt, ":vendorId", $vendorId, -1, SQLT_INT);
+            oci_bind_by_name($stmt, ":cuisineTypeId", $cuisineTypeId, -1, SQLT_INT);
+
+            oci_execute($stmt, OCI_NO_AUTO_COMMIT);
+
+            if (oci_error($stmt)) {
+                $this->logOciError("insertVendorCuisine", "Error inserting into Vendors_Cuisine_Types", $stmt, $query, $vendorId . ' + ' . $cuisineTypeId);
+                oci_free_statement($stmt);
+                return false;
+            }
+            oci_free_statement($stmt);
+            return true;
+        } catch (\Exception $e) {
+            $this->logOciError("insertVendorCuisine", "Exception in insertVendorCuisine", null, $query, $vendorId . ' + ' . $cuisineTypeId, $e);
+            return false;
+        }
+    }
+
+    private function logOciError($functionName, $message, $resource, $query = null, $params = null, $e = null)
     {
         $error = oci_error($resource);
         $errorMessage = "Error in $functionName: $message - ";
@@ -236,12 +350,22 @@ class VendorModel
         }
 
         if ($e) {
-            $errorMessage .= "\nException: " . $e->getMessage() . "\nTrace: " . $e->getTraceAsString();
+            if ($e instanceof \Exception) {
+                $errorMessage .= "\nException: " . $e->getMessage() . "\nTrace: " . $e->getTraceAsString();
+            } else {
+                $errorMessage .= "\nAdditional Info (Not an Exception): " . print_r($e, true);
+            }
         }
 
+
+        $this->lastError = $errorMessage;
         error_log($errorMessage);
     }
 
+    public function getLastError()
+    {
+        return $this->lastError;
+    }
 
 
     // private function getColumnsExcluding(array $excludeColumns = [])

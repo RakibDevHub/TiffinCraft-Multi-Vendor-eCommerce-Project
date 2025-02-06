@@ -18,13 +18,13 @@
             </li>
             <?php if (strpos($currentPath, '/admin') === false): ?>
                 <li>
-                    <a href="/business/menus" class="sidebar-link">
+                    <a href="/business/dashboard/manage-menu" class="sidebar-link">
                         <i class="fa-solid fa-shrimp"></i>
                         <span>Manage Menu</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/business/orders" class="sidebar-link">
+                    <a href="/business/dashboard/manage-orders" class="sidebar-link">
                         <i class="fa-solid fa-bag-shopping"></i>
                         <span>Manage Orders</span>
                     </a>

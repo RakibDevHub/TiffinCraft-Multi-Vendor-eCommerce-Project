@@ -29,16 +29,26 @@ class Database
         self::$dbPassword = $env['DB_PASSWORD'] ?? '';
         self::$dbHost = $env['DB_HOST'] ?? '';
         self::$dbServiceName = $env['DB_SERVICE_NAME'] ?? '';
+
+        if (empty(self::$dbUsername) || empty(self::$dbPassword) || empty(self::$dbHost) || empty(self::$dbServiceName)) {
+            error_log("Missing database credentials in .env file.");
+            throw new Exception("Database configuration missing in .env file.");
+        }
     }
 
     public static function getConnection()
     {
         if (!self::$conn) {
             try {
-                self::$conn = oci_connect(self::$dbUsername, self::$dbPassword, "//" . self::$dbHost . "/" . self::$dbServiceName);
+                $tns = "//" . self::$dbHost . ":" . ($env['DB_PORT'] ?? '1521') . "/" . self::$dbServiceName;
+
+                self::$conn = oci_connect(self::$dbUsername, self::$dbPassword, $tns);
+
                 if (!self::$conn) {
                     $error = oci_error();
-                    throw new Exception("Oracle connection failed: " . $error['message']);
+                    $errorMessage = "Oracle connection failed: " . $error['message'];
+                    error_log($errorMessage);
+                    throw new Exception($errorMessage);
                 }
             } catch (Exception $e) {
                 $connectionString = "//" . self::$dbHost . "/" . self::$dbServiceName;
@@ -53,7 +63,7 @@ class Database
     {
         if (self::$conn) {
             oci_close(self::$conn);
-            self::$conn = null; // Reset the connection after closing
+            self::$conn = null;
         }
     }
 }

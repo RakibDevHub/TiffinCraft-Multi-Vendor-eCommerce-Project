@@ -10,6 +10,11 @@ class AuthModel
         $this->conn = $conn;
     }
 
+    public function getConnection()
+    {
+        return $this->conn;
+    }
+
     public function getUserByEmail($email, $userType, $excludeId = null)
     {
         try {
@@ -140,13 +145,15 @@ class AuthModel
     {
         try {
             $table = $this->getTableName($userType);
+            unset($userData['cuisine_type']);
+
             $columns = implode(", ", array_keys($userData));
             $placeholders = ":" . implode(", :", array_keys($userData));
             $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
 
             $stmt = oci_parse($this->conn, $query);
             if (!$stmt) {
-                $this->logOciError("OCI parse error (registerUser)", $this->conn);
+                $this->logOciError("registerUser", "OCI parse error", $this->conn, $query);
                 return false;
             }
 
@@ -166,7 +173,6 @@ class AuthModel
                     case 'business_address':
                     case 'outlet_image':
                     case 'kitchen_type':
-                    case 'cuisine_type':
                     case 'verification_token':
                     case 'status':
                         $length = 255;
@@ -186,33 +192,32 @@ class AuthModel
                         break;
                 }
 
-                if (!oci_bind_by_name($stmt, ":$key", $value, $length, $dataType)) {
-                    $this->logOciError("OCI bind error for key $key", $stmt);
-                    oci_free_statement($stmt);
-                    oci_rollback($this->conn);
-                    return false;
+                if ($key === 'delivery_areas' && isset($value)) {
+                    $clob = oci_new_descriptor($this->conn, OCI_D_LOB);
+                    oci_bind_by_name($stmt, ":$key", $clob, -1, $dataType);
+                    $clob->writeTemporary($value);
+                } else {
+                    if (!oci_bind_by_name($stmt, ":$key", $value, $length, $dataType)) {
+                        $error = oci_error($stmt);
+                        $this->logOciError("registerUser", "OCI bind error for key $key", $stmt, $query, $userData, $error);
+                        oci_free_statement($stmt);
+                        return false;
+                    }
                 }
             }
             unset($value);
 
             if (!oci_execute($stmt, OCI_NO_AUTO_COMMIT)) {
-                $this->logOciError("Registration query failed", $stmt);
+                $error = oci_error($stmt);
+                $this->logOciError("registerUser", "Registration query failed", $stmt, $query, $userData, $error);
                 oci_free_statement($stmt);
-                oci_rollback($this->conn);
                 return false;
             }
 
             oci_free_statement($stmt);
+            $user = $this->getUserByEmail($userData['email'], $userType, null);
+            return $user ? $user : false;
 
-            if (oci_commit($this->conn)) {
-                $user = $this->getUserByEmail($userData['email'], $userType, null);
-                return $user ? $user : false;
-            } else {
-                $this->logOciError("Commit failed", $this->conn);
-                oci_rollback($this->conn);
-                return false;
-
-            }
         } catch (\Exception $e) {
             oci_rollback($this->conn);
             $this->logOciError("registerUser", "Exception caught", null, $query, $userData, $e);
@@ -229,7 +234,7 @@ class AuthModel
         };
     }
 
-    private function logOciError($functionName, $message, $resource, $query = null, $params = null, \Exception $e = null)
+    private function logOciError($functionName, $message, $resource, $query = null, $params = null, $e = null)
     {
         $error = oci_error($resource);
         $errorMessage = "Error in $functionName: $message - ";
@@ -247,7 +252,11 @@ class AuthModel
         }
 
         if ($e) {
-            $errorMessage .= "\nException: " . $e->getMessage() . "\nTrace: " . $e->getTraceAsString();
+            if ($e instanceof \Exception) {
+                $errorMessage .= "\nException: " . $e->getMessage() . "\nTrace: " . $e->getTraceAsString();
+            } else {
+                $errorMessage .= "\nAdditional Info (Not an Exception): " . print_r($e, true);
+            }
         }
 
         error_log($errorMessage);
