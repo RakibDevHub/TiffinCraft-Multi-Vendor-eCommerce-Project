@@ -171,7 +171,6 @@ class AuthController
                                 $error = "Image size exceeds the limit.";
                             } else {
                                 $targetDir = PUBLIC_DIR . "/uploads/vendors/";
-
                                 $imageFileType = strtolower(pathinfo($image["name"], PATHINFO_EXTENSION));
                                 $allowedExtensions = ["jpg", "jpeg", "png", "gif"];
                                 if (!in_array($imageFileType, $allowedExtensions)) {
@@ -224,8 +223,12 @@ class AuthController
 
                     } else {
                         oci_rollback($conn);
-                        $error = "Registration failed. Please check the form and try again.";
 
+                        if (!empty($uploadedFilePath) && file_exists($uploadedFilePath)) {
+                            unlink($uploadedFilePath);
+                        }
+
+                        $error = "Registration failed. Please check the form and try again.";
                         include ROOT_DIR . 'pages/auth/register.php';
                         return;
                     }

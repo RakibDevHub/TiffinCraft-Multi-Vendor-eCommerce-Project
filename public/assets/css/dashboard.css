@@ -244,8 +244,38 @@ body {
     color: #777;
 }
 
+.btn {
+    /* padding: 12px 15px; */
+    padding: 0.7rem 2rem;
 
+    color: var(--secondary-color);
+    background: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: max-content;
+    min-width: 100px;
+    font-weight: bold;
+}
 
+.btn-blue {
+    background: #007bff;
+    color: #fff;
+}
+
+.btn-blue:hover {
+    background: #0056b3;
+}
+
+.btn-green {
+    background: #4CAF50;
+    color: #fff;
+}
+
+.btn-green:hover {
+    background: #3c973f;
+}
 
 .vendors-table {
     padding: 20px;
@@ -400,4 +430,41 @@ th {
 img#vendorImage {
     height: 200px;
     width: auto;
+}
+
+.hidden-input,
+.hidden {
+    display: none !important;
+}
+
+.preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.preview-container img {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.preview-container .remove-btn {
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    padding: 0.5rem 0.7rem;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    transition: background 0.3s;
+}
+
+.preview-container .remove-btn:hover {
+    background: darkred;
 }

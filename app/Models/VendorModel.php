@@ -251,6 +251,53 @@ class VendorModel
         }
     }
 
+    public function addItems($itemData, $userId)
+    {
+        $itemId = null;
+
+        // Fetch cuisine_id from cuisine name
+        $cuisineIdData = $this->getCuisineTypeByName($itemData['cuisine_type']);
+        if (!$cuisineIdData) {
+            echo "Cuisine type not found.<br>";
+            return false;
+        }
+
+        $cuisineId = $cuisineIdData['ID']; // Use uppercase key for Oracle result
+
+        $stmt = oci_parse(
+            $this->conn,
+            "INSERT INTO food_items 
+            (name, description, price, discount, cuisine_id, availability, visibility, image_url, vendor_id) 
+            VALUES (:name, :description, :price, :discount, :cuisine_id, :availability, :visibility, :image_url, :vendor_id) 
+            RETURNING id INTO :item_id"
+        );
+
+        // Bind parameters
+        oci_bind_by_name($stmt, ':name', $itemData['name']);
+        oci_bind_by_name($stmt, ':description', $itemData['description']);
+        oci_bind_by_name($stmt, ':price', $itemData['price']);
+        oci_bind_by_name($stmt, ':discount', $itemData['discount']);
+        oci_bind_by_name($stmt, ':cuisine_id', $cuisineId);
+        oci_bind_by_name($stmt, ':availability', $itemData['availability']);
+        oci_bind_by_name($stmt, ':visibility', $itemData['visibility']);
+        oci_bind_by_name($stmt, ':image_url', $itemData['image']);
+        oci_bind_by_name($stmt, ':vendor_id', $userId);
+        oci_bind_by_name($stmt, ':item_id', $itemId, -1, SQLT_INT);
+
+        if (oci_execute($stmt, OCI_NO_AUTO_COMMIT)) {
+            oci_commit($this->conn);
+            echo "Item successfully inserted with ID: " . $itemId;
+            return true;
+        } else {
+            $error = oci_error($stmt);
+            echo "Error inserting item: " . $error['message'];
+            oci_rollback($this->conn);
+            return false;
+        }
+    }
+
+
+
     private function getCuisineTypeByName($cuisineName)
     {
         try {

@@ -19,7 +19,9 @@ $router->addRoute('/business/login', 'AuthController@login');
 $router->addRoute('/business/logout', 'AuthController@logout');
 $router->addRoute('/business/register', 'AuthController@register');
 $router->addRoute('/business/dashboard', 'VendorController@dashboard', true, ['vendor']);
-$router->addRoute('/business/dashboard/manage-menu', 'VendorController@menu', true, ['vendor']);
+$router->addRoute('/business/dashboard/menu', 'VendorController@menu', true, ['vendor']);
+$router->addRoute('/business/dashboard/menu/add-item', 'VendorController@addItem', true, ['vendor']);
+$router->addRoute('/business/dashboard/category', 'VendorController@category', true, ['vendor']);
 $router->addRoute('/business/dashboard/orders', 'VendorController@orders', true, ['vendor']);
 $router->addRoute('/business/dashboard/customers', 'VendorController@customers', true, ['vendor']);
 

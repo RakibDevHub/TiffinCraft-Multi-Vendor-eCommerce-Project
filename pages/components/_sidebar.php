@@ -18,9 +18,15 @@
             </li>
             <?php if (strpos($currentPath, '/admin') === false): ?>
                 <li>
-                    <a href="/business/dashboard/manage-menu" class="sidebar-link">
+                    <a href="/business/dashboard/category" class="sidebar-link">
                         <i class="fa-solid fa-shrimp"></i>
-                        <span>Manage Menu</span>
+                        <span>Food Category</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/business/dashboard/menu" class="sidebar-link">
+                        <i class="fa-solid fa-shrimp"></i>
+                        <span>Food Menu</span>
                     </a>
                 </li>
                 <li>
@@ -65,7 +71,7 @@
             <li>
                 <a href="/business/profile" class="sidebar-link">
                     <i class="fa-solid fa-user"></i>
-                    <span>Manage Profile</span>
+                    <span>Account</span>
                 </a>
             </li>
             <li>
@@ -84,3 +90,9 @@
         </div>
     </ul>
 </div>
+
+<script>
+    const App = {
+        userLoggedIn: <?php echo json_encode($isLoggedIn); ?>
+    };
+</script>

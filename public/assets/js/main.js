@@ -46,7 +46,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Initialize file preview only on /business/register path
-  if (window.location.pathname === "/business/register") {
+  if (
+    window.location.pathname === "/business/register" ||
+    window.location.pathname === "/business/dashboard/menu"
+  ) {
     const fileInput = document.querySelector(".hidden-input");
     const chooseFileBtn = document.querySelector(".choose-file-btn");
     const previewContainer = document.querySelector(".preview-container");
