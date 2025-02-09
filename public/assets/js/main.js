@@ -11,17 +11,21 @@ import { initSwiper } from "./_swiper-init.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   // Initialize business link
-  const businessLink = document.querySelector(".business-link");
-  const closeBtn = document.querySelector(".close-btn");
-  const navContainer = document.querySelector(".nav-container");
-  const { closeBusinessLink } = handleBusinessLink(businessLink, navContainer);
-  if (closeBtn) {
-    closeBtn.addEventListener("click", closeBusinessLink);
+  if (window.location.pathname === "/") {
+    const businessLink = document.querySelector(".business-link");
+    const closeBtn = document.querySelector(".close-btn");
+    const navContainer = document.querySelector(".nav-container");
+    const { closeBusinessLink } = handleBusinessLink(
+      businessLink,
+      navContainer
+    );
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeBusinessLink);
+    }
+    // Initialize links
+    const navLinks = document.querySelectorAll(".nav-links a");
+    initActiveNavLinks(navLinks, businessLink);
   }
-
-  // Initialize links
-  const navLinks = document.querySelectorAll(".nav-links a");
-  initActiveNavLinks(navLinks, businessLink);
 
   const footerLinks = document.querySelectorAll(".footer-links a");
   initActiveFooterLinks(footerLinks);
@@ -48,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Initialize file preview only on /business/register path
   if (
     window.location.pathname === "/business/register" ||
-    window.location.pathname === "/business/dashboard/menu"
+    window.location.pathname === "/business/dashboard/menu/add-item"
   ) {
     const fileInput = document.querySelector(".hidden-input");
     const chooseFileBtn = document.querySelector(".choose-file-btn");

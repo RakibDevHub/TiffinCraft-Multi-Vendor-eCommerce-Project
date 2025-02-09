@@ -7,7 +7,8 @@
 
     <?php include ROOT_DIR . '/pages/components/_fonts.php' ?>
 
-    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+
     <title><?= htmlspecialchars($title) ?></title>
 </head>
 

@@ -17,17 +17,19 @@
                 </a>
             </li>
             <?php if (strpos($currentPath, '/admin') === false): ?>
-                <li>
-                    <a href="/business/dashboard/category" class="sidebar-link">
-                        <i class="fa-solid fa-shrimp"></i>
-                        <span>Food Category</span>
+                <li class="menu-item">
+                    <a href="#" class="sidebar-link menu-toggle">
+                        <!-- <i class="fa-solid fa-shrimp"></i> -->
+                        <i class="fa-brands fa-microsoft"></i>
+                        <span>Manage Menu</span>
+                        <i class="fa fa-caret-down"></i>
                     </a>
-                </li>
-                <li>
-                    <a href="/business/dashboard/menu" class="sidebar-link">
-                        <i class="fa-solid fa-shrimp"></i>
-                        <span>Food Menu</span>
-                    </a>
+                    <ul class="submenu">
+                        <li><a href="/business/dashboard/food-menu"><i class="fa-solid fa-list"></i> Food List</a></li>
+                        <li><a href="/business/dashboard/category"><i class="fa-solid fa-layer-group"></i> Category</a>
+                        </li>
+                        <li><a href="/business/dashboard/cuisine"><i class="fa-solid fa-utensils"></i> Cuisine</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="/business/dashboard/manage-orders" class="sidebar-link">
@@ -95,4 +97,12 @@
     const App = {
         userLoggedIn: <?php echo json_encode($isLoggedIn); ?>
     };
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const submenu = document.querySelector('.submenu');
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        // Submenu height transition is handled by CSS now.
+    });
 </script>

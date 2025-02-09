@@ -83,10 +83,13 @@
                 <div class="menu-category">
                     <h2>Menu Categories</h2>
                     <ul>
-                        <li>Appetizers</li>
-                        <li>Main Course</li>
-                        <li>Desserts</li>
-                        <li>Beverages</li>
+                        <?php if ($categories): ?>
+                            <?php foreach ($categories as $category): ?>
+                                <li><?= htmlspecialchars($categories['CATEGORY_NAME']) ?></li>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <li>No category found</li>
+                        <?php endif ?>
                     </ul>
                 </div>
             </div>

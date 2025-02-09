@@ -218,6 +218,154 @@ class VendorModel
         }
     }
 
+    public function getAllCuisine($vendorId)
+    {
+        try {
+            $query = "SELECT ct.id, ct.cuisine_name 
+                      FROM cuisine_types ct
+                      JOIN vendors_cuisine_types vct ON ct.id = vct.cuisine_type_id
+                      WHERE vct.vendor_id = :vendorId";
+
+            $stmt = oci_parse($this->conn, $query);
+
+            oci_bind_by_name($stmt, ':vendorId', $vendorId);
+
+            oci_execute($stmt);
+
+            $cuisines = [];
+
+            while ($row = oci_fetch_assoc($stmt)) {
+                $cuisines[] = $row;
+            }
+
+            oci_free_statement($stmt);
+
+            return $cuisines;
+
+        } catch (Exception $e) {
+            $this->logOciError("getAllCuisine", "An exception occurred", null, null, null, $e);
+            return false;
+        }
+    }
+
+    public function getAllCategories($vendorId)
+    {
+        try {
+            $query = "SELECT fc.id, fc.category_name 
+                      FROM food_categories fc
+                      JOIN vendors_food_categories vfc ON fc.id = vfc.food_category_id
+                      WHERE vfc.vendor_id = :vendorId";
+
+            $stmt = oci_parse($this->conn, $query);
+
+            oci_bind_by_name($stmt, ':vendorId', $vendorId);
+
+            oci_execute($stmt);
+
+            $categories = [];
+
+            while ($row = oci_fetch_assoc($stmt)) {
+                $categories[] = $row;
+            }
+
+            oci_free_statement($stmt);
+
+            return $categories;
+
+        } catch (Exception $e) {
+            $this->logOciError("getAllCategories", "An exception occurred", null, null, null, $e);
+            return false;
+        }
+    }
+
+    private function getCuisineTypeByName($cuisineName)
+    {
+        try {
+            $query = "SELECT id FROM Cuisine_Types WHERE LOWER(cuisine_name) = LOWER(:cuisineName)";
+            $stmt = oci_parse($this->conn, $query);
+            oci_bind_by_name($stmt, ":cuisineName", $cuisineName);
+            oci_execute($stmt);
+            $row = oci_fetch_assoc($stmt);
+            oci_free_statement($stmt);
+            return $row;
+        } catch (\Exception $e) {
+            $this->logOciError("getCuisineTypeByName", "Exception in getCuisineTypeByName", null, null, $e);
+            return false; // Or throw the exception
+        }
+    }
+
+    public function getAllFoodItems($vendorId)
+    {
+        try {
+            $query = "SELECT
+                fi.id,
+                fi.name,
+                fi.description,
+                fi.price,
+                fi.discount,
+                fi.image_url,
+                fi.availability,
+                fi.visibility,
+                fc.category_name AS CATEGORY_NAME,
+                ct.cuisine_name AS CUISINE_NAME,
+                fi.vendor_id,
+                fi.created_at,
+                fi.updated_at,
+                fi.tags
+            FROM
+                food_items fi
+            LEFT JOIN
+                food_categories fc ON fi.category_id = fc.id
+            LEFT JOIN
+                cuisine_types ct ON fi.cuisine_id = ct.id
+            WHERE
+                fi.vendor_id = :vendorId";
+
+            $stmt = oci_parse($this->conn, $query);
+
+            if (!$stmt) {
+                $this->logOciError("getAllFoodItems", "Error parsing query", $this->conn, $query);
+                return false;
+            }
+
+            oci_bind_by_name($stmt, ':vendorId', $vendorId);
+
+            if (!oci_execute($stmt)) {
+                $this->logOciError("getAllFoodItems", "Error executing query", $stmt, $query, [':vendorId' => $vendorId]);
+                return false;
+            }
+
+            $foodItems = [];
+
+            while ($row = oci_fetch_assoc($stmt)) {
+                $clobColumns = ['DESCRIPTION'];
+
+                foreach ($clobColumns as $column) {
+                    if (isset($row[$column])) {
+                        $clob = $row[$column];
+                        if (is_object($clob)) {
+                            $data = $clob->load();
+                            $row[$column] = $data;
+                        } else {
+                            $row[$column] = null;
+                        }
+                    }
+                }
+
+                $foodItems[] = $row;
+            }
+
+            oci_free_statement($stmt);
+
+            return $foodItems;
+
+        } catch (Exception $e) {
+            $this->logOciError("getAllFoodItems", "An exception occurred", null, null, null, $e);
+            return false;
+        }
+    }
+
+
     public function addCuisineTypes($vendorId, $cuisineTypes)
     {
         try {
@@ -253,64 +401,33 @@ class VendorModel
 
     public function addItems($itemData, $userId)
     {
-        $itemId = null;
-
-        // Fetch cuisine_id from cuisine name
-        $cuisineIdData = $this->getCuisineTypeByName($itemData['cuisine_type']);
-        if (!$cuisineIdData) {
-            echo "Cuisine type not found.<br>";
-            return false;
-        }
-
-        $cuisineId = $cuisineIdData['ID']; // Use uppercase key for Oracle result
-
         $stmt = oci_parse(
             $this->conn,
-            "INSERT INTO food_items 
-            (name, description, price, discount, cuisine_id, availability, visibility, image_url, vendor_id) 
-            VALUES (:name, :description, :price, :discount, :cuisine_id, :availability, :visibility, :image_url, :vendor_id) 
-            RETURNING id INTO :item_id"
+            "INSERT INTO food_items (name, description, price, discount, cuisine_id, category_id, availability, visibility, image_url, vendor_id) 
+            VALUES (:name, :description, :price, :discount, :cuisine_id, :category_id, :availability, :visibility, :image_url, :vendor_id)"
         );
 
-        // Bind parameters
         oci_bind_by_name($stmt, ':name', $itemData['name']);
         oci_bind_by_name($stmt, ':description', $itemData['description']);
         oci_bind_by_name($stmt, ':price', $itemData['price']);
         oci_bind_by_name($stmt, ':discount', $itemData['discount']);
-        oci_bind_by_name($stmt, ':cuisine_id', $cuisineId);
+        oci_bind_by_name($stmt, ':cuisine_id', $itemData['cuisine_id']);
+        oci_bind_by_name($stmt, ':category_id', $itemData['category_id']);
         oci_bind_by_name($stmt, ':availability', $itemData['availability']);
         oci_bind_by_name($stmt, ':visibility', $itemData['visibility']);
         oci_bind_by_name($stmt, ':image_url', $itemData['image']);
         oci_bind_by_name($stmt, ':vendor_id', $userId);
-        oci_bind_by_name($stmt, ':item_id', $itemId, -1, SQLT_INT);
 
         if (oci_execute($stmt, OCI_NO_AUTO_COMMIT)) {
             oci_commit($this->conn);
-            echo "Item successfully inserted with ID: " . $itemId;
+            oci_free_statement($stmt);
             return true;
         } else {
             $error = oci_error($stmt);
-            echo "Error inserting item: " . $error['message'];
+            $this->logOciError("addItems", "An exception occurred", $stmt, null, null, $error);
             oci_rollback($this->conn);
-            return false;
-        }
-    }
-
-
-
-    private function getCuisineTypeByName($cuisineName)
-    {
-        try {
-            $query = "SELECT id FROM Cuisine_Types WHERE LOWER(cuisine_name) = LOWER(:cuisineName)";
-            $stmt = oci_parse($this->conn, $query);
-            oci_bind_by_name($stmt, ":cuisineName", $cuisineName);
-            oci_execute($stmt);
-            $row = oci_fetch_assoc($stmt);
             oci_free_statement($stmt);
-            return $row;
-        } catch (\Exception $e) {
-            $this->logOciError("getCuisineTypeByName", "Exception in getCuisineTypeByName", null, null, $e);
-            return false; // Or throw the exception
+            return false;
         }
     }
 

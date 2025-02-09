@@ -193,7 +193,6 @@ class AuthController
                     }
 
                     $conn = $this->authModel->getConnection();
-
                     $user = $this->authModel->registerUser($userData, $userType);
 
                     if ($user) {

@@ -37,7 +37,7 @@ class Router
                 if (class_exists($controllerClass)) {
                     $controllerInstance = new $controllerClass();
                     if (method_exists($controllerInstance, $actionName)) {
-                        $controllerInstance->$actionName($context); // Use the original $context
+                        $controllerInstance->$actionName($context);
                         return true;
                     } else {
                         http_response_code(404);
